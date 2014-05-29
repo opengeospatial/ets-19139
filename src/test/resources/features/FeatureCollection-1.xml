@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCollectionA gml:id="FeatureCollectionA-1" xmlns="http://example.org/ns1"
+  xmlns:gml="http://www.opengis.net/gml/3.2">
+  <gml:boundedBy>
+    <gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+      <gml:lowerConder>48.43 -123.37</gml:lowerConder>
+      <gml:upperCorner>49.33 -122.60</gml:upperCorner>
+    </gml:Envelope>
+  </gml:boundedBy>
+  <featureMember>
+    <SimpleFeature gml:id="SimpleFeature-1" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <gml:locationReference xlink:href="http://www.w3schools.com/xml/note.xml"/>
+      <pointProperty>
+        <gml:Point gml:id="g-1">
+          <gml:pos>49.25 -123.1</gml:pos>
+        </gml:Point>
+      </pointProperty>
+      <intProperty>20121024</intProperty>
+      <measurand>15.35</measurand>
+      <decimalProperty>10.00</decimalProperty>
+    </SimpleFeature>
+  </featureMember>
+</FeatureCollectionA>

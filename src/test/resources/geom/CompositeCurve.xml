@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:CompositeCurve gml:id="CompositeCurve-1"
+	xmlns:gml="http://www.opengis.net/gml/3.2">
+	<gml:curveMember>
+		<gml:Curve gml:id="Curve-1" srsName="urn:ogc:def:crs:EPSG::4326">
+			<gml:segments>
+				<gml:Arc interpolation="circularArc3Points">
+					<gml:pos>49.194442 -122.929795</gml:pos>
+					<gml:pos>49.040829 -123.086952</gml:pos>
+					<gml:pos>49.361246 -123.183889</gml:pos>
+				</gml:Arc>
+			</gml:segments>
+		</gml:Curve>
+	</gml:curveMember>
+	<gml:curveMember>
+		<gml:OrientableCurve gml:id="Curve-2" orientation="-">
+			<gml:baseCurve>
+				<gml:Curve gml:id="Curve-3" srsName="urn:ogc:def:crs:EPSG::4326">
+					<gml:segments>
+						<gml:LineStringSegment interpolation="linear">
+							<gml:posList>49.702558 -123.000000 49.649961 -123.000000
+								49.540074 -123.183889</gml:posList>
+						</gml:LineStringSegment>
+						<gml:LineStringSegment>
+							<gml:posList>49.540074 -123.183889 49.361246 -123.183889</gml:posList>
+						</gml:LineStringSegment>
+					</gml:segments>
+				</gml:Curve>
+			</gml:baseCurve>
+		</gml:OrientableCurve>
+	</gml:curveMember>
+</gml:CompositeCurve>

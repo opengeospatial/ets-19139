@@ -73,6 +73,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.17</version>
         <configuration>
+              <skipTests>true</skipTests>
           <!-- Disable TestNG runner (enabled due to compile dependency) -->
           <testNGArtifactName>null:null</testNGArtifactName>
           <junitArtifactName>junit:junit</junitArtifactName>
@@ -117,7 +118,7 @@
           <archive>
             <manifest>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              <mainClass>org.opengis.cite.iso1939.TestNGController</mainClass>
+              <mainClass>org.opengis.cite.iso19136.TestNGController</mainClass>
             </manifest>
             <manifestEntries>
               <Build-Time>${maven.build.timestamp}</Build-Time>
@@ -155,15 +156,21 @@
     </plugins>
     <resources>
       <resource>
-        <directory>src/main/resources</directory>
+        <directory>${basedir}/src/main/resources</directory>
         <filtering>true</filtering>
       </resource>
       <resource>
-        <directory>src/main/javadoc</directory>
+        <directory>${basedir}/src/main/javadoc</directory>
         <filtering>true</filtering>
         <targetPath>doc/${ets-code}/${project.version}</targetPath>
       </resource>
     </resources>
+      <testResources>
+          <testResource>
+              <directory>${basedir}/src/test/resources</directory>
+              <filtering>true</filtering>
+          </testResource>
+      </testResources>
   </build>
 
   <repositories>

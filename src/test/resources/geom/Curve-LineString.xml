@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:Curve gml:id="Curve-1" srsName="urn:ogc:def:crs:EPSG::4326"
+	xmlns:gml="http://www.opengis.net/gml/3.2">
+	<gml:segments>
+		<gml:LineStringSegment interpolation="linear">
+			<gml:posList>49.274247 -123.140714 49.276956 -123.132265 49.281191 -123.125993</gml:posList>
+		</gml:LineStringSegment>
+		<gml:LineStringSegment>
+			<gml:posList>49.281191 -123.125993 49.274977 -123.116355</gml:posList>
+		</gml:LineStringSegment>
+	</gml:segments>
+</gml:Curve>

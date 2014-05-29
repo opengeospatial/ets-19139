@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://example.org/ns1" xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://example.org/ns1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  elementFormDefault="qualified">
+
+  <xsd:import namespace="http://www.opengis.net/gml/3.2"
+    schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+  <xsd:import namespace="http://www.isotc211.org/2005/gmd"
+    schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd" />
+  <xsd:include schemaLocation="simple.xsd" />
+
+  <xsd:simpleType name="dayTimeDuration">
+    <xsd:restriction base="xsd:duration">
+      <xsd:pattern value="[^YM]*[DT].*" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:element name="simpleFeature2" type="tns:SimpleFeatureType"
+    substitutionGroup="gml:AbstractFeature" />
+
+  <xsd:element name="ComplexFeature2" type="tns:ComplexFeatureType"
+    substitutionGroup="gml:AbstractFeature" abstract="true" />
+
+  <xsd:element name="NotAFeature" type="tns:ComplexFeatureType">
+    <xsd:annotation>
+      <xsd:documentation>Doesn't substitute for gml:AbstractFeature
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+
+  <xsd:element name="GenericFeature" type="tns:GenericFeature"
+    substitutionGroup="gml:AbstractFeature" />
+  <xsd:complexType name="GenericFeature">
+    <xsd:complexContent>
+      <xsd:extension base="gml:AbstractFeatureType">
+        <xsd:sequence>
+          <xsd:element name="date" type="xsd:date" />
+          <xsd:element name="period" type="tns:PeriodPropertyType" />
+          <xsd:element ref="gml:TimeInstant" />
+          <xsd:element ref="tns:simpleFeature2" minOccurs="0" />
+          <xsd:element name="anyMetadata" type="tns:AnyMetadataPropertyType"
+            minOccurs="0" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="AnotherGenericFeature" substitutionGroup="gml:AbstractFeature">
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="gml:AbstractFeatureType">
+          <xsd:sequence>
+            <xsd:element name="duration" type="tns:dayTimeDuration" />
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="FeatureCollection" type="tns:FeatureCollectionType" />
+  <xsd:complexType name="FeatureCollectionType">
+    <xsd:complexContent>
+      <xsd:extension base="tns:GenericFeature">
+        <xsd:sequence>
+          <xsd:element name="genericFeatureMember" type="tns:GenericFeatureMemberType" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="GenericFeatureMemberType">
+    <xsd:complexContent>
+      <xsd:extension base="gml:AbstractFeatureMemberType">
+        <xsd:sequence>
+          <!-- ERROR: Not a feature -->
+          <xsd:element ref="gmd:MD_Metadata" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="AnyMetadataPropertyType">
+    <xsd:complexContent>
+      <xsd:extension base="gml:AbstractMetadataPropertyType">
+        <xsd:sequence>
+          <xsd:any namespace="http://www.isotc211.org/2005/gmd"
+            processContents="lax" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="genericMetadata" type="tns:GenericMetadataPropertyType" />
+  <xsd:complexType name="GenericMetadataPropertyType">
+    <xsd:complexContent>
+      <xsd:extension base="gml:AbstractMetadataPropertyType">
+        <xsd:sequence>
+          <xsd:element ref="gmd:MD_Metadata" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="edgeProperty" type="tns:EdgePropertyType" />
+  <xsd:complexType name="EdgePropertyType">
+    <xsd:sequence minOccurs="0">
+      <xsd:element ref="gml:Edge" />
+    </xsd:sequence>
+    <xsd:attributeGroup ref="gml:OwnershipAttributeGroup" />
+  </xsd:complexType>
+
+  <xsd:complexType name="PeriodPropertyType">
+    <!-- too many particles in sequence -->
+    <xsd:sequence minOccurs="0">
+      <xsd:element ref="gml:TimePeriod" />
+      <xsd:element name="calendar" type="gml:TimeCalendarPropertyType" />
+    </xsd:sequence>
+    <xsd:attributeGroup ref="gml:OwnershipAttributeGroup" />
+    <xsd:attributeGroup ref="gml:AssociationAttributeGroup" />
+  </xsd:complexType>
+
+  <xsd:element name="GenericFeatureCollection" type="tns:GenericFeatureCollectionType"
+    substitutionGroup="gml:AbstractFeature" />
+  <xsd:complexType name="GenericFeatureCollectionType">
+    <xsd:complexContent>
+      <xsd:extension base="gml:AbstractFeatureType">
+        <xsd:sequence>
+          <xsd:element name="genericMember" minOccurs="0" maxOccurs="unbounded"
+            type="tns:GenericMemberType" />
+        </xsd:sequence>
+        <xsd:attributeGroup ref="gml:AggregationAttributeGroup" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="GenericMemberType">
+    <xsd:complexContent>
+      <xsd:extension base="gml:AbstractMemberType">
+        <xsd:sequence>
+          <xsd:element name="rawData" type="xsd:base64Binary" />
+          <!--<xsd:element ref="tns:GenericFeature"/> -->
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="PointWithBearing" type="tns:PointWithBearingType" />
+  <xsd:complexType name="PointWithBearingType">
+    <xsd:complexContent>
+      <xsd:extension base="gml:PointType">
+        <xsd:sequence>
+          <xsd:element name="bearing" type="gml:AngleType" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

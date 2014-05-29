@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="${ets-code}-${project.version}" verbose="0" configfailurepolicy="skip">
+  <parameter name="xsd"  value=""/>
+  <parameter name="gml"  value=""/>
+  <parameter name="sch"  value=""/>
+
+  <listeners>
+    <listener class-name="org.opengis.cite.iso19136.TestRunListener" />
+    <listener class-name="org.opengis.cite.iso19136.SuiteFixtureListener" />
+  </listeners>
+
+  <test name="All GML application schemas">
+    <classes>
+      <class name="org.opengis.cite.iso19136.general.XMLSchemaTests" />
+      <class name="org.opengis.cite.iso19136.general.GeneralSchemaTests" />
+      <class name="org.opengis.cite.iso19136.general.ModelAndSyntaxTests" />
+      <class name="org.opengis.cite.iso19136.general.ComplexPropertyTests" />
+    </classes>
+  </test>
+  <test name="GML application schemas defining features and feature collections">
+    <classes>
+      <class name="org.opengis.cite.iso19136.components.FeatureComponentTests" />
+    </classes>
+  </test>
+  <test name="GML application schemas defining spatial geometries">
+    <classes>
+      <class name="org.opengis.cite.iso19136.components.GeometryComponentTests" />
+    </classes>
+  </test>
+  <test name="GML application schemas defining time">
+    <classes>
+      <class name="org.opengis.cite.iso19136.components.TemporalComponentTests" />
+    </classes>
+  </test>
+  <test name="GML application schemas defining spatial topologies">
+    <classes>
+      <class name="org.opengis.cite.iso19136.components.TopologyComponentTests" />
+    </classes>
+  </test>
+  <test name="GML Documents">
+    <classes>
+      <class name="org.opengis.cite.iso19136.data.XMLSchemaValidationTests" />
+      <class name="org.opengis.cite.iso19136.data.SchematronTests" />
+      <class name="org.opengis.cite.iso19136.data.PropertyValueTests" />
+      <class name="org.opengis.cite.iso19136.data.spatial.PointTests" />
+      <class name="org.opengis.cite.iso19136.data.spatial.EnvelopeTests" />
+      <class name="org.opengis.cite.iso19136.data.spatial.SurfaceTests" />
+      <class name="org.opengis.cite.iso19136.data.spatial.CurveTests" />
+      <class name="org.opengis.cite.iso19136.data.spatial.CompositeCurveTests" />
+    </classes>
+  </test>
+</suite>

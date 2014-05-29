@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.example.net/beta" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://www.example.net/beta" xmlns:nsg="http://www.example.net/gamma"
+    elementFormDefault="qualified" version="201206">
+
+    <xs:import namespace="http://www.example.net/gamma" schemaLocation="gamma.xsd"/>
+
+    <xs:element name="Beta" type="tns:BetaType" substitutionGroup="nsg:Gamma"/>
+    <xs:complexType name="BetaType">
+        <xs:complexContent>
+          <xs:extension base="nsg:GammaType">
+            <xs:sequence>
+              <xs:element name="strProperty" type="xs:string"/>
+              <xs:element name="gammaProp" minOccurs="0" type="tns:GammaPropertyType"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GammaPropertyType">
+        <xs:sequence>
+            <xs:element ref="nsg:Gamma"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

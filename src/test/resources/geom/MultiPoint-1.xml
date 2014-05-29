@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:MultiPoint gml:id="MultiPoint-1" srsName="urn:ogc:def:crs:EPSG::32610"
+  xmlns:gml="http://www.opengis.net/gml/3.2">
+  <gml:pointMember>
+    <gml:Point gml:id="MultiPoint-1.1" srsName="urn:ogc:def:crs:EPSG::4326">
+      <gml:pos>50.55 -122.22</gml:pos>
+    </gml:Point>
+  </gml:pointMember>
+  <gml:pointMember>
+    <gml:Point gml:id="MultiPoint-1.2">
+      <gml:pos>492722 5455253</gml:pos>
+    </gml:Point>
+  </gml:pointMember>
+</gml:MultiPoint>

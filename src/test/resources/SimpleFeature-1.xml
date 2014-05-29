@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SimpleFeature gml:id="id-1" xmlns="http://example.org/ns1"
+	xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://example.org/ns1 xsd/simple.xsd">
+	<gml:boundedBy>
+		<gml:Envelope>
+		    <!-- deprecated elements -->
+			<gml:pos>514432 5451619</gml:pos>
+			<gml:pos>529130 5429689</gml:pos>
+		</gml:Envelope>
+	</gml:boundedBy>
+	<gml:locationReference xlink:href="note.xml" />
+	<intProperty>20121024</intProperty>
+	<measurand>15.35</measurand>
+	<decimalProperty>10.00</decimalProperty>
+</SimpleFeature>

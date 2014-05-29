@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ERROR: Exterior ring has CW orientation -->
+<gml:Surface gml:id="Surface-ExteriorCW" srsName="urn:ogc:def:crs:EPSG::4326"
+  xmlns:gml="http://www.opengis.net/gml/3.2">
+  <gml:patches>
+    <gml:PolygonPatch>
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList>
+            49.2 -123.2 49.3 -123.3 49.3 -122.9 49.2 -122.8 49.2 -123.2
+          </gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+    </gml:PolygonPatch>
+  </gml:patches>
+</gml:Surface>

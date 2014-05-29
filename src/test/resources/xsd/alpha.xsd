@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.example.net/alpha"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.net/alpha"
+    xmlns:nsb="http://www.example.net/beta" elementFormDefault="qualified" version="201206">
+
+    <xs:import namespace="http://www.example.net/beta" schemaLocation="beta.xsd"/>
+
+    <xs:element name="Alpha" type="tns:AlphaType"/>
+    <xs:complexType name="AlphaType">
+        <xs:sequence>
+            <xs:element name="uriProperty" type="xs:anyURI"/>
+            <xs:element name="betaProp" type="tns:BetaPropertyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BetaPropertyType">
+        <xs:sequence>
+            <xs:element ref="nsb:Beta"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

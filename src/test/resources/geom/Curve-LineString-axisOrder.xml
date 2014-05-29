@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- axis order switched in first coordinate -->
+<gml:Curve gml:id="Curve-2" srsName="urn:ogc:def:crs:EPSG::32610"
+	xmlns:gml="http://www.opengis.net/gml/3.2">
+	<gml:segments>
+		<gml:LineStringSegment interpolation="linear">
+			<gml:posList>5447478 289119 472944 5363287 492722 5455253</gml:posList>
+		</gml:LineStringSegment>
+	</gml:segments>
+</gml:Curve>

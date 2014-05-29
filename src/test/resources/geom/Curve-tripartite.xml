@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:Curve gml:id="ID_250" xmlns:gml="http://www.opengis.net/gml/3.2"
+	srsName="urn:ogc:def:crs:EPSG::4326">
+	<gml:segments>
+		<gml:GeodesicString>
+			<gml:posList>55.233333 -36.166667 55.231164 -36.894373</gml:posList>
+		</gml:GeodesicString>
+		<gml:ArcByCenterPoint numArc="1">
+			<gml:posList>55.233333 -36.166667</gml:posList>
+			<gml:radius uom="NM">25.0</gml:radius>
+			<gml:startAngle uom="deg">270.0</gml:startAngle>
+			<gml:endAngle uom="deg">497.0</gml:endAngle>
+		</gml:ArcByCenterPoint>
+		<gml:GeodesicString>
+			<gml:posList>54.928164 -35.674116 55.233333 -36.166667</gml:posList>
+		</gml:GeodesicString>
+	</gml:segments>
+</gml:Curve>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Circular arc centered at YVR with radius 10 NM, starting east through north -->
+<gml:Curve gml:id="Curve-ArcByCenterPoint" srsName="urn:ogc:def:crs:EPSG::4326"
+    xmlns:gml="http://www.opengis.net/gml/3.2">
+    <gml:segments>
+        <gml:ArcByCenterPoint numArc="1">
+            <gml:pos>49.194722 -123.183889</gml:pos>
+            <gml:radius uom="NM">10</gml:radius>
+            <gml:startAngle uom="deg">90</gml:startAngle>
+            <gml:endAngle uom="deg">0</gml:endAngle>
+        </gml:ArcByCenterPoint>
+    </gml:segments>
+</gml:Curve>

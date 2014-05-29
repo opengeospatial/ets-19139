@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:Surface gml:id="ID_249" srsName="urn:ogc:def:crs:EPSG::4326"
+  xmlns:gml="http://www.opengis.net/gml/3.2">
+  <gml:patches>
+    <gml:PolygonPatch interpolation="planar">
+      <gml:exterior>
+        <gml:Ring>
+          <gml:curveMember>
+            <gml:Curve gml:id="ID_250">
+              <gml:segments>
+                <gml:GeodesicString>
+                  <gml:posList>55.233333 -36.166667 54.928164 -35.674116</gml:posList>
+                </gml:GeodesicString>
+                <gml:ArcByCenterPoint numArc="1">
+                  <gml:posList>55.233333 -36.166667</gml:posList>
+                  <gml:radius uom="NM">25.0</gml:radius>
+                  <gml:startAngle uom="deg">137</gml:startAngle>
+                  <gml:endAngle uom="deg">-90</gml:endAngle>
+                </gml:ArcByCenterPoint>
+                <gml:GeodesicString>
+                  <gml:posList>55.231164 -36.894373 55.233333 -36.166667</gml:posList>
+                </gml:GeodesicString>
+              </gml:segments>
+            </gml:Curve>
+          </gml:curveMember>
+        </gml:Ring>
+      </gml:exterior>
+    </gml:PolygonPatch>
+  </gml:patches>
+</gml:Surface>

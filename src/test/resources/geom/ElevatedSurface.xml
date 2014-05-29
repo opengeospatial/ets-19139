@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ElevatedSurface xmlns:tns="http://example.org/ns1"
+	xmlns:gml="http://www.opengis.net/gml/3.2" srsName="urn:ogc:def:crs:EPSG::4326"
+	gml:id="tlofsasurface">
+	<gml:patches>
+		<gml:PolygonPatch>
+			<gml:exterior>
+				<gml:LinearRing>
+					<gml:posList>52.289327 -32.034549 52.288605 -32.034447 52.28855 
+					-32.035622 52.289266 -32.035725 52.289327 -32.034549</gml:posList>
+				</gml:LinearRing>
+			</gml:exterior>
+		</gml:PolygonPatch>
+	</gml:patches>
+  <tns:annotation>note1</tns:annotation>
+  <tns:elevation uom="m">18</tns:elevation>
+</tns:ElevatedSurface>
