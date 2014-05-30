@@ -42,10 +42,10 @@
                  <li>Level 2</li>
                </ul>
              </div>
-             <fieldset style="background:#ccffff">
-               <legend style="font-family: sans-serif; color: #000099; 
+             <form style="background:#ccffff">
+               <h3 style="font-family: sans-serif; color: #000099; 
 			                 background-color:#F0F8FF; border-style: solid; 
-                       border-width: medium; padding:4px">Implementation under test</legend>
+                       border-width: medium; padding:4px">Implementation under test</h3>
                <p>
                  <label for="uri">
                    <h4 style="margin-bottom: 0.5em">Location of IUT (absolute http: or file: URI)</h4>
@@ -65,7 +65,7 @@
                  <input id="level-2" type="radio" name="level" value="2" />
                  <label class="form-label" for="level-2"> Level 2</label>
                </p>
-             </fieldset>
+             </form>
              <p>
                <input class="form-button" type="submit" value="Start"/> | 
                <input class="form-button" type="reset" value="Clear"/>

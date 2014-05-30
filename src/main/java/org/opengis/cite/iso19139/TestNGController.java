@@ -110,8 +110,6 @@ public class TestNGController implements TestSuiteController {
                 resultsDir.getAbsolutePath(), true);
     }
 
-    
-
     @Override
     public String getCode() {
         return etsProperties.getProperty("ets-code");
@@ -128,22 +126,14 @@ public class TestNGController implements TestSuiteController {
     }
 
     @Override
-    public Source doTestRun(Document objTestRunArgs) throws Exception{
-       
-        Document testRunArgs=(Document)(objTestRunArgs) ;
-//        try {
-            validateTestRunArgs(testRunArgs);
-//        } catch (Exception ex) {
-//           
-//             System.out.println("No XML(test run arguments) were supplied.");
-//            System.exit(0);
-//        }
+    public Source doTestRun(Document objTestRunArgs) throws Exception {
+
+        Document testRunArgs = (Document) (objTestRunArgs);
+        validateTestRunArgs(testRunArgs);
         return executor.execute(testRunArgs);
-       
-        
+
+
     }
-
-
 
     /**
      * Validates the given set of test run arguments. The test run is aborted if

@@ -136,14 +136,14 @@ public class SuiteFixtureListener implements ISuiteListener {
             } catch (Exception iox) {
                 System.out.println("Failed to dereference resource located at "
                         + dataURI + ".\n The file or URL given as the input does not exist.");
-                //System.exit(0);
+                
             }
         } else if (null != params.get(TestRunArg.XSD.toString())) {
             String xsdParam = params.get(TestRunArg.XSD.toString());
             schemaURIs.add(URI.create(xsdParam));
         } else {
             System.out.println("Required test run parameter (i.e XML to be validated) not found.");
-            //System.exit(0);
+           
         }
         if (null != dataFile && dataFile.exists()) {
             suite.setAttribute(SuiteAttribute.IUT.getName(), dataFile);
@@ -171,7 +171,7 @@ public class SuiteFixtureListener implements ISuiteListener {
                     "Required test run parameter (i.e XML to be validated) not found: "
                     + TestRunArg.IUT.toString());
             onFinish(suite);
-            //System.exit(0);
+            
         }
 
         URI iutRef = URI.create(iutParam.trim());
@@ -193,7 +193,7 @@ public class SuiteFixtureListener implements ISuiteListener {
             System.out.println("Failed to dereference resource located at "
                     + iutRef + ".\n The file or URL given as the input does not exist.");
             onFinish(suite);
-            //System.exit(0);
+            
         }
         Document iutDoc = null;
         try {
@@ -201,7 +201,7 @@ public class SuiteFixtureListener implements ISuiteListener {
         } catch (Exception x) {
             System.out.println("Failed to parse resource retrieved from " + iutRef + ".\nThe given input is not a XML file.");
             onFinish(suite);
-            //System.exit(0);
+           
 
         }
         suite.setAttribute(SuiteAttribute.TEST_SUBJECT.getName(), iutDoc);
