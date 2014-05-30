@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- wrong axis order: should be lat,lon -->
-<gml:Point xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="Point-1.1"
-	srsName="urn:ogc:def:crs:EPSG::4326">
-	<gml:pos>-122.22 50.55</gml:pos>
-</gml:Point>

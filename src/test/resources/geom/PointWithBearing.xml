@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<tns:PointWithBearing gml:id="Point-1"
-	xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:tns="http://example.org/ns1"
-	srsName="urn:ogc:def:crs:EPSG::4326">
-	<gml:pos>50.55 -122.22</gml:pos>
-	<tns:bearing uom="deg">16.87</tns:bearing>
-</tns:PointWithBearing>

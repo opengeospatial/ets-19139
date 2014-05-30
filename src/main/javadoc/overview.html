@@ -1,448 +1,178 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
-    <title>GML 3.2 (ISO 19136:2007) Conformance Test Suite</title>
-    <meta charset="UTF-8"/>
+    <title>ISO 19139</title>
+    <meta charset="UTF-8" />
     <style type="text/css">
-      body {
-        color: black;
-        background: white;
-        font-family: Georgia, serif;
-      }
-      h1, h2, h3 {
-        font-family: Verdana, sans-serif;
-        color: #000099;
-        text-align: left;
-      }
-      h1 {
-        font-size: 1.4em;
-        margin-top: 2em;
-      }
-      h2 {
-        font-size: 1.2em;
-      }
-      h3 {
-        font-size: 1em;
-        margin-bottom: 0.5em;
-      }
-      table {
-        margin-top: 0.5em;
-        margin-bottom: 1em;
-        border-collapse: collapse;
-      }
-      td, th {
-        padding: 0.25em;
-        border: 1px solid black;
-      }
-      caption, figcaption {
-        font-weight: bold;
-        text-align: left;
-        margin: 0.25em;
-      }
-      th {
-        font-weight: bold;
-        font-family: Verdana, sans-serif;
-        text-align: left;
-        vertical-align: top;
-        background: #eeeeee;
-        color: #000099;
-      }
-      dt {
-        margin-top: 0.5em;
-        font-weight: bold;
-      }</style>
+body {
+  color: black;
+  background: white;
+  font-family: Georgia, serif;
+}
+h1, h2, h3 {
+  font-family: Verdana, sans-serif;
+  color: #000099;
+  text-align: left;
+}
+h1 {
+  font-size: 1.4em;
+  margin-top: 2em;
+}
+h2 {
+  font-size: 1.2em;
+}
+h3 {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+table {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  border-collapse: collapse;
+}
+td, th {
+  padding: 0.25em;
+  border: 1px solid black;
+}
+caption, figcaption {
+  font-weight: bold;
+  text-align: left;
+  margin: 0.25em;
+}
+th {
+  font-weight: bold;
+  font-family: Verdana, sans-serif;
+  text-align: left;
+  vertical-align: top;
+  background: #eeeeee;
+  color: #000099;
+}
+dt {
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+    </style>
   </head>
   <body>
-    <h1>GML 3.2 (ISO 19136:2007) Conformance Test Suite</h1>
-    <h2>Scope</h2>
-    <p>This executable test suite (ETS) verifies the conformance of GML data and application schemas
-      with respect to ISO 19136:2007 (GML 3.2.1). It can be used to check a GML <strong>application
-        schema</strong> or an <strong>instance document</strong>; both types of resources are
-      referenced by URI. The application schema could be accessed through a WFS DescribeFeatureType
-      request using the GET method. A GML instance document can also refer to a Schematron schema
-      that defines additional constraints. As shown in Figure 1, a conforming GML data instance must
-      refer to the relevant GML application schema, which in turn imports the complete GML
-      schema.</p>
-    <figure>
-      <img src="./resources/gml-schemas.png" alt="GML schemas"/>
-      <figcaption>Figure 1 - GML schemas</figcaption>
+  <h1>ISO 19139</h1>
+	<h2>Scope</h2>
+	<p>This executable test suite (ETS) verifies the conformance of the implementation 
+	under test (IUT) with respect to the set of relevant specifications depicted in 
+	Figure 1. Conformance testing is a kind of "black box" testing that examines 
+	externally visible characteristics or behaviors of the IUT and is independent 
+	of any implementation details.</p>
+	<figure>
+	  <img src="./resources/specifications.png" alt="Set of relevant specifications"/>
+	  <figcaption>Figure 1 - Relevant specifications</figcaption>
     </figure>
+	<p>Several conformance classes are defined in the principal specification:</p>
+	<dl>
+    <dt>Class A</dt>
+    <dd>Capabilities of conformance class A</dd>
+    <dt>Class B</dt>
+    <dd>Capabilities of conformance class B</dd>
+  </dl>
 
-    <p>A Schematron schema (ISO 19757-3) may be used to define supplementary data constraints that
-      lay beyond the reach of an XML Schema grammar. A GML instance document may include a schema
-      reference using the <code>xml-model</code> processing instruction (PI) as described in the W3C
-      group note <em><a target="_blank" href="http://www.w3.org/TR/xml-model/">Associating Schemas
-          with XML documents 1.0 (Third Edition)</a></em>. The PI must appear before the document
-      element as shown in the following listing.</p>
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;?xml-model href="http://example.org/data-constraints.sch" 
-            schematypens="http://purl.oclc.org/dsdl/schematron" 
-            phase="#ALL"?>
-&lt;CityModel xmlns="http://www.opengis.net/citygml/2.0">
-  &lt;!-- content omitted --> 
-&lt;/CityModel>
-</pre>
+  <h2>Test suite structure</h2>
 
-  <p>The <code>uom</code> attribute indicates the unit of measure for some measured quantity.
-  If the value is not an absolute URI, it is expected to be a unit symbol (possibly with a prefix 
-  symbol) appearing in the <em>Unified Code for Units of Measure</em> (<a target="_blank" 
-  href="http://unitsofmeasure.org/ucum.html">UCUM</a>).</p>
-
-<h2>Test coverage</h2>
-
-<p>Table 1 in the GML specification defines the conformance classes related to GML application
-      schemas. In this test suite all mandatory conformance requirements are checked, and every GML
-      instance document is thoroughly validated against all referenced application schemas. However,
-      the classes dealing with less commonly used types of objects are not implemented by the current
-      test suite. Table 1 below indicates the implementation status of each conformance class.
-</p>
-<table border="1" style="border-collapse: collapse;">
-  <caption>Table 1 - Conformance class coverage</caption>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>ATS reference</th>
-      <th>Implemented in test suite</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>All GML application schemas</td>
-      <td>A.1.1</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining features and feature collections</td>
-      <td>A.1.4</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining spatial geometries</td>
-      <td>A.1.5</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining spatial topologies</td>
-      <td>A.1.6</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining time</td>
-      <td>A.1.7</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining coordinate reference systems</td>
-      <td>A.1.8</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining coverages</td>
-      <td>A.1.9</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining observations</td>
-      <td>A.1.10</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining dictionaries and definitions</td>
-      <td>A.1.11</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>GML application schemas defining values</td>
-      <td>A.1.12</td>
-      <td>No</td>
-    </tr>
-  </tbody>
-</table>
-
-  <p>No specific conformance classes are defined for GML instance documents. However, clause A.3 
-  (<em>Abstract test suite for GML documents</em>) includes a set of abstract test cases for 
-  validating GML documents. Of these, A.3.1-A.3.4 are implemented by this test suite. Clause A.3.5 
-  is a very broad, catch-all constraint that is partly implemented: "Verify that the GML document 
-  complies with all other constraints specified by this International Standard."</p>
-
-  <p>Among the constraints implied by A.3.5 are those concerned with the validity of geometry 
-  representations. The suite includes tests that validate the geometry elements listed below; 
-  these tests also apply to any application-defined geometries that can substitute for the 
-  standard GML elements.</p>
-  <ul>
-  <li style="list-style:square;">gml:Point</li>
-  <li style="list-style:square;">gml:Curve having the following curve segments: gml:ArcByCenterPoint, gml:CircleByCenterPoint, 
-  gml:Arc, gml;Circle, gml:GeodesicString, gml:Geodesic, gml: LineStringSegment</li>
-  <li style="list-style:square;">gml:OrientableCurve</li>
-  <li style="list-style:square;">gml:CompositeCurve</li>
-  <li style="list-style:square;">gml:Polygon</li>
-  <li style="list-style:square;">gml:Surface having the following surface patches: gml:PolygonPatch, gml:Rectangle, gmlTriangle</li>
-  </ul>
-
-<h2>Test suite structure</h2>
-
-<p>The test suite definition file (testng.xml) is located in the root package, 
-  <code>org.opengis.cite.iso19136</code>. A conformance class corresponds to a &lt;test&gt;
+  <p>The test suite definition file (testng.xml) is located in the root package, 
+  <code>org.opengis.cite.iso1939</code>. A conformance class corresponds to a &lt;test&gt;
   element; each test element includes a set of test classes that contain the actual 
-  test methods. The general structure of the test suite is shown in Table 2.</p>
+  test methods. The general structure of the test suite is shown in Table 1.</p>
 
-<table border="1" style="border-collapse: collapse;">
-  <caption>Table 2 - Test suite structure</caption>
-  <thead>
-    <tr style="background-color:#eeeeee;">
-      <th style="width: 35%;">Conformance class</th>
-      <th>Test classes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="vertical-align: top;">
-      <td>All GML application schemas</td>
-      <td>
-        <ul style="list-style: none;">
-          <li>org.opengis.cite.iso19136.general.XMLSchemaTests</li>
-          <li>org.opengis.cite.iso19136.general.GeneralSchemaTests</li>
-          <li>org.opengis.cite.iso19136.general.ModelAndSyntaxTests</li>
-          <li>org.opengis.cite.iso19136.general.ComplexPropertyTests</li>
-        </ul>
-      </td>
-    </tr>
-    <tr style="vertical-align: top;">
-      <td>GML application schemas defining features and feature collections</td>
-      <td>
-        <ul style="list-style: none;">
-          <li>org.opengis.cite.iso19136.components.FeatureComponentTests</li>
-        </ul>
-      </td>
-    </tr>
-    <tr style="vertical-align: top;">
-      <td>GML application schemas defining spatial geometries</td>
-      <td>
-        <ul style="list-style: none;">
-          <li>org.opengis.cite.iso19136.components.GeometryComponentTests</li>
-        </ul>
-      </td>
-    </tr>
-    <tr style="vertical-align: top;">
-      <td>GML application schemas defining time</td>
-      <td>
-        <ul style="list-style: none;">
-          <li>org.opengis.cite.iso19136.components.TemporalComponentTests</li>
-        </ul>
-      </td>
-    </tr>
-    <tr style="vertical-align: top;">
-      <td>GML application schemas defining spatial topologies</td>
-      <td>
-        <ul style="list-style: none;">
-          <li>org.opengis.cite.iso19136.components.TopologyComponentTests</li>
-        </ul>
-      </td>
-    </tr>
-    <tr style="vertical-align: top;">
-      <td>GML Documents</td>
-      <td>
-        <ul style="list-style: none;">
-          <li>org.opengis.cite.iso19136.data.XMLSchemaValidationTests</li>
-          <li>org.opengis.cite.iso19136.data.SchematronTests</li>
-          <li>org.opengis.cite.iso19136.data.PropertyValueTests</li>
-          <li>org.opengis.cite.iso19136.data.spatial.EnvelopeTests</li>
-          <li>org.opengis.cite.iso19136.data.spatial.PointTests</li>
-          <li>org.opengis.cite.iso19136.data.spatial.SurfaceTests</li>
-          <li>org.opengis.cite.iso19136.data.spatial.CurveTests</li>
-          <li>org.opengis.cite.iso19136.data.spatial.CompositeCurveTests</li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table border="1" style="border-collapse: collapse;">
+    <caption>Table 1 - Test suite structure</caption>
+    <thead>
+      <tr style="background-color:#eeeeee;">
+        <th style="width: 35%;">Conformance class</th>
+        <th>Test classes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="vertical-align: top;">
+        <td>Conformance Level 1</td>
+        <td>
+          <ul style="list-style: none;">
+            <li>org.opengis.cite.iso1939.level1.Capability1Tests</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="vertical-align: top;">
+        <td>Conformance Level 2</td>
+        <td>
+          <ul style="list-style: none;">
+            <li>org.opengis.cite.iso1939.level2.Capability2Tests</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<p>The Javadoc documentation provides more detailed information about the test 
-methods that constitute the suite.</p>
+  <p>The Javadoc documentation provides more detailed information about the test 
+  methods that constitute the suite.</p>
 
-<h2>Test requirements</h2>
-<p>The documents listed below stipulate requirements that must be satisfied by a conforming 
-application schema.</p>
-<ul>
-  <li style="list-style:square;">[ISO-19136] <a
-          href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32554"
-          target="_blank">Geographic information -- Geography Markup Language (GML)</a>. Also
-        published as <a target="_blank"
-          href="http://portal.opengeospatial.org/files/?artifact_id=20509">OGC 07-036</a>. </li>
-  <li style="list-style:square;">[XMLSchema] <a href="http://www.w3.org/TR/xmlschema-1/"
-          target="_blank"> XML Schema Part 1: Structures</a>, Second Edition </li>
-</ul>
+	<h2>Test requirements</h2>
+	<p>The documents listed below stipulate requirements that must be satisfied 
+	by a conforming implementation.</p>
+	<ul>
+	  <li style="list-style: square;">[WCAG2] <a href="http://www.w3.org/TR/WCAG20/" target="_blank" 
+	  type="application/xhtml+xml">Web Content Accessibility Guidelines (WCAG) 2.0</a>
+	  </li>
+	  <li style="list-style: square;">[XML] <a href="http://www.w3.org/TR/xml/" target="_blank" 
+	  type="application/xhtml+xml">Extensible Markup Language (XML) 1.0, Fifth Edition</a>
+	  </li>
+	</ul>
 
-<p>A conforming GML application schema must satisfy all mandatory constraints <em>and</em>
-      define at least one type of GML object in accord with clauses 21.3 through 21.11. The
-      applicable type-specific test cases are described in clauses A.1.4 through A.1.12.</p>
+	<h2>How to run the tests</h2>
+	<p>The test suite may be run in any of the following environments:</p>
+	<ul>
+	  <li style="list-style: square;">Integrated development environment (IDE): The main Java class is <code>
+	  TestNGController</code>.</li>
+	  <li style="list-style: square;">RESTful API: Submit a request that includes the necessary arguments 
+    to the <a href="../../../../rest/suites/beta/${version}/run" target="_blank" 
+      type="application/xml">test run controller</a>
+    </li>
+    <li style="list-style: square;">TEAM-Engine: Run the CTL script located in the <code>/src/main/ctl/</code> 
+	  directory.</li>
+	</ul>
 
-<h2>How to run the tests</h2>
-<p>The test suite may be run in any of the following environments:</p>
-<ul>
-  <li style="list-style:square;">Integrated development environment (IDE): The main Java class
-        is <code> TestNGController</code>.</li>
-  <li style="list-style:square;">REST API: Submit a request that includes the necessary
-        arguments to the <a href="../../../../rest/suites/${ets-code}/${project.version}/run"
-          target="_blank" type="application/xml">test run controller</a>
-  </li>
-  <li style="list-style:square;">TEAM-Engine: Run the CTL script located in the
-    <code>/src/main/ctl/</code> directory.</li>
-</ul>
-<p>The test run arguments are summarized in Table 3. The <em>Obligation</em> descriptor can have
-      the following values: M (mandatory), O (optional), or C (conditional). A GML application
-      schema may be validated without supplying any data. If both arguments are present, the 'xsd'
-      value is ignored and the (required) schema reference in the GML instance is used instead.</p>
-
-<table border="1" style="border-collapse: collapse;">
-  <caption>Table 3 - Test run arguments</caption>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Value domain</th>
-      <th>Obligation</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>xsd</td>
-      <td>URI</td>
-      <td>C (must be present if the 'gml' argument is not supplied)</td>
-      <td>A URI referring to a GML application schema <sup>1</sup>.</td>
-    </tr>
-    <tr>
-      <td>gml</td>
-      <td>URI</td>
-      <td>C (must be present if the 'xsd' argument is not supplied)</td>
-      <td>A URI referring to a representation of a GML data instance <sup>1</sup>.</td>
-    </tr>
-    <tr>
-      <td>sch</td>
-      <td>URI</td>
+	<p>The test run arguments are summarized in Table 2. The <em>Obligation</em> 
+	descriptor can have the following values: M (mandatory), O (optional), or C 
+	(conditional).</p>
+	<table border="1" style="border-collapse: collapse;">
+	  <caption>Table 2 - Test run arguments</caption>
+	  <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value domain</th>
+		<th>Obligation</th>
+		<th>Description</th>
+      </tr>
+      </thead>
+	  <tbody>
+      <tr>
+        <td>iut</td>
+        <td>URI</td>
+		<td>M</td>
+		<td>A URI that refers to the implementation under test or metadata about it.
+    Ampersand ('&amp;') characters must be percent-encoded as '%26'.</td>
+      </tr>
+	  <tr>
+      <td>ics</td>
+      <td>A comma-separated list of string values.</td>
       <td>O</td>
-      <td>A URI referring to a Schematron schema that defines supplementary data constraints
-        <sup>2</sup>.</td>
+      <td>An implementation conformance statement that indicates which conformance 
+      classes or options are supported.</td>
     </tr>
-    <tr>
-      <td colspan="4">
-        <strong>Notes</strong>
-        <ol>
-          <li>Ampersand ('&amp;') characters appearing within query parameter values must be
-                percent-encoded as %26.</li>
-          <li>
-            <a target="_blank"
-                  href="http://standards.iso.org/ittf/PubliclyAvailableStandards/c040833_ISO_IEC_19757-3_2006(E).zip"
-                  > ISO 19757-3:2006</a>
-          </li>
-        </ol>
-      </td>
-    </tr>
-  </tbody>
-</table>
+	  </tbody>
+    </table>
 
-<h2>Release notes</h2>
+    <h2>Release notes</h2>
 
-<h3>3.2.1-r16 (2014-MM-DD)</h3>
-<p>This release includes the following changes:</p>
-<ul>
-  <li style="list-style:square;">Add timeout (60 s) to compileXMLSchema test.</li>
-  <li style="list-style:square;">Remove assertion requiring metadata property value in application namespace.</li>
-</ul>
-
-<h3>3.2.1-r15 (2014-04-15)</h3>
-<p>This maintenance release includes the following updates:</p>
-<ul>
-  <li style="list-style:square;">Add missing assertion regarding metadata property value (must be declared in application namespace).</li>
-  <li style="list-style:square;">Add support for dereferencing shorthand pointers in GML properties (&#64;xlink:href attributes).</li>
-  <li style="list-style:square;">Update documentation.</li>
-  <li style="list-style:square;">Update dependencies (schema-utils, geomatics-geotk).</li>
-</ul>
-
-<h3>3.2.1-r14 (2014-03-04)</h3>
-<p>This release includes the following changes:</p>
-<ul>
-  <li style="list-style:square">Modify unit tests to run without a network connection.</li>
-</ul>
-
-<h3>3.2.1-r13 (2014-01-30)</h3>
-<p>This release includes the following enhancements:</p>
-<ul>
-  <li style="list-style:square">Added tests for gml:Polygon and gml:Surface geometries containing the following types of 
-      surface patch: PolygonPatch, Triangle, Rectangle (in org.opengis.cite.iso19136.data.spatial.SurfaceTests).</li>
-  <li style="list-style:square">Updated dependency: geomatics-geotk-1.5.</li>
-</ul>
-
-<h3>3.2.1-r12 (2013-12-04)</h3>
-<p>This release includes the following enhancements:</p>
-<ul>
-  <li style="list-style:square">Added tests for gml:Curve geometries containing the following types of 
-      curve segment: GeodesicString/Geodesic, ArcString/Arc/Circle, ArcByCenterPoint/CircleByCenterPoint.</li>
-  <li style="list-style:square">Added tests for gml:CompositeCurve, gml:OrientableCurve.</li>
-  <li style="list-style:square">Updated dependency: geomatics-geotk-1.4.</li>
-</ul>
-
-<h3>3.2.1-r11 (2013-11-14)</h3>
-<p>This release includes the following changes:</p>
-<ul>
-  <li style="list-style:square">Updated dependency: geomatics-geotk.</li>
-</ul>
-
-<h3>3.2.1-r10 (2013-11-01)</h3>
-<p>This release includes the following enhancements:</p>
-<ul>
-  <li style="list-style:square">Added CurveTests to validate essential aspects 
-      of gml:Curve elements (containing LineStringSegment only).</li>
-  <li style="list-style:square">Added PointTests to validate gml:Point elements 
-      (including geometry elements in its substitution group).</li>
-  <li style="list-style:square">Added EnvelopeTests to validate gml:Envelope elements.</li>
-  <li style="list-style:square">Allow posting of GML document (form interface).</li>
-</ul>
-
-<h3>3.2.1-r9 (2013-09-19)</h3>
-<p>This is a maintenance release; it includes the following changes:</p>
-<ul>
-  <li style="list-style:square">Write reporter output to test session directory when invoked via CTL script.</li>
-</ul>
-
-<h3>3.2.1-r8 (2013-08-23)</h3>
-<p>This is a maintenance release; it includes the following fixes:</p>
-<ul>
-  <li style="list-style:square;">CITE-839: validateMembersOfObjectCollection().</li>
-  <li style="list-style:square;">Updated documentation.</li>
-</ul>
-
-<h3>3.2.1-r7 (2013-07-24)</h3>
-<p>This is a maintenance release; it includes the following fixes:</p>
-<ul>
-  <li style="list-style:square;">CITE-840 (findGeometryComponents misses geometry
-        properties).</li>
-</ul>
-
-<h3>3.2.1-r6 (2013-07-19)</h3>
-<p>This is a maintenance release; it includes the following fixes:</p>
-<ul>
-  <li style="list-style:square;">CITE-845 (Anonymous feature type definition not detected).</li>
-</ul>
-
-<h3>3.2.1-r5 (2013-07-15)</h3>
-<p>This is a maintenance release; it includes the following changes:</p>
-<ul>
-  <li style="list-style:square;">CITE-826: Disable tests for lexical conventions</li>
-  <li style="list-style:square;">CITE-825: Some schemas referenced in @xsi:schemaLocation are
-        ignored</li>
-  <li style="list-style:square;">Use XLink 1.1 schema (internal catalog resolver)</li>
-  <li style="list-style:square;">Updated dependencies: schema-utils-1.2</li>
-</ul>
-
-<h3>3.2.1-r4 (2013-07-04)</h3>
-<p>This maintenance release includes the following changes:</p>
-<ul>
-  <li style="list-style:square;">Updated dependencies: teamengine-spi-4.0,
-        jersey-client-1.17.1</li>
-  <li style="list-style:square;">Don't clear reporter output in
-        SuiteFixtureListener#onFinish()</li>
-</ul>
-
-</body>
+    <h3>1.0-SNAPSHOT (YYYY-MM-DD)</h3>
+    <p>Initial release.</p>
+    <ul>
+      <li style="list-style: square;">Covers mandatory conformance requirements.</li>
+    </ul>
+  </body>
 </html>

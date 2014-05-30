@@ -8,7 +8,6 @@
         <xs:sequence>
             <xs:element name="intProperty" type="xs:integer"/>
             <xs:element name="boolProperty" type="xs:boolean" minOccurs="0"/>
-            <xs:any minOccurs="0" namespace="##local http://dyomedea.com/ns/library" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

@@ -4,23 +4,23 @@
 <organization>
   <name>OGC</name>
   <standard>
-    <name>Geography Markup Language (GML)</name>
+    <name>ISO 19139</name>
     <version>
-      <name>3.2.1</name>
+      <name>${spec-version}</name>
       <suite>
-        <namespace-uri>http://www.opengis.net/cite/iso19136</namespace-uri>
+        <namespace-uri>http://www.opengis.net/cite/beta</namespace-uri>
         <prefix>tns</prefix>
-        <local-name>ets-${ets-code}-${version}</local-name>
-        <title>GML 3.2 (ISO 19136:2007) Conformance Test Suite</title>
-        <description>Checks GML application schemas or data sets for conformance to ISO 19136:2007.</description>
+        <local-name>ets-beta-${version}</local-name>
+        <title>Test suite ets-beta</title>
+        <description>Describe scope of testing.</description>
       </suite>
       <revision>
         <name>${version}</name>
         <status>Beta</status>
         <sources>
-          <source>${ets-code}/${spec-version}/${ets-code}-suite.ctl</source>
+          <source>beta/${spec-version}/beta-suite.ctl</source>
         </sources>
-        <webdir>${ets-code}/${spec-version}/web</webdir>
+        <webdir>beta/${spec-version}/web</webdir>
       </revision>
     </version>
   </standard>
