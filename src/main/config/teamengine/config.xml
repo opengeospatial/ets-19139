@@ -18,7 +18,7 @@
                 <name>1.0-SNAPSHOT</name>
                 <status>Beta</status>
                 <sources>
-                    <source>iso19139/beta/1.0/beta-suite.ctl</source>
+                    <source>iso19139/1.0/beta-suite.ctl</source>
                 </sources>
                 <webdir>iso19139/beta/1.0/web</webdir>
                 </revision>
