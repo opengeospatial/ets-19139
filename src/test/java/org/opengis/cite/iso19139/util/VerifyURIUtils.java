@@ -30,7 +30,7 @@ public class VerifyURIUtils {
     @Ignore
     @Test
     // comment out @Ignore to run test (requires network connection)
-    public void resolveHttpUriAsDocument() throws SAXException, IOException, Exception {
+    public void resolveHttpUriAsDocument() throws SAXException, IOException {
         URI uriRef = URI.create("http://www.w3schools.com/xml/note.xml");
         Document doc = URIUtils.parseURI(uriRef);
         Assert.assertNotNull(doc);
@@ -41,7 +41,7 @@ public class VerifyURIUtils {
     @Ignore
     @Test
     // comment out @Ignore to run test (requires network connection)
-    public void resolveHttpUriAsFile() throws SAXException, IOException, Exception {
+    public void resolveHttpUriAsFile() throws SAXException, IOException {
         URI uriRef = URI.create("http://www.w3schools.com/xml/note.xml");
         File file = URIUtils.dereferenceURI(uriRef);
         Assert.assertNotNull(file);
@@ -49,7 +49,7 @@ public class VerifyURIUtils {
     }
 
     @Test
-    public void resolveClasspathResource() throws SAXException, IOException, Exception,
+    public void resolveClasspathResource() throws SAXException, IOException,
             URISyntaxException {
         URL url = this.getClass().getResource("/atom-feed.xml");
         Document doc = URIUtils.parseURI(url.toURI());
@@ -59,7 +59,7 @@ public class VerifyURIUtils {
     }
 
     @Test
-    public void resolveFileRefWithXInclude() throws SAXException, IOException, Exception,
+    public void resolveFileRefWithXInclude() throws SAXException, IOException,
             URISyntaxException {
         File file = new File("src/test/resources/Alpha-xinclude.xml");
         Document doc = URIUtils.parseURI(file.toURI());
@@ -75,7 +75,7 @@ public class VerifyURIUtils {
 
     @Test(expected = IllegalArgumentException.class)
     public void resolveMissingClasspathResource() throws SAXException,
-            URISyntaxException, IOException, Exception {
+            URISyntaxException, IOException {
         URL url = this.getClass().getResource("/alpha.xml");
         URI uri = (null != url) ? url.toURI() : null;
         Document doc = URIUtils.parseURI(uri);

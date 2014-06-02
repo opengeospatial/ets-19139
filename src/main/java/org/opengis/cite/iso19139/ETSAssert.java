@@ -80,15 +80,14 @@ public class ETSAssert {
             result = (Boolean) xpath.evaluate(expr, context,
                     XPathConstants.BOOLEAN);
         } catch (XPathExpressionException xpe) {
-            String msg = ErrorMessage
-                    .format(ErrorMessageKeys.XPATH_ERROR, expr);
+            String msg = ErrorMessage.format(ErrorMessageKeys.XPATH_ERROR, expr);
             TestSuiteLogger.log(Level.WARNING, msg, xpe);
             throw new AssertionError(msg);
         }
         Assert.assertTrue(
                 result,
                 ErrorMessage.format(ErrorMessageKeys.XPATH_RESULT,
-                        context.getNodeName(), expr));
+                context.getNodeName(), expr));
     }
 
     /**
@@ -136,10 +135,9 @@ public class ETSAssert {
             throw new AssertionError(msg);
         }
         DOMResult result = validator.validate(xmlSource);
-        Assert.assertFalse(validator.ruleViolationsDetected(), ErrorMessage
-                .format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                        validator.getRuleViolationCount(),
-                        XMLUtils.writeNodeToString(result.getNode())));
+        Assert.assertFalse(validator.ruleViolationsDetected(), ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
+                validator.getRuleViolationCount(),
+                XMLUtils.writeNodeToString(result.getNode())));
     }
 
     /**

@@ -12,11 +12,10 @@ package org.opengis.cite.iso19139;
 public class CustomException extends Exception {
 
     public CustomException(String message) {
-         System.out.println(message);
+        System.out.println(message);
     }
 
     public CustomException(String message, Throwable throwable) {
         super(message, throwable);
     }
-
 }

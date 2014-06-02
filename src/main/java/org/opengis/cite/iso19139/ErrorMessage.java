@@ -28,7 +28,7 @@ public class ErrorMessage {
      * @return A String containing the message content. If no message is found
      *         for the given key, a {@link java.util.MissingResourceException}
      *         is thrown.
-     */		
+     */
     public static String format(String msgKey, Object... args) {
         return MessageFormat.format(msgResources.getString(msgKey), args);
     }

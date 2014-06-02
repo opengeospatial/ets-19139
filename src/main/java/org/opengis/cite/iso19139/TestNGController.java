@@ -129,7 +129,13 @@ public class TestNGController implements TestSuiteController {
     public Source doTestRun(Document objTestRunArgs) throws Exception {
 
         Document testRunArgs = (Document) (objTestRunArgs);
-        validateTestRunArgs(testRunArgs);
+        try {
+            validateTestRunArgs(testRunArgs);
+        } catch (Exception ex) {
+
+            System.out.println("No XML(test run arguments) were supplied.");
+            System.exit(0);
+        }
         return executor.execute(testRunArgs);
 
 
@@ -156,7 +162,6 @@ public class TestNGController implements TestSuiteController {
         Boolean hasSchemaKey = (Boolean) xpath.evaluate(
                 String.format("//entry[@key='%s']", TestRunArg.XSD),
                 testRunArgs, XPathConstants.BOOLEAN);
-        InputValidator inputValid = new InputValidator();
 
         if (!hasIUTKey) {
             throw new Exception(

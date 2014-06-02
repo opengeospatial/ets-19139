@@ -18,7 +18,9 @@ import org.xml.sax.InputSource;
 
 /**
  *
- * @author sanket
+ * @author tanvi
+ * Input validator class is used to check whether a given file actually exists
+ * and also to check if the file's extension
  */
 public class InputValidator {
 
@@ -67,7 +69,7 @@ public class InputValidator {
         if (pathSent.endsWith(extensionWanted)) {
             return pathSent.endsWith(extensionWanted);
         } else {
-            //Check wheter the file contents are that of an XML file even if the extension doesnt say so
+            // Check whether the file contents are that of an XML file even if the extension doesn't say so
             // Create a new factory to create parsers that will
             // be aware of namespaces and will validate or
             // not according to the flag setting.

@@ -82,7 +82,7 @@ public class URIUtils {
      */
     public static File dereferenceURI(URI uriRef) throws IOException, Exception {
         if ((null == uriRef) || !uriRef.isAbsolute()) {
-                 System.out.println("Absolute URI is required as the input, but received.");
+                 System.out.println("Absolute URI is required as the input.");
                  System.exit(0);
         }
         if (uriRef.getScheme().equalsIgnoreCase("file")) {

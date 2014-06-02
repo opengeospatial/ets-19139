@@ -1,22 +1,12 @@
 package org.opengis.cite.iso19139;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
-import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMSource;
-import org.opengis.cite.iso19139.ErrorMessage;
-import org.opengis.cite.iso19139.ErrorMessageKeys;
-import org.opengis.cite.iso19139.SuiteAttribute;
-import org.opengis.cite.validation.RelaxNGValidator;
-import org.opengis.cite.validation.ValidationErrorHandler;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -27,9 +17,7 @@ import org.xml.sax.SAXException;
  * @author tanvishah
  */
 public class BaseFixture {
-    
-    
-    
+
     /**
      * An immutable Map containing a KML namespace binding where the prefix is
      * "kml"
@@ -37,7 +25,8 @@ public class BaseFixture {
     protected static final Map<String, String> NS_MAP = Collections.singletonMap(Namespaces.GMD, "gmd");
     /** A DOM Document representing the main KML document */
     protected Document testSubject;
-       /**
+
+    /**
      * Obtains the test subject from the ISuite context. The suite attribute
      * {@link org.opengis.cite.iso19139.SuiteAttribute#TEST_SUBJECT} should
      * evaluate to a DOM Document node.
@@ -74,5 +63,4 @@ public class BaseFixture {
         Assert.assertTrue(str.isEmpty(),
                 ErrorMessage.get(ErrorMessageKeys.EMPTY_STRING));
     }
-
 }

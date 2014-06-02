@@ -7,7 +7,6 @@ import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.HashSet;
@@ -136,7 +135,7 @@ public class SuiteFixtureListener implements ISuiteListener {
             } catch (Exception iox) {
                 System.out.println("Failed to dereference resource located at "
                         + dataURI + ".\n The file or URL given as the input does not exist.");
-                
+             
             }
         } else if (null != params.get(TestRunArg.XSD.toString())) {
             String xsdParam = params.get(TestRunArg.XSD.toString());
@@ -171,21 +170,19 @@ public class SuiteFixtureListener implements ISuiteListener {
                     "Required test run parameter (i.e XML to be validated) not found: "
                     + TestRunArg.IUT.toString());
             onFinish(suite);
-            
+      
         }
 
         URI iutRef = URI.create(iutParam.trim());
-        if(!"".equals(iutRef.toString())){
+        if (!"".equals(iutRef.toString())) {
             System.out.println(
-                "The file/ URL given as input is: "
-                + iutRef);
-        }
-        else
-        {
+                    "The file/ URL given as input is: "
+                    + iutRef);
+        } else {
             System.out.println(
-                "NO FILE/ URL GIVEN AS INPUT.");
+                    "NO FILE/ URL GIVEN AS INPUT.");
         }
-        
+
         File entityFile = null;
         try {
             entityFile = URIUtils.dereferenceURI(iutRef);
@@ -193,7 +190,7 @@ public class SuiteFixtureListener implements ISuiteListener {
             System.out.println("Failed to dereference resource located at "
                     + iutRef + ".\n The file or URL given as the input does not exist.");
             onFinish(suite);
-            
+           
         }
         Document iutDoc = null;
         try {
@@ -201,7 +198,7 @@ public class SuiteFixtureListener implements ISuiteListener {
         } catch (Exception x) {
             System.out.println("Failed to parse resource retrieved from " + iutRef + ".\nThe given input is not a XML file.");
             onFinish(suite);
-           
+         
 
         }
         suite.setAttribute(SuiteAttribute.TEST_SUBJECT.getName(), iutDoc);
