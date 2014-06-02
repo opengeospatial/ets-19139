@@ -4,7 +4,7 @@
   xmlns:tns="http://www.opengis.net/cite/beta"
   xmlns:saxon="http://saxon.sf.net/"
   xmlns:tec="java:com.occamlab.te.TECore"
-  xmlns:tng="java:org.opengis.cite.iso1939.TestNGController">
+  xmlns:tng="java:org.opengis.cite.iso19139.TestNGController">
 
   <ctl:function name="tns:run-ets-beta">
 		<ctl:param name="testRunArgs">A Document node containing test run arguments (as XML properties).</ctl:param>
