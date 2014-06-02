@@ -20,7 +20,7 @@
                 <sources>
                     <source>iso19139/beta/1.0/beta-suite.ctl</source>
                 </sources>
-                <webdir>beta/1.0/web<webdir>
+                <webdir>iso19139/beta/1.0/web</webdir>
                 </revision>
                 </version>
             </standard>
