@@ -1,6 +1,5 @@
 package org.opengis.cite.iso19139.util;
 
-import org.opengis.cite.iso19139.util.XMLUtils;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +12,10 @@ import junit.framework.Assert;
 import net.sf.saxon.s9api.SaxonApiException;
 import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.trans.XPathException;
-
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.opengis.cite.iso19139.util.XMLUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,6 +25,7 @@ import org.xml.sax.SAXException;
 /**
  * Verifies the behavior of the XMLUtils class.
  */
+@Ignore
 public class VerifyXMLUtils {
 
     private static final String ATOM_NS = "http://www.w3.org/2005/Atom";

@@ -1,6 +1,5 @@
 package org.opengis.cite.iso19139;
 
-import org.opengis.cite.iso19139.ETSAssert;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -14,12 +13,15 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.opengis.cite.iso19139.ETSAssert;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+@Ignore
 public class VerifyETSAssert {
 
     private static final String WADL_NS = "http://wadl.dev.java.net/2009/02";

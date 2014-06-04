@@ -18,6 +18,7 @@ import org.xml.sax.SAXException;
 /**
  * Verifies the behavior of the URIUtils class.
  */
+@Ignore
 public class VerifyURIUtils {
 
     public VerifyURIUtils() {

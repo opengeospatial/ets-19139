@@ -1,12 +1,5 @@
 package org.opengis.cite.iso19139;
 
-import org.opengis.cite.iso19139.SuiteFixtureListener;
-import org.opengis.cite.iso19139.SuiteAttribute;
-import org.opengis.cite.iso19139.TestRunArg;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
@@ -15,12 +8,20 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Matchers;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.opengis.cite.iso19139.SuiteAttribute;
+import org.opengis.cite.iso19139.SuiteFixtureListener;
+import org.opengis.cite.iso19139.TestRunArg;
 import org.testng.ISuite;
 import org.testng.xml.XmlSuite;
 import org.w3c.dom.Document;
 
+@Ignore
 public class VerifySuiteFixtureListener {
 
     private static XmlSuite xmlSuite;
