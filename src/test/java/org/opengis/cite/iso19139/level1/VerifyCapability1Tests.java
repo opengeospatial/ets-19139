@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.junit.AfterClass;
@@ -18,13 +19,14 @@ import org.testng.xml.XmlSuite;
 import org.testng.ITestContext;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-
+import java.util.logging.Logger;
 /**
  * Verifies the behavior of the Capability1Tests test class. Test stubs replace
  * fixture constituents where appropriate.
  */
 public class VerifyCapability1Tests {
-
+    
+    static final Logger LOGGER = Logger.getLogger("MY Log");
     private static final String SUBJ = "testSubject";
     private static DocumentBuilder docBuilder;
     private static ITestContext testContext;
@@ -69,6 +71,9 @@ public class VerifyCapability1Tests {
      */
     @Test
     public void testValidateXMLAgainstXSDWhenUrlIsValid() throws SAXException, IOException {
+       // logger.info("[TS]:");
+        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenUrlIsValid\n" +
+"                Test for the validateXMLAgainstXSD when URL exists, points at a XML and conforms to ISO 19139.");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
