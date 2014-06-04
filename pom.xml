@@ -75,7 +75,7 @@
         <configuration>
             <skipTests>false</skipTests>
           <!-- Disable TestNG runner (enabled due to compile dependency) -->
-<!--          <testNGArtifactName>null:null</testNGArtifactName>-->
+<testNGArtifactName>null:null</testNGArtifactName>
           <junitArtifactName>junit:junit</junitArtifactName>
           <includes>
             <include>**/Verify*.java</include>
