@@ -20,12 +20,13 @@ import org.testng.ITestContext;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import java.util.logging.Logger;
+
 /**
  * Verifies the behavior of the Capability1Tests test class. Test stubs replace
  * fixture constituents where appropriate.
  */
 public class VerifyCapability1Tests {
-    
+
     static final Logger LOGGER = Logger.getLogger("MY Log");
     private static final String SUBJ = "testSubject";
     private static DocumentBuilder docBuilder;
@@ -70,9 +71,9 @@ public class VerifyCapability1Tests {
      */
     @Test
     public void testValidateXMLAgainstXSDWhenUrlIsValid() throws SAXException, IOException {
-       // logger.info("[TS]:");
-        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenUrlIsValid\n" +
-"                Test for the validateXMLAgainstXSD when URL exists, points at a XML and conforms to ISO 19139.");
+        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenUrlIsValid\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a XML and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: XML validation =  PASS\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
@@ -92,6 +93,9 @@ public class VerifyCapability1Tests {
      */
     @Test(expected = NullPointerException.class)
     public void testValidateXMLAgainstXSDWhenUrlIsNotValid() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenUrlIsNotValid\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists but does not points to any XML.\n"
+                + "      [TS] : Expected Result: XML validation =  FAIL, should throgh NullPointerException\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
@@ -111,9 +115,11 @@ public class VerifyCapability1Tests {
      */
     @Test(expected = AssertionError.class)
     public void testValidateXMLAgainstXSDWhenUrlIsPresentButNotValid() throws SAXException, IOException {
+        LOGGER.info("[TS] : testValidateXMLAgainstXSDWhenUrlIsPresentButNotValid\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a XML and but does not conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: XML validation =  FAIL\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
-        // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://www.w3schools.com/dom/books.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
@@ -130,9 +136,11 @@ public class VerifyCapability1Tests {
      */
     @Test
     public void testValidateXMLAgainstXSDWhenPhysicalPathIsPresent() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenPhysicalPathIsPresent\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when Physical Path exists, points at a XML and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: XML validation =  PASS\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
-        // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-valid.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
@@ -149,9 +157,11 @@ public class VerifyCapability1Tests {
      */
     @Test(expected = AssertionError.class)
     public void testValidateXMLAgainstXSDWhenPhysicalPathIsPresentButNotValid() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenPhysicalPathIsPresentButNotValid\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when Physical Path exists, points at a XML and but does not conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: XML validation =  FAIL\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
-        // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-invalid.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
@@ -168,9 +178,11 @@ public class VerifyCapability1Tests {
      */
     @Test(expected = NullPointerException.class)
     public void testValidateXMLAgainstXSDWhenPhysicalPathIsNotPresent() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenPhysicalPathIsNotPresent\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when Physical Path exists but does not points to any XML.\n"
+                + "      [TS] : Expected Result: XML validation =  FAIL, should throgh NullPointerException\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
-        // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/book.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());

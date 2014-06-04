@@ -157,12 +157,12 @@ public class Capability1Tests {
                 SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
                 Schema schema = schemaFactory.newSchema(schemaFile);
 
-                System.out.println("==========================================================================================\n\n");
+                System.out.println("RESULT:\n");
                 Validator validator = schema.newValidator();
                 try {
                     //Validate the XML file against ISO 19139 XSD
                     validator.validate(xmlFile);
-                    System.out.println(url + " conforms to the clause A.1 of ISO 19139.\n");
+                    System.out.println(url + " conforms to the clause A.1 of ISO 19139.\n\n");
                     testResult = true;
                     testContext.setAttribute("FailReport", url + " conforms to the clause A.1 of ISO 19139.");
 
@@ -172,12 +172,12 @@ public class Capability1Tests {
                     System.out.println(url + " doesn't conform to the clause A.1 of ISO 19139.\n");
                     System.out.println("Reason: " + e.getLocalizedMessage());
                     System.out.println("Line Number \t: " + e.getLineNumber());
-                    System.out.println("Column Number\t: " + e.getColumnNumber() + "\n");
+                    System.out.println("Column Number\t: " + e.getColumnNumber() + "\n\n");
 
                     String failReport = url + " doesn't conform to the clause A.1 of ISO 19139.\n"
                             + "Reason: " + e.getLocalizedMessage()
                             + "\nLine Number \t: " + e.getLineNumber()
-                            + "\nColumn Number\t: " + e.getColumnNumber() + "\n";
+                            + "\nColumn Number\t: " + e.getColumnNumber() + "\n\n";
                     testContext.setAttribute("FailReport", failReport);
 
 
@@ -202,7 +202,7 @@ public class Capability1Tests {
             }
         }
 
-        Assert.assertTrue(testResult, url + " doesn't conform to the clause A.1 of ISO 19139.\n");
+        Assert.assertTrue(testResult, url + " doesn't conform to the clause A.1 of ISO 19139.\n\n");
 
     }
 

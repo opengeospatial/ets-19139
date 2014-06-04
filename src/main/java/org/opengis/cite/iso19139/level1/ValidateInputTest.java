@@ -105,7 +105,7 @@ public class ValidateInputTest {
         InputValidator iv=new InputValidator();
         boolean hasValidExt=iv.extension(url, ".xml");
         if(hasValidExt){
-            System.out.println("Test method validateXMLFile result:\nFile given as input is an XML file.\n\n");
+            System.out.println("RESULT:\n"+ url +" is an XML file.\n\n");
         }else{
             testContext.setAttribute("FailReport", "The file path or URL given as the input '"+url+"' does not point to an XML.");
         }
@@ -132,7 +132,7 @@ public class ValidateInputTest {
             int statusCode = http.getResponseCode();
             if(statusCode==200)
             {   
-                System.out.println("\n\nTest method validateXMLPath result:\nThe file that the user has given as input does exists.\n\n");
+                System.out.println("\nRESULT:\n"+url+" is given as input does exists.\n\n");
                 hasValidPath=true;
             }else{
                  testContext.setAttribute("FailReport", "The URL given as the input '"+url+"' is not a valid URL or it responding.");
@@ -144,7 +144,7 @@ public class ValidateInputTest {
             InputValidator iv=new InputValidator();
             hasValidPath=iv.pathValid(url);
             if(hasValidPath){
-            System.out.println("\n\nTest method validateXMLPath result:\nThe file that the user has given as input does exists.\n\n");
+            System.out.println("\nRESULT:\n"+url+" is given as input does exists.\n\n");
             }else{
                 testContext.setAttribute("FailReport", "The uploaded file or the file whose path is given as the input '"+url+"' is not present.");
             }
