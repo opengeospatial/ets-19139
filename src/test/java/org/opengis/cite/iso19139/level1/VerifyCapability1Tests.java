@@ -43,7 +43,6 @@ public class VerifyCapability1Tests {
      */
     @BeforeClass
     public static void setUpClass() throws Exception {
-        System.out.println("error");
         testContext = mock(ITestContext.class);
         suite = mock(ISuite.class);
         xmlSuite = mock(org.testng.xml.XmlSuite.class);
