@@ -5,7 +5,7 @@ package org.opengis.cite.iso19139;
  */
 public enum TestRunArg {
 
-     /**
+    /**
      * An absolute URI referring to the ISO19139 application schema (XML Schema)
      * resource.
      */

@@ -57,9 +57,8 @@ public class XMLUtils {
     /**
      * Writes the content of a DOM Node to a String. An XML declaration is
      * always omitted.
-     * 
-     * @param node
-     *            The DOM Node to be serialized.
+     *
+     * @param node The DOM Node to be serialized.
      * @return A String representing the content of the given node.
      */
     public static String writeNodeToString(Node node) {
@@ -84,11 +83,9 @@ public class XMLUtils {
     /**
      * Writes the content of a DOM Node to a byte stream. An XML declaration is
      * always omitted.
-     * 
-     * @param node
-     *            The DOM Node to be serialized.
-     * @param outputStream
-     *            The destination OutputStream reference.
+     *
+     * @param node The DOM Node to be serialized.
+     * @param outputStream The destination OutputStream reference.
      */
     public static void writeNode(Node node, OutputStream outputStream) {
         try {
@@ -114,20 +111,17 @@ public class XMLUtils {
     /**
      * Evaluates an XPath 1.0 expression using the given context and returns the
      * result as a node set.
-     * 
-     * @param context
-     *            The context node.
-     * @param expr
-     *            An XPath expression.
-     * @param namespaceBindings
-     *            A collection of namespace bindings for the XPath expression,
-     *            where each entry maps a namespace URI (key) to a prefix
-     *            (value). Standard bindings do not need to be declared (see
-     *            {@link NamespaceBindings#withStandardBindings()}.
+     *
+     * @param context The context node.
+     * @param expr An XPath expression.
+     * @param namespaceBindings A collection of namespace bindings for the XPath
+     * expression, where each entry maps a namespace URI (key) to a prefix
+     * (value). Standard bindings do not need to be declared (see
+     * {@link NamespaceBindings#withStandardBindings()}.
      * @return A NodeList containing nodes that satisfy the expression (it may
-     *         be empty).
-     * @throws XPathExpressionException
-     *             If the expression cannot be evaluated for any reason.
+     * be empty).
+     * @throws XPathExpressionException If the expression cannot be evaluated
+     * for any reason.
      */
     public static NodeList evaluateXPath(Node context, String expr,
             Map<String, String> namespaceBindings)
@@ -139,22 +133,18 @@ public class XMLUtils {
     /**
      * Evaluates an XPath 1.0 expression using the given context and returns the
      * result as the specified type.
-     * 
-     * @param context
-     *            The context node.
-     * @param expr
-     *            An XPath expression.
-     * @param namespaceBindings
-     *            A collection of namespace bindings for the XPath expression,
-     *            where each entry maps a namespace URI (key) to a prefix
-     *            (value). Standard bindings do not need to be declared (see
-     *            {@link NamespaceBindings#withStandardBindings()}.
-     * @param returnType
-     *            The desired return type (as declared in {@link XPathConstants}
-     *            ).
+     *
+     * @param context The context node.
+     * @param expr An XPath expression.
+     * @param namespaceBindings A collection of namespace bindings for the XPath
+     * expression, where each entry maps a namespace URI (key) to a prefix
+     * (value). Standard bindings do not need to be declared (see
+     * {@link NamespaceBindings#withStandardBindings()}.
+     * @param returnType The desired return type (as declared in
+     * {@link XPathConstants} ).
      * @return The result converted to the desired returnType.
-     * @throws XPathExpressionException
-     *             If the expression cannot be evaluated for any reason.
+     * @throws XPathExpressionException If the expression cannot be evaluated
+     * for any reason.
      */
     public static Object evaluateXPath(Node context, String expr,
             Map<String, String> namespaceBindings, QName returnType)
@@ -169,22 +159,19 @@ public class XMLUtils {
     /**
      * Evaluates an XPath 1.0 expression using the given Source object and
      * returns the result as the specified type.
-     * 
-     * @param source
-     *            A Source object (not StAXSource) that supplies an XML entity.
-     * @param expr
-     *            An XPath expression.
-     * @param namespaceBindings
-     *            A collection of namespace bindings for the XPath expression,
-     *            where each entry maps a namespace URI (key) to a prefix
-     *            (value). Standard bindings do not need to be declared (see
-     *            {@link NamespaceBindings#withStandardBindings()}.
-     * @param returnType
-     *            The desired return type (as declared in {@link XPathConstants}
-     *            ).
+     *
+     * @param source A Source object (not StAXSource) that supplies an XML
+     * entity.
+     * @param expr An XPath expression.
+     * @param namespaceBindings A collection of namespace bindings for the XPath
+     * expression, where each entry maps a namespace URI (key) to a prefix
+     * (value). Standard bindings do not need to be declared (see
+     * {@link NamespaceBindings#withStandardBindings()}.
+     * @param returnType The desired return type (as declared in
+     * {@link XPathConstants} ).
      * @return The result converted to the desired returnType.
-     * @throws XPathExpressionException
-     *             If the expression cannot be evaluated for any reason.
+     * @throws XPathExpressionException If the expression cannot be evaluated
+     * for any reason.
      */
     public static Object evaluateXPath(Source source, String expr,
             Map<String, String> namespaceBindings, QName returnType)
@@ -217,21 +204,17 @@ public class XMLUtils {
 
     /**
      * Evaluates an XPath 2.0 expression using the Saxon s9api interfaces.
-     * 
-     * @param xmlSource
-     *            The XML Source.
-     * @param expr
-     *            The XPath expression to be evaluated.
-     * @param nsBindings
-     *            A collection of namespace bindings required to evaluate the
-     *            XPath expression, where each entry maps a namespace URI (key)
-     *            to a prefix (value); this may be {@code null} if not needed.
+     *
+     * @param xmlSource The XML Source.
+     * @param expr The XPath expression to be evaluated.
+     * @param nsBindings A collection of namespace bindings required to evaluate
+     * the XPath expression, where each entry maps a namespace URI (key) to a
+     * prefix (value); this may be {@code null} if not needed.
      * @return An XdmValue object representing a value in the XDM data model;
-     *         this is a sequence of zero or more items, where each item is
-     *         either an atomic value or a node.
-     * @throws SaxonApiException
-     *             If an error occurs while evaluating the expression; this
-     *             always wraps some other underlying exception.
+     * this is a sequence of zero or more items, where each item is either an
+     * atomic value or a node.
+     * @throws SaxonApiException If an error occurs while evaluating the
+     * expression; this always wraps some other underlying exception.
      */
     public static XdmValue evaluateXPath2(Source xmlSource, String expr,
             Map<String, String> nsBindings) throws SaxonApiException {
@@ -259,9 +242,8 @@ public class XMLUtils {
      * Creates a new Element having the specified qualified name. The element
      * must be {@link Document#adoptNode(Node) adopted} when inserted into
      * another Document.
-     * 
-     * @param qName
-     *            A QName object.
+     *
+     * @param qName A QName object.
      * @return An Element node (with a Document owner but no parent).
      */
     public static Element createElement(QName qName) {
@@ -280,13 +262,11 @@ public class XMLUtils {
     /**
      * Returns a List of all descendant Element nodes having the specified
      * [namespace name] property. The elements are listed in document order.
-     * 
-     * @param node
-     *            The node to search from.
-     * @param namespaceURI
-     *            An absolute URI denoting a namespace name.
+     *
+     * @param node The node to search from.
+     * @param namespaceURI An absolute URI denoting a namespace name.
      * @return A List containing elements in the specified namespace; the list
-     *         is empty if there are no elements in the namespace.
+     * is empty if there are no elements in the namespace.
      */
     public static List<Element> getElementsByNamespaceURI(Node node,
             String namespaceURI) {
@@ -294,22 +274,22 @@ public class XMLUtils {
         NodeList children = node.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
             Node child = children.item(i);
-            if (child.getNodeType() != Node.ELEMENT_NODE)
+            if (child.getNodeType() != Node.ELEMENT_NODE) {
                 continue;
-            if (child.getNamespaceURI().equals(namespaceURI))
+            }
+            if (child.getNamespaceURI().equals(namespaceURI)) {
                 list.add((Element) child);
+            }
         }
         return list;
     }
 
     /**
      * Transforms the content of a DOM Node using a specified XSLT stylesheet.
-     * 
-     * @param xslt
-     *            A Source object representing a stylesheet (XSLT 1.0 or 2.0).
-     * @param source
-     *            A Node representing the XML source. If it is an Element node
-     *            it will be imported into a new DOM Document.
+     *
+     * @param xslt A Source object representing a stylesheet (XSLT 1.0 or 2.0).
+     * @param source A Node representing the XML source. If it is an Element
+     * node it will be imported into a new DOM Document.
      * @return A DOM Document containing the result of the transformation.
      */
     public static Document transform(Source xslt, Node source) {
@@ -348,12 +328,11 @@ public class XMLUtils {
      * present an attempt will be made to dereference the URI value, which may
      * contain a fragment identifier (a string that adheres to the XPointer
      * syntax).
-     * 
-     * @param propertyNode
-     *            A property node; the value is supplied in-line or by
-     *            reference.
+     *
+     * @param propertyNode A property node; the value is supplied in-line or by
+     * reference.
      * @return A DOM Node representing the property value, or {@code null} if it
-     *         cannot be accessed or parsed.
+     * cannot be accessed or parsed.
      */
     public static Node getPropertyValue(final Node propertyNode) {
         Element value = null;
@@ -382,13 +361,11 @@ public class XMLUtils {
                 TestSuiteLogger.log(Level.WARNING, String.format(
                         "Failed to read value of property %s from %s",
                         propertyNode.getNodeName(), uriRef));
-            }
-            catch (IOException ioEx) {
+            } catch (IOException ioEx) {
                 TestSuiteLogger.log(Level.WARNING, String.format(
                         "Failed to read value of property %s from %s",
                         propertyNode.getNodeName(), uriRef));
-            }
-            catch (Exception ioEx) {
+            } catch (Exception ioEx) {
                 TestSuiteLogger.log(Level.WARNING, String.format(
                         "Failed to read value of property %s from %s",
                         propertyNode.getNodeName(), uriRef));
@@ -401,25 +378,23 @@ public class XMLUtils {
      * Extracts the specified fragment from the given XML source document. The
      * fragment identifier is expected to conform to the W3C XPointer framework.
      * However, only shorthand pointers are currently supported.
-     * 
+     *
      * <p>
      * In GMD documents such pointers refer to the element that has a matching
      * gmd:id attribute value; this attribute is a <a target="_blank"
      * href="http://www.w3.org/TR/xptr-framework/#term-sdi">schema-determined
      * ID</a> as defined in the XPointer specification.
      * </p>
-     * 
-     * @param doc
-     *            A DOM Document.
-     * @param fragmentId
-     *            A fragment identifier that adheres to the XPointer syntax.
+     *
+     * @param doc A DOM Document.
+     * @param fragmentId A fragment identifier that adheres to the XPointer
+     * syntax.
      * @return A copy of the matching Element, or {@code null} if no matching
-     *         element was found.
+     * element was found.
      * @see <a target="_blank"
-     *      href="http://www.w3.org/TR/xptr-framework/">XPointer Framework</a>
+     * href="http://www.w3.org/TR/xptr-framework/">XPointer Framework</a>
      * @see <a target="_blank"
-     *      href="http://www.w3.org/2005/04/xpointer-schemes/">XPointer
-     *      Registry</a>
+     * href="http://www.w3.org/2005/04/xpointer-schemes/">XPointer Registry</a>
      */
     public static Element getFragment(Document doc, String fragmentId) {
         if (fragmentId.indexOf('(') > 0) {

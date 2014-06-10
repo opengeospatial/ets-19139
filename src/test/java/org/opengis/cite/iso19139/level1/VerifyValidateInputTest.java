@@ -39,7 +39,7 @@ public class VerifyValidateInputTest {
     private static ITestContext testContext;
     private static ISuite suite;
     private static XmlSuite xmlSuite;
-    private static final String ETS_ROOT_PKG = "/org/opengis/cite/beta/";
+    private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
     private static Map<String, String> params = new TreeMap<String, String>();
 
     public VerifyValidateInputTest() {

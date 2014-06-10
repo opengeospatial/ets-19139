@@ -32,12 +32,10 @@ public class ETSAssert {
 
     /**
      * Asserts that the qualified name of a DOM Node matches the expected value.
-     * 
-     * @param node
-     *            The Node to check.
-     * @param qName
-     *            A QName object containing a namespace name (URI) and a local
-     *            part.
+     *
+     * @param node The Node to check.
+     * @param qName A QName object containing a namespace name (URI) and a local
+     * part.
      */
     public static void assertQualifiedName(Node node, QName qName) {
         Assert.assertEquals(node.getLocalName(), qName.getLocalPart(),
@@ -50,21 +48,18 @@ public class ETSAssert {
      * Asserts that an XPath 1.0 expression holds true for the given evaluation
      * context. The following standard namespace bindings do not need to be
      * explicitly declared:
-     * 
+     *
      * <ul>
      * <li>ows: {@value org.opengis.cite.iso19139.Namespaces#OWS}</li>
      * <li>xlink: {@value org.opengis.cite.iso19139.Namespaces#XLINK}</li>
      * <li>gml: {@value org.opengis.cite.iso19139.Namespaces#GML}</li>
      * </ul>
-     * 
-     * @param expr
-     *            A valid XPath 1.0 expression.
-     * @param context
-     *            The context node.
-     * @param namespaceBindings
-     *            A collection of namespace bindings for the XPath expression,
-     *            where each entry maps a namespace URI (key) to a prefix
-     *            (value). It may be {@code null}.
+     *
+     * @param expr A valid XPath 1.0 expression.
+     * @param context The context node.
+     * @param namespaceBindings A collection of namespace bindings for the XPath
+     * expression, where each entry maps a namespace URI (key) to a prefix
+     * (value). It may be {@code null}.
      */
     public static void assertXPath(String expr, Node context,
             Map<String, String> namespaceBindings) {
@@ -87,16 +82,14 @@ public class ETSAssert {
         Assert.assertTrue(
                 result,
                 ErrorMessage.format(ErrorMessageKeys.XPATH_RESULT,
-                context.getNodeName(), expr));
+                        context.getNodeName(), expr));
     }
 
     /**
      * Asserts that an XML resource is schema-valid.
-     * 
-     * @param validator
-     *            The Validator to use.
-     * @param source
-     *            The XML Source to be validated.
+     *
+     * @param validator The Validator to use.
+     * @param source The XML Source to be validated.
      */
     public static void assertSchemaValid(Validator validator, Source source) {
         ValidationErrorHandler errHandler = new ValidationErrorHandler();
@@ -116,11 +109,9 @@ public class ETSAssert {
      * Asserts that an XML resource satisfies all applicable constraints
      * specified in a Schematron (ISO 19757-3) schema. The "xslt2" query
      * language binding is supported. All patterns are checked.
-     * 
-     * @param schemaRef
-     *            A URL that denotes the location of a Schematron schema.
-     * @param xmlSource
-     *            The XML Source to be validated.
+     *
+     * @param schemaRef A URL that denotes the location of a Schematron schema.
+     * @param xmlSource The XML Source to be validated.
      */
     public static void assertSchematronValid(URL schemaRef, Source xmlSource) {
         SchematronValidator validator;
@@ -143,13 +134,10 @@ public class ETSAssert {
     /**
      * Asserts that the given XML entity contains the expected number of
      * descendant elements having the specified name.
-     * 
-     * @param xmlEntity
-     *            A Document representing an XML entity.
-     * @param elementName
-     *            The qualified name of the element.
-     * @param expectedCount
-     *            The expected number of occurrences.
+     *
+     * @param xmlEntity A Document representing an XML entity.
+     * @param elementName The qualified name of the element.
+     * @param expectedCount The expected number of occurrences.
      */
     public static void assertDescendantElementCount(Document xmlEntity,
             QName elementName, int expectedCount) {

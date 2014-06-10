@@ -31,15 +31,18 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
- * Includes tests that validate whether the entered XML file conforms to the clause A.1 of ISO 19139.
+ * Includes tests that validate whether the entered XML file conforms to the
+ * clause A.1 of ISO 19139.
  */
 public class Capability1Tests {
 
     private Document testSubject;
-    /** Timeout for compiling schemas /ms */
+    /**
+     * Timeout for compiling schemas /ms
+     */
     static final long COMPILE_TIMEOUT = 180000;
     private final Logger logr = Logger.getLogger(this.getClass().getPackage().getName());
-    private static final String ETS_ROOT_PKG = "/org/opengis/cite/beta/";
+    private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
     private Set<URI> xsdLocations;
     private Schema appSchema;
     private XSModel model;
@@ -49,9 +52,8 @@ public class Capability1Tests {
      * Obtains the test subject from the ISuite context. The suite attribute
      * {@link org.opengis.cite.iso19139.SuiteAttribute#TEST_SUBJECT} should
      * evaluate to a DOM Document node.
-     * 
-     * @param testContext
-     *            The test (group) context.
+     *
+     * @param testContext The test (group) context.
      */
     @BeforeClass(alwaysRun = true)
     public void obtainTestSubject(ITestContext testContext) {
@@ -66,9 +68,8 @@ public class Capability1Tests {
      * Obtains the schema locations from the ISuite context. The suite attribute
      * {@link SuiteAttribute#SCHEMA_LOC_SET} should evaluate to a Set of URI
      * objects specifying the locations of the relevant XML Schema grammars.
-     * 
-     * @param testContext
-     *            The test (group) context.
+     *
+     * @param testContext The test (group) context.
      */
     @BeforeClass
     @SuppressWarnings("unchecked")
@@ -95,12 +96,11 @@ public class Capability1Tests {
     public void setTestSubject(Document testSubject) {
         this.testSubject = testSubject;
     }
-    
-     /**
-     * This test will run only after all the tests belonging to the group 'inputvalidation' pass 
-     * successfully.
-     * This test method is used to check whether the given input XML conforms to clause A.1 of 
-     * ISO 19139.
+
+    /**
+     * This test will run only after all the tests belonging to the group
+     * 'inputvalidation' pass successfully. This test method is used to check
+     * whether the given input XML conforms to clause A.1 of ISO 19139.
      */
     @Test(dependsOnGroups = {"inputvalidation.*"})
     public void validateXMLAgainstXSD(ITestContext testContext) throws SAXException,
@@ -114,8 +114,7 @@ public class Capability1Tests {
         params.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         String fileName = url.substring(slashIndex + 1);
 
-        if (((periodIndex >= 1)||(periodIndex == -1)) && slashIndex >= 0 && slashIndex < url.length() - 1)
-        {
+        if (((periodIndex >= 1) || (periodIndex == -1)) && slashIndex >= 0 && slashIndex < url.length() - 1) {
             String destinationDir = System.getProperty("user.home").toString() + "/XMLFolder/";
             File directory = new File(destinationDir);
             if (!directory.exists()) {
@@ -180,28 +179,27 @@ public class Capability1Tests {
                             + "\nColumn Number\t: " + e.getColumnNumber() + "\n\n";
                     testContext.setAttribute("FailReport", failReport);
 
-
                     testResult = false;
+                    Assert.assertTrue(testResult, failReport);
                 }
             } catch (IOException e) {
                 //XML file is corrupted or malformed
                 testContext.setAttribute("FailReport", "Error in reading or writing from the XML file " + url);
-
+                Assert.assertTrue(testResult, "Error in reading or writing from the XML file" + url);
             } catch (SAXException e) {
                 //Schema file (XSD) is corrupted or malformed
                 testContext.setAttribute("FailReport", "Error in reading the XML Schema.");
-
+                Assert.assertTrue(testResult, "Error in reading the XML Schema");
             } finally {
                 try {
                     is.close();
                     outStream.close();
                 } catch (IOException e) {
                     testContext.setAttribute("FailReport", "Error in reading or writing from the XML file " + url);
-
+                    Assert.assertTrue(testResult, "Error in reading or writing from the XML file " + url);
                 }
             }
         }
-
         Assert.assertTrue(testResult, url + " doesn't conform to the clause A.1 of ISO 19139.\n\n");
 
     }
@@ -209,11 +207,14 @@ public class Capability1Tests {
     /**
      * Sets the application schema(s) to check. This method is intended only to
      * facilitate unit testing.
-     * 
-     * @param schemaURIs
-     *            A Set of URI objects representing schema locations.
+     *
+     * @param schemaURIs A Set of URI objects representing schema locations.
      */
     void setSchemaLocations(Set<URI> schemaURIs) {
         this.xsdLocations = schemaURIs;
+    }
+
+    private void Assert(boolean testResult, String failReport) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

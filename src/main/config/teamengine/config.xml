@@ -2,15 +2,15 @@
 <!-- Unpack the *-ctl-scripts.zip archive in the TE_BASE/scripts directory -->
 <!-- Add this entry to TE_BASE/config.xml (//organization/standard) -->
 <organization>
-  <name>OGC</name>
+    <name>OGC</name>
     <standard>
         <name>ISO 19139</name>
         <version>
             <name>1.0</name>
             <suite>
-                <namespace-uri>http://www.opengis.net/cite/beta</namespace-uri>
+                <namespace-uri>http://www.opengis.net/cite/iso19139</namespace-uri>
                 <prefix>tns</prefix>
-                <local-name>iso-19139-1.0-SNAPSHOT</local-name>
+                <local-name>iso-19139-${version}</local-name>
                 <title>ISO 19139</title>
                 <description>Validates whether the given XML conforms to ISO19139 Standards</description>
             </suite>
@@ -18,10 +18,10 @@
                 <name>1.0-SNAPSHOT</name>
                 <status>Beta</status>
                 <sources>
-                    <source>iso19139/1.0/beta-suite.ctl</source>
+                    <source>iso19139/1.0/iso19139-suite.ctl</source>
                 </sources>
-                <webdir>iso19139/beta/1.0/web</webdir>
-                </revision>
-                </version>
-            </standard>
-        </organization>
+                <webdir>iso19139/1.0/web</webdir>
+            </revision>
+        </version>
+    </standard>
+</organization>

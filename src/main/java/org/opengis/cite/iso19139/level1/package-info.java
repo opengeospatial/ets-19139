@@ -1,10 +1,10 @@
 /**
  * Conformance Level 1 includes basic facilities. The following capabilities
- * must be supported: 
+ * must be supported:
  * <ul>
  * <li>Capability 1.1</li>
  * <li>Capability 1.2</li>
- * <li>Capability 1.3</li> 
+ * <li>Capability 1.3</li>
  * </ul>
  *
  * @see <a

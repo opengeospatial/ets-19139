@@ -15,7 +15,6 @@ import org.apache.xerces.xs.XSModel;
 @SuppressWarnings("rawtypes")
 public enum SuiteAttribute {
 
-    
     /**
      * A {@code Set<URI>} specifying the locations of XML Schema grammars.
      */
@@ -41,8 +40,8 @@ public enum SuiteAttribute {
      * Provides information about the types of geographic content in an
      * application schema.
      */
-   // SCHEMA_INFO("schema-info", AppSchemaInfo.class),
-    
+    // SCHEMA_INFO("schema-info", AppSchemaInfo.class),
+
     /**
      * A DOM Document representation of the test subject or metadata about it.
      */

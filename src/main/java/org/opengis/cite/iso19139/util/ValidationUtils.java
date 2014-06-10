@@ -31,9 +31,9 @@ public class ValidationUtils {
 
     private static XMLCatalogResolver initCatalogResolver() {
         URL catalogURL = ValidationUtils.class
-                .getResource("/org/opengis/cite/beta/schematron-catalog.xml");
+                .getResource("/org/opengis/cite/iso19139/schematron-catalog.xml");
         XMLCatalogResolver resolver = new XMLCatalogResolver();
-        resolver.setCatalogList(new String[] { catalogURL.toString() });
+        resolver.setCatalogList(new String[]{catalogURL.toString()});
         return resolver;
     }
 
@@ -42,16 +42,13 @@ public class ValidationUtils {
      * the rules defined in a Schematron schema. An attempt is made to resolve
      * the schema reference using an entity catalog; if this fails the reference
      * is used as given.
-     * 
-     * @param schemaRef
-     *            A reference to a Schematron schema; this is expected to be a
-     *            relative or absolute URI value, possibly matching the system
-     *            identifier for some entry in an entity catalog.
-     * @param phase
-     *            The name of the phase to invoke.
+     *
+     * @param schemaRef A reference to a Schematron schema; this is expected to
+     * be a relative or absolute URI value, possibly matching the system
+     * identifier for some entry in an entity catalog.
+     * @param phase The name of the phase to invoke.
      * @return A SchematronValidator instance, or {@code null} if the validator
-     *         cannot be constructed (e.g. invalid schema reference or phase
-     *         name).
+     * cannot be constructed (e.g. invalid schema reference or phase name).
      */
     public static SchematronValidator buildSchematronValidator(
             String schemaRef, String phase) {
@@ -82,19 +79,16 @@ public class ValidationUtils {
      * Extracts a set of XML Schema references from a source XML document. The
      * document element is expected to include the standard xsi:schemaLocation
      * attribute.
-     * 
-     * @param source
-     *            The source instance to read from; its base URI (systemId)
-     *            should be set.
-     * @param baseURI
-     *            An alternative base URI to use if the source does not have a
-     *            system identifier set or if its system id is a {@code file}
-     *            URI. This will usually be the URI used to retrieve the
-     *            resource; it may be null.
+     *
+     * @param source The source instance to read from; its base URI (systemId)
+     * should be set.
+     * @param baseURI An alternative base URI to use if the source does not have
+     * a system identifier set or if its system id is a {@code file} URI. This
+     * will usually be the URI used to retrieve the resource; it may be null.
      * @return A Set containing absolute URI references that specify the
-     *         locations of XML Schema resources.
-     * @throws XMLStreamException
-     *             If an error occurs while reading the source instance.
+     * locations of XML Schema resources.
+     * @throws XMLStreamException If an error occurs while reading the source
+     * instance.
      */
     public static Set<URI> extractSchemaReferences(Source source, String baseURI)
             throws XMLStreamException {

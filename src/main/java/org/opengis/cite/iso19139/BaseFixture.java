@@ -23,16 +23,17 @@ public class BaseFixture {
      * "kml"
      */
     protected static final Map<String, String> NS_MAP = Collections.singletonMap(Namespaces.GMD, "gmd");
-    /** A DOM Document representing the main KML document */
+    /**
+     * A DOM Document representing the main KML document
+     */
     protected Document testSubject;
 
     /**
      * Obtains the test subject from the ISuite context. The suite attribute
      * {@link org.opengis.cite.iso19139.SuiteAttribute#TEST_SUBJECT} should
      * evaluate to a DOM Document node.
-     * 
-     * @param testContext
-     *            The test (group) context.
+     *
+     * @param testContext The test (group) context.
      */
     @BeforeClass(alwaysRun = true)
     public void obtainTestSubject(ITestContext testContext) {

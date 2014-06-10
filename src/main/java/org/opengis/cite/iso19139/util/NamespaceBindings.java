@@ -42,11 +42,10 @@ public class NamespaceBindings implements NamespaceContext {
      * Adds a namespace binding that associates a namespace name with a prefix.
      * If a binding for a given namespace name already exists it will be
      * replaced.
-     * 
-     * @param namespaceURI
-     *            A String denoting a namespace name (an absolute URI value).
-     * @param prefix
-     *            A prefix associated with the namespace name.
+     *
+     * @param namespaceURI A String denoting a namespace name (an absolute URI
+     * value).
+     * @param prefix A prefix associated with the namespace name.
      */
     public void addNamespaceBinding(String namespaceURI, String prefix) {
         bindings.put(namespaceURI, prefix);
@@ -55,23 +54,23 @@ public class NamespaceBindings implements NamespaceContext {
     /**
      * Adds all of the supplied namespace bindings to the existing set of
      * entries.
-     * 
-     * @param nsBindings
-     *            A Map containing a collection of namespace bindings where the
-     *            key is an absolute URI specifying the namespace name and the
-     *            value denotes the associated prefix.
+     *
+     * @param nsBindings A Map containing a collection of namespace bindings
+     * where the key is an absolute URI specifying the namespace name and the
+     * value denotes the associated prefix.
      */
     public void addAllBindings(Map<String, String> nsBindings) {
-        if (null != nsBindings)
+        if (null != nsBindings) {
             bindings.putAll(nsBindings);
+        }
     }
 
     /**
      * Returns an unmodifiable view of the declared namespace bindings.
-     * 
+     *
      * @return An immutable Map containing zero or more namespace bindings where
-     *         the key is an absolute URI specifying the namespace name and the
-     *         value is the associated prefix.
+     * the key is an absolute URI specifying the namespace name and the value is
+     * the associated prefix.
      */
     public Map<String, String> getAllBindings() {
         return Collections.unmodifiableMap(this.bindings);
@@ -80,13 +79,13 @@ public class NamespaceBindings implements NamespaceContext {
     /**
      * Creates a NamespaceBindings object that declares the following namespace
      * bindings:
-     * 
+     *
      * <ul>
      * <li>ows: {@value org.opengis.cite.iso19139.Namespaces#OWS}</li>
      * <li>xlink: {@value org.opengis.cite.iso19139.Namespaces#XLINK}</li>
      * <li>gml: {@value org.opengis.cite.iso19139.Namespaces#GML}</li>
      * </ul>
-     * 
+     *
      * @return A NamespaceBindings object.
      */
     public static NamespaceBindings withStandardBindings() {

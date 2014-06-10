@@ -32,17 +32,14 @@ public class URIUtils {
      * Parses the content of the given URI as an XML document and returns a new
      * DOM Document object. Entity reference nodes will not be expanded. XML
      * inclusions (xi:include elements) will be processed if present.
-     * 
-     * @param uriRef
-     *            An absolute URI specifying the location of an XML resource.
+     *
+     * @param uriRef An absolute URI specifying the location of an XML resource.
      * @return A DOM Document node representing an XML resource.
-     * @throws SAXException
-     *             If the resource cannot be parsed.
-     * @throws IOException
-     *             If the resource is not accessible.
+     * @throws SAXException If the resource cannot be parsed.
+     * @throws IOException If the resource is not accessible.
      */
     public static Document parseURI(URI uriRef) throws SAXException,
-            IOException, Exception  {
+            IOException, Exception {
         if ((null == uriRef) || !uriRef.isAbsolute()) {
             System.out.println("Absolute URI is required as the input.");
             System.exit(0);
@@ -72,18 +69,16 @@ public class URIUtils {
      * Dereferences the given URI and stores the resulting resource
      * representation in a local file. The file will be located in the default
      * temporary file directory.
-     * 
-     * @param uriRef
-     *            An absolute URI specifying the location of some resource.
+     *
+     * @param uriRef An absolute URI specifying the location of some resource.
      * @return A File containing the content of the resource; it may be empty if
-     *         resolution failed for any reason.
-     * @throws IOException
-     *             If an IO error occurred.
+     * resolution failed for any reason.
+     * @throws IOException If an IO error occurred.
      */
     public static File dereferenceURI(URI uriRef) throws IOException, Exception {
         if ((null == uriRef) || !uriRef.isAbsolute()) {
-                 System.out.println("Absolute URI is required as the input.");
-                 System.exit(0);
+            System.out.println("Absolute URI is required as the input.");
+            System.exit(0);
         }
         if (uriRef.getScheme().equalsIgnoreCase("file")) {
             return new File(uriRef);
@@ -115,16 +110,14 @@ public class URIUtils {
 
     /**
      * Constructs an absolute URI from the given URI reference and a base URI.
-     * 
+     *
      * @see <a href="http://tools.ietf.org/html/rfc3986#section-5.2">RFC 3986,
-     *      5.2</a>
-     * 
-     * @param baseURI
-     *            The base URI; if present, it must be an absolute URI.
-     * @param uriRef
-     *            A URI reference that may be relative to the given base URI.
+     * 5.2</a>
+     *
+     * @param baseURI The base URI; if present, it must be an absolute URI.
+     * @param uriRef A URI reference that may be relative to the given base URI.
      * @return The resulting URI.
-     * 
+     *
      */
     public static URI resolveRelativeURI(String baseURI, String uriRef) {
         URI uri = (null != baseURI) ? URI.create(baseURI) : URI.create("");

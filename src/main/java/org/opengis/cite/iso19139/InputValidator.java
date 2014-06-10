@@ -18,9 +18,8 @@ import org.xml.sax.InputSource;
 
 /**
  *
- * @author tanvi
- * Input validator class is used to check whether a given file actually exists
- * and also to check if the file's extension
+ * @author tanvi Input validator class is used to check whether a given file
+ * actually exists and also to check if the file's extension
  */
 public class InputValidator {
 
@@ -64,7 +63,7 @@ public class InputValidator {
     }
 
     public boolean extension(String pathSent, String extensionWanted) {
-        
+
         String extensionWantedLower = extensionWanted.toLowerCase();
         String extensionWantedUpper = extensionWanted.toUpperCase();
         if (pathSent.endsWith(extensionWantedLower) || pathSent.endsWith(extensionWantedUpper)) {

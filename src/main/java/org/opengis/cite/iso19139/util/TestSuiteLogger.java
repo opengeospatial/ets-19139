@@ -13,8 +13,8 @@ import java.util.logging.Logger;
  */
 public class TestSuiteLogger {
 
-    private static final Logger LOGR =
-            Logger.getLogger(TestSuiteLogger.class.getPackage().getName());
+    private static final Logger LOGR
+            = Logger.getLogger(TestSuiteLogger.class.getPackage().getName());
 
     /**
      * Logs a message at the specified logging level with the given message

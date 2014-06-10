@@ -2,7 +2,6 @@ package org.opengis.cite.iso19139;
 
 import org.opengis.cite.iso19139.util.XMLUtils;
 
-
 import org.w3c.dom.Document;
 
 import java.io.File;
@@ -42,7 +41,7 @@ import org.testng.Reporter;
  */
 public class SuiteFixtureListener implements ISuiteListener {
 
-    private static final String ETS_ROOT_PKG = "/org/opengis/cite/beta/";
+    private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
 
     @Override
     public void onStart(ISuite suite) {
@@ -89,7 +88,6 @@ public class SuiteFixtureListener implements ISuiteListener {
                     Reporter.log("\nREASON:\n\n");
                     Reporter.log(failReport);
 
-
                 } catch (Exception ex) {
                     Reporter.log("The test did not pass the input validation. Either the file given as the input does not exist or the file is not an XML file");
 
@@ -100,9 +98,10 @@ public class SuiteFixtureListener implements ISuiteListener {
 
     /**
      * Processes the {@link org.opengis.cite.iso19139.TestRunArg#IUT} test suite
-     * parameter. Sets the XML schema location for ISO 19139 against which the the test argument will be tested.
-     * @param suite
-     *            An ISuite object representing a TestNG test suite.
+     * parameter. Sets the XML schema location for ISO 19139 against which the
+     * the test argument will be tested.
+     *
+     * @param suite An ISuite object representing a TestNG test suite.
      */
     void processIUTParameter(ISuite suite) {
         Map<String, String> params = suite.getXmlSuite().getParameters();
@@ -116,9 +115,8 @@ public class SuiteFixtureListener implements ISuiteListener {
      * entity referenced by the {@link TestRunArg#IUT iut} argument is parsed
      * and the resulting Document is set as the value of the "testSubject"
      * attribute.
-     * 
-     * @param suite
-     *            An ISuite object representing a TestNG test suite.
+     *
+     * @param suite An ISuite object representing a TestNG test suite.
      */
     void processRequiredSuiteParameters(ISuite suite) {
         Map<String, String> params = suite.getXmlSuite().getParameters();
@@ -135,14 +133,14 @@ public class SuiteFixtureListener implements ISuiteListener {
             } catch (Exception iox) {
                 System.out.println("Failed to dereference resource located at "
                         + dataURI + ".\n The file or URL given as the input does not exist.");
-             
+
             }
         } else if (null != params.get(TestRunArg.XSD.toString())) {
             String xsdParam = params.get(TestRunArg.XSD.toString());
             schemaURIs.add(URI.create(xsdParam));
         } else {
             System.out.println("Required test run parameter (i.e XML to be validated) not found.");
-           
+
         }
         if (null != dataFile && dataFile.exists()) {
             suite.setAttribute(SuiteAttribute.IUT.getName(), dataFile);
@@ -170,7 +168,7 @@ public class SuiteFixtureListener implements ISuiteListener {
                     "Required test run parameter (i.e XML to be validated) not found: "
                     + TestRunArg.IUT.toString());
             onFinish(suite);
-      
+
         }
 
         URI iutRef = URI.create(iutParam.trim());
@@ -190,7 +188,7 @@ public class SuiteFixtureListener implements ISuiteListener {
             System.out.println("Failed to dereference resource located at "
                     + iutRef + ".\n The file or URL given as the input does not exist.");
             onFinish(suite);
-           
+
         }
         Document iutDoc = null;
         try {
@@ -198,7 +196,6 @@ public class SuiteFixtureListener implements ISuiteListener {
         } catch (Exception x) {
             System.out.println("Failed to parse resource retrieved from " + iutRef + ".\nThe given input is not a XML file.");
             onFinish(suite);
-         
 
         }
         suite.setAttribute(SuiteAttribute.TEST_SUBJECT.getName(), iutDoc);
@@ -213,11 +210,10 @@ public class SuiteFixtureListener implements ISuiteListener {
 
     /**
      * Determines if the content of the given file represents an XML Schema.
-     * 
-     * @param file
-     *            A File object.
+     *
+     * @param file A File object.
      * @return {@code true} if the file contains an XML Schema; {@code false}
-     *         otherwise.
+     * otherwise.
      */
     boolean isXMLSchema(File file) {
         if (!file.exists() || (file.length() == 0)) {

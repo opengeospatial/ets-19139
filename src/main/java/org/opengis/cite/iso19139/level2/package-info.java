@@ -1,7 +1,7 @@
 /**
  * Conformance Level 2 extends Level 1. The following additional capabilities
- * are required: 
- * <ul> 
+ * are required:
+ * <ul>
  * <li>Capability 2.1</li>
  * <li>Capability 2.2</li>
  * </ul>
