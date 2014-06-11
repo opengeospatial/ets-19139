@@ -10,17 +10,17 @@
             <suite>
                 <namespace-uri>http://www.opengis.net/cite/iso19139</namespace-uri>
                 <prefix>tns</prefix>
-                <local-name>iso-19139-${version}</local-name>
+                <local-name>${ets-code}-${version}</local-name>
                 <title>ISO 19139</title>
                 <description>Validates whether the given XML conforms to ISO19139 Standards</description>
             </suite>
             <revision>
-                <name>1.0-SNAPSHOT</name>
+                <name>${version}</name>
                 <status>Beta</status>
                 <sources>
-                    <source>iso19139/1.0/iso19139-suite.ctl</source>
+                    <source>${ets-code}/${version}/${ets-code}-suite.ctl</source>
                 </sources>
-                <webdir>iso19139/1.0/web</webdir>
+                <webdir>${ets-code}/${version}/web</webdir>
             </revision>
         </version>
     </standard>

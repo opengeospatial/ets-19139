@@ -6,7 +6,7 @@
              xmlns:tec="java:com.occamlab.te.TECore"
              xmlns:tng="java:org.opengis.cite.iso19139.TestNGController">
 
-    <ctl:function name="tns:run-ets-${ets-code}">
+    <ctl:function name="tns:run-${ets-code}">
         <ctl:param name="testRunArgs">A Document node containing test run arguments (as XML properties).</ctl:param>
         <ctl:param name="outputDir">The directory in which the test results will be written.</ctl:param>
         <ctl:return>The test results as a Source object (root node).</ctl:return>
@@ -17,7 +17,7 @@
         </ctl:code>
     </ctl:function>
 
-    <ctl:suite name="tns:ets-${ets-code}-${version}">
+    <ctl:suite name="tns:${ets-code}-${version}">
         <ctl:title>ISO 19139</ctl:title>
         <ctl:description>Describe scope of testing.</ctl:description>
         <ctl:starting-test>tns:Main</ctl:starting-test>
@@ -96,7 +96,7 @@
                 <xsl:value-of select="tec:getTestRunDirectory($te:core)"/>
             </xsl:variable>
             <xsl:variable name="test-results">
-                <ctl:call-function name="tns:run-ets-${ets-code}">
+                <ctl:call-function name="tns:run-${ets-code}">
                     <ctl:with-param name="testRunArgs" select="$test-run-props"/>
                     <ctl:with-param name="outputDir" select="$testRunDir" />
                 </ctl:call-function>
