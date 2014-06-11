@@ -52,7 +52,7 @@ public class VerifyURIUtils {
     @Test
     public void resolveClasspathResource() throws SAXException, IOException,
             URISyntaxException, Exception {
-        URL url = this.getClass().getResource("/atom-feed.xml");
+        URL url = new URL("http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         Document doc = URIUtils.parseURI(url.toURI());
         Assert.assertNotNull(doc);
         Assert.assertEquals("Document element has unexpected [local name].",

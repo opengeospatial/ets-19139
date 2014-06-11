@@ -59,9 +59,8 @@ public class VerifySuiteFixtureListener {
 
     @Test
     public void processIUTParameter() throws URISyntaxException {
-        URL url = this.getClass().getResource("/atom-feed.xml");
         Map<String, String> params = new HashMap<String, String>();
-        params.put(TestRunArg.IUT.toString(), url.toURI().toString());
+        params.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         when(xmlSuite.getParameters()).thenReturn(params);
         SuiteFixtureListener iut = new SuiteFixtureListener();
         iut.onStart(suite);

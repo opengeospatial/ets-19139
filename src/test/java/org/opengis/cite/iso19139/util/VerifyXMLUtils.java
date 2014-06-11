@@ -44,8 +44,7 @@ public class VerifyXMLUtils {
 
     @Test
     public void writeDocToString() throws SAXException, IOException {
-        Document doc = docBuilder.parse(this.getClass().getResourceAsStream(
-                "/atom-feed.xml"));
+        Document doc = docBuilder.parse("http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         String content = XMLUtils.writeNodeToString(doc);
         Assert.assertTrue("String should start with '<feed'",
                 content.startsWith("<feed"));
@@ -54,8 +53,7 @@ public class VerifyXMLUtils {
     @Test
     public void evaluateXPathExpression_match()
             throws XPathExpressionException, SAXException, IOException {
-        Document doc = docBuilder.parse(this.getClass().getResourceAsStream(
-                "/atom-feed.xml"));
+        Document doc = docBuilder.parse("http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         String expr = "/tns:feed/tns:author[ns1:phone]";
         Map<String, String> nsBindings = new HashMap<String, String>();
         nsBindings.put(ATOM_NS, "tns");
@@ -69,8 +67,7 @@ public class VerifyXMLUtils {
     @Test
     public void evaluateXPathExpression_noMatch()
             throws XPathExpressionException, SAXException, IOException {
-        Document doc = docBuilder.parse(this.getClass().getResourceAsStream(
-                "/atom-feed.xml"));
+        Document doc = docBuilder.parse("http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         String expr = "/tns:feed/tns:author[ns1:blog]";
         Map<String, String> nsBindings = new HashMap<String, String>();
         nsBindings.put(ATOM_NS, "tns");
@@ -82,8 +79,7 @@ public class VerifyXMLUtils {
     @Test(expected = XPathExpressionException.class)
     public void evaluateXPathExpression_booleanResult()
             throws XPathExpressionException, SAXException, IOException {
-        Document doc = docBuilder.parse(this.getClass().getResourceAsStream(
-                "/atom-feed.xml"));
+        Document doc = docBuilder.parse("http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         String expr = "count(//tns:entry) > 0";
         Map<String, String> nsBindings = new HashMap<String, String>();
         nsBindings.put(ATOM_NS, "tns");
@@ -103,8 +99,7 @@ public class VerifyXMLUtils {
     @Test
     public void evaluateXPath2ExpressionAgainstDocument() throws SAXException,
             IOException, SaxonApiException, XPathException {
-        Document doc = docBuilder.parse(this.getClass().getResourceAsStream(
-                "/atom-feed.xml"));
+        Document doc = docBuilder.parse("http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         String expr = "matches(//tns:entry/tns:title, '.*Robots')";
         Map<String, String> nsBindings = new HashMap<String, String>();
         nsBindings.put(ATOM_NS, "tns");
@@ -118,8 +113,7 @@ public class VerifyXMLUtils {
     @Test
     public void evaluateXPath2ExpressionAgainstElement() throws SAXException,
             IOException, SaxonApiException, XPathException {
-        Document doc = docBuilder.parse(this.getClass().getResourceAsStream(
-                "/atom-feed.xml"));
+        Document doc = docBuilder.parse("http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         Node entry = doc.getElementsByTagNameNS(ATOM_NS, "entry").item(0);
         String expr = "matches(tns:title, '.*Robots')";
         Map<String, String> nsBindings = new HashMap<String, String>();
