@@ -101,6 +101,9 @@ public class Capability1Tests {
      * This test will run only after all the tests belonging to the group
      * 'inputvalidation' pass successfully. This test method is used to check
      * whether the given input XML conforms to clause A.1 of ISO 19139.
+     * @param testContext
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
      */
     @Test(dependsOnGroups = {"inputvalidation.*"})
     public void validateXMLAgainstXSD(ITestContext testContext) throws SAXException,
@@ -108,6 +111,7 @@ public class Capability1Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
+        String failReport = url + " doesn't conform to the clause A.1 of ISO 19139.\n\n";
         int periodIndex = url.lastIndexOf('.');
         int slashIndex = url.lastIndexOf("/");
         boolean testResult = false;
@@ -163,44 +167,47 @@ public class Capability1Tests {
                     validator.validate(xmlFile);
                     System.out.println(url + " conforms to the clause A.1 of ISO 19139.\n\n");
                     testResult = true;
-                    testContext.setAttribute("FailReport", url + " conforms to the clause A.1 of ISO 19139.");
-
+                    failReport = url + " conform to the clause A.1 of ISO 19139\n";
+                    testContext.setAttribute("FailReport", failReport);
                 } catch (SAXParseException e) {
 
-                    //Print the reason why the XML validation fails
+//                    Print the reason why the XML validation fails
                     System.out.println(url + " doesn't conform to the clause A.1 of ISO 19139.\n");
                     System.out.println("Reason: " + e.getLocalizedMessage());
                     System.out.println("Line Number \t: " + e.getLineNumber());
                     System.out.println("Column Number\t: " + e.getColumnNumber() + "\n\n");
-
-                    String failReport = url + " doesn't conform to the clause A.1 of ISO 19139.\n"
+                    
+                    failReport = url + " doesn't conform to the clause A.1 of ISO 19139,\n"
+                            + "Reason: " + e.getLocalizedMessage()
+                            + ",\nLine Number \t: " + e.getLineNumber()
+                            + ",\nColumn Number\t: " + e.getColumnNumber() + "\n";
+                    String failReport1 = url + " doesn't conform to the clause A.1 of ISO 19139\n"
                             + "Reason: " + e.getLocalizedMessage()
                             + "\nLine Number \t: " + e.getLineNumber()
-                            + "\nColumn Number\t: " + e.getColumnNumber() + "\n\n";
-                    testContext.setAttribute("FailReport", failReport);
+                            + "\nColumn Number\t: " + e.getColumnNumber() + "\n";
+                    testContext.setAttribute("FailReport", failReport1);
 
                     testResult = false;
-                    Assert.assertTrue(testResult, failReport);
                 }
             } catch (IOException e) {
                 //XML file is corrupted or malformed
                 testContext.setAttribute("FailReport", "Error in reading or writing from the XML file " + url);
-                Assert.assertTrue(testResult, "Error in reading or writing from the XML file" + url);
+                failReport = "Error in reading or writing from the XML file" + url;
             } catch (SAXException e) {
                 //Schema file (XSD) is corrupted or malformed
                 testContext.setAttribute("FailReport", "Error in reading the XML Schema.");
-                Assert.assertTrue(testResult, "Error in reading the XML Schema");
+                failReport = "Error in reading the XML Schema";
             } finally {
                 try {
                     is.close();
                     outStream.close();
                 } catch (IOException e) {
                     testContext.setAttribute("FailReport", "Error in reading or writing from the XML file " + url);
-                    Assert.assertTrue(testResult, "Error in reading or writing from the XML file " + url);
+                    failReport = "Error in reading or writing from the XML file " + url;
                 }
             }
         }
-        Assert.assertTrue(testResult, url + " doesn't conform to the clause A.1 of ISO 19139.\n\n");
+        Assert.assertTrue(testResult, failReport);
 
     }
 

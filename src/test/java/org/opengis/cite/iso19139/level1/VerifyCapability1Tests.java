@@ -1,10 +1,8 @@
 package org.opengis.cite.iso19139.level1;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.junit.AfterClass;
@@ -17,7 +15,6 @@ import org.opengis.cite.iso19139.TestRunArg;
 import org.testng.ISuite;
 import org.testng.xml.XmlSuite;
 import org.testng.ITestContext;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import java.util.logging.Logger;
 

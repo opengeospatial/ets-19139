@@ -1,7 +1,6 @@
 package org.opengis.cite.iso19139;
 
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.After;

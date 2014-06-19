@@ -56,25 +56,17 @@
     <body>
         <h1>ISO 19139</h1>
         <h2>Scope</h2>
-        <p>This executable test suite (ETS) verifies the conformance of the implementation 
-            under test (IUT) with respect to the set of relevant specifications depicted in 
-            Figure 1. Conformance testing is a kind of "black box" testing that examines 
-            externally visible characteristics or behaviors of the IUT and is independent 
-            of any implementation details.</p>
-        <figure>
-            <img src="./resources/specifications.png" alt="Set of relevant specifications"/>
-            <figcaption>Figure 1 - Relevant specifications</figcaption>
-        </figure>
+        <p> This executable test suite (ETS) verifies the conformance to [ISO-19139] ISO19139.</p>
         <p>Several conformance classes are defined in the principal specification:</p>
         <dl>
-            <dt>Capabilities of conformance level 1</dt>
+            <dt>Capabilities of conformance level 1</dt></br>
             <dd>Minimum conformance with this Technical Specification requires that geographic metadata instance (XML)
 documents can be validated without error against the XML schemas. While many tools are available to test validation of XML instance
 documents against provided XML Schemas, it is important to understand that not all validation tools
 implement the full W3C XML Schema recommendation and not all validation tools interpret the W3C XML
 Schema recommendation in the same manner. It is recommended that a tool with strict interpretation of XML
 Schema and full support for the W3C XML Schema recommendation be used to ensure conformance.</dd>
-            <dt>Capabilities of conformance level 2</dt>
+        <dt>Capabilities of conformance level 2</dt></br>
             <dd><b>1. A.2.1 By-Value or By-Reference or gco:nilReason</b></br>
 Validation of XML instance documents against the schemas described in this document is not all that is
 required for conformance to this specification. However,
@@ -82,8 +74,8 @@ because of the design of the XCPT the property element may have no content or at
 both content and attributes and still be XML Schema-valid. It is not possible to constrain the co-occurrence of
 content or attributes. Some mechanism in addition to an XML Schema validation (e.g., Schematron, XSL
 Transformations) must be used to restrict a property to be exclusively by-value, or by-reference, or expressing
-a NULL reason.</br></br>
-<b>2. A.2.2 Co-Constraints</b></br>
+a NULL reason.</br></br></dd>
+            <dd><b>2. A.2.2 Co-Constraints</b></br>
 XML 1.0 does not support the enforcement of certain types of constraints. For example, co-constraints such
 as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox' or
 'EX_GeographicDescription' be used in the 'MD_DataIdentification' object when the 'hierarchyLevel' of
