@@ -6,7 +6,7 @@
              xmlns:tec="java:com.occamlab.te.TECore"
              xmlns:tng="java:org.opengis.cite.iso19139.TestNGController">
 
-    <ctl:function name="tns:run-ets-${ets-code}">
+    <ctl:function name="tns:run-${ets-code}">
         <ctl:param name="testRunArgs">A Document node containing test run arguments (as XML properties).</ctl:param>
         <ctl:param name="outputDir">The directory in which the test results will be written.</ctl:param>
         <ctl:return>The test results as a Source object (root node).</ctl:return>
@@ -33,11 +33,10 @@
                         <p>The implementation under test (IUT) is checked against ISO 19139 schema.</p>
                         <ul>
                             <li>
-                                <a href="http://www.w3.org/TR/xml/">Extensible Markup Language (XML) 1.0</a> 
-                                Fifth Edition</li>
-                            <li>
-                                <a href="http://hydro10.sdsc.edu/metadata/Raquel_Files/">Lists of XML</a> that conform to ISO 19139 standards
+                                <a href="http://54.209.245.204/teamengine/rest/suites/iso19139/1.0/" target="_blank">ISO 19139's Overview</a>
                             </li>
+                            <li>
+                                <a href="http://hydro10.sdsc.edu/metadata/Raquel_Files/" target="_blank">Lists of XML</a> that conform to ISO 19139 standards.</li>
                         </ul>
                         <p>Two conformance levels are defined:</p>
                         <ul>
