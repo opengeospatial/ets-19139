@@ -25,6 +25,9 @@ import org.testng.ISuiteListener;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
 import org.testng.Reporter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * A listener that performs various tasks before and after a test suite is run,
@@ -43,6 +46,10 @@ public class SuiteFixtureListener implements ISuiteListener {
 
     private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
 
+    /**
+     *
+     * @param suite
+     */
     @Override
     public void onStart(ISuite suite) {
         processIUTParameter(suite);
@@ -54,6 +61,10 @@ public class SuiteFixtureListener implements ISuiteListener {
         TestSuiteLogger.log(Level.CONFIG, str.toString());
     }
 
+    /**
+     *
+     * @param suite
+     */
     @Override
     public void onFinish(ISuite suite) {
         Reporter.clear(); // clear output from previous test runs
@@ -70,9 +81,12 @@ public class SuiteFixtureListener implements ISuiteListener {
             count++;
             ISuiteResult sr = (ISuiteResult) obj;
             ITestContext tc = sr.getTestContext();
-
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Calendar cal = Calendar.getInstance();
             if (count == 1) {
                 try {
+                    Reporter.log("**TEST NAME AND VERSION    :"+suiteName);
+                    Reporter.log("**DATE AND TIME PERFORMED  :"+dateFormat.format(cal.getTime()));
                     Reporter.log("Passed tests for suite '" + suiteName
                             + "' is:" + tc.getPassedTests().getAllResults().size());
 

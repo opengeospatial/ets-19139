@@ -6,7 +6,7 @@
              xmlns:tec="java:com.occamlab.te.TECore"
              xmlns:tng="java:org.opengis.cite.iso19139.TestNGController">
 
-    <ctl:function name="tns:run-${ets-code}">
+    <ctl:function name="tns:run-ets-${ets-code}">
         <ctl:param name="testRunArgs">A Document node containing test run arguments (as XML properties).</ctl:param>
         <ctl:param name="outputDir">The directory in which the test results will be written.</ctl:param>
         <ctl:return>The test results as a Source object (root node).</ctl:return>
@@ -30,13 +30,14 @@
                 <ctl:form method="POST" width="800" height="600" xmlns="http://www.w3.org/1999/xhtml">
                     <h2>ISO 19139</h2>
                     <div style="background:#F0F8FF" bgcolor="#F0F8FF">
-                        <p>The implementation under test (IUT) is checked against the following specifications:</p>
+                        <p>The implementation under test (IUT) is checked against ISO 19139 schema.</p>
                         <ul>
                             <li>
-                                <a href="http://www.w3.org/TR/xml/">Extensible Markup Language (XML) 1.0</a>, 
+                                <a href="http://www.w3.org/TR/xml/">Extensible Markup Language (XML) 1.0</a> 
                                 Fifth Edition</li>
                             <li>
-                                <a href="http://www.w3.org/TR/xmlbase/">XML Base</a>, Second Edition</li>
+                                <a href="http://hydro10.sdsc.edu/metadata/Raquel_Files/">Lists of XML</a> that conform to ISO 19139 standards
+                            </li>
                         </ul>
                         <p>Two conformance levels are defined:</p>
                         <ul>
@@ -52,7 +53,7 @@
                             <label for="uri">
                                 <h4 style="margin-bottom: 0.5em">Location of IUT (absolute http: or file: URI)</h4>
                             </label>
-                            <input id="uri" name="uri" size="128" type="text" value="http://www.w3schools.com/xml/note.xml" />
+                            <input id="uri" name="uri" size="128" type="text" value="http://hydro10.sdsc.edu/metadata/Raquel_Files/178F9F70-E056-4A06-B86E-C255471F99BD.xml" />
                         </p>
                         <p>
                             <label for="doc">
@@ -114,7 +115,7 @@
             <xsl:if test="xs:integer($test-results/testng-results/@failed) gt 0">
                 <xsl:for-each select="$test-results//test-method[@status='FAIL' and not(@is-config='true')]">
                     <ctl:message>
-                        Test method <xsl:value-of select="./@name"/>: <xsl:value-of select=".//message"/>
+                        Test method <xsl:value-of select="./@name"/>: expected [true] but found [false]
                     </ctl:message>
                 </xsl:for-each>
                 <ctl:fail/>
