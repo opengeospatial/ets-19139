@@ -37,7 +37,7 @@
                             </li>
                             <li>
                                 <a href="http://hydro10.sdsc.edu/metadata/Raquel_Files/" target="_blank">Lists of XML</a> that conform to ISO 19139 standards.</li>
-                        </ul>
+                       </ul>
                         <p>Two conformance levels are defined:</p>
                         <ul>
                             <li>Level 1</li>

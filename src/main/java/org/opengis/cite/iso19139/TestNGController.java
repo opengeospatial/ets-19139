@@ -10,10 +10,8 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -52,7 +50,7 @@ public class TestNGController implements TestSuiteController {
             xmlFileArg = args[0].toString();
         } else {
             String homeDir = System.getProperty("user.home");
-            xmlArgs = new File(homeDir, "ssh1");
+            xmlArgs = new File(homeDir, "test-run-props.xml");
             xmlFileArg = homeDir + "test-run-props.xml";
         }
         if (!xmlArgs.exists()) {

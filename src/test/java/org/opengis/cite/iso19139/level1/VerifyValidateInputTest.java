@@ -15,7 +15,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.opengis.cite.iso19139.SuiteAttribute;
@@ -23,7 +22,6 @@ import org.opengis.cite.iso19139.TestRunArg;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import java.util.logging.Logger;
 
