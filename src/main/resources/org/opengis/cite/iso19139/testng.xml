@@ -16,9 +16,9 @@
       <class name="org.opengis.cite.iso19139.level1.Capability1Tests" />
     </classes>
   </test>
-<!--  <test name="Conformance Level 2">
-    <classes>
-      <class name="org.opengis.cite.iso19139.level2.Capability2Tests" />
-    </classes>
-  </test>-->
+    <test name="Conformance Level 2">
+        <classes>
+          <!--<class name="org.opengis.cite.iso19139.level2.Capability2Tests" />-->
+        </classes>
+      </test>
 </suite>
