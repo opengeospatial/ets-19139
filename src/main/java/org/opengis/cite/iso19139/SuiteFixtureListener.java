@@ -1,13 +1,13 @@
 package org.opengis.cite.iso19139;
 
-import org.opengis.cite.iso19139.util.XMLUtils;
-
-import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -20,14 +20,13 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.events.StartElement;
 import org.opengis.cite.iso19139.util.TestSuiteLogger;
 import org.opengis.cite.iso19139.util.URIUtils;
+import org.opengis.cite.iso19139.util.XMLUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
 import org.testng.Reporter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import org.w3c.dom.Document;
 
 /**
  * A listener that performs various tasks before and after a test suite is run,
@@ -85,6 +84,10 @@ public class SuiteFixtureListener implements ISuiteListener {
             Calendar cal = Calendar.getInstance();
             if (count == 1) {
                 try {
+                    String result=tc.getAttribute("Result").toString();
+                    Reporter.log("**RESULT: "+result);
+                    String input=tc.getAttribute("Input").toString();
+                    Reporter.log("**INPUT: "+input);
                     Reporter.log("**TEST NAME AND VERSION    :"+suiteName);
                     Reporter.log("**DATE AND TIME PERFORMED  :"+dateFormat.format(cal.getTime()));
                     Reporter.log("Passed tests for suite '" + suiteName
@@ -139,6 +142,8 @@ public class SuiteFixtureListener implements ISuiteListener {
         String dataURI = params.get(TestRunArg.IUT.toString());
         File dataFile = null;
         Set<URI> schemaURIs = new HashSet<URI>();
+
+        
         if ((dataURI != null) && !dataURI.isEmpty()) {
             try {
                 dataFile = URIUtils.dereferenceURI(URI.create(dataURI));

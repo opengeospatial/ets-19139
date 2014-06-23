@@ -1,34 +1,19 @@
 package org.opengis.cite.iso19139.level2;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+//import cz.jakubmaly.schematronassert.schematron.model.Schema;
+//import cz.jakubmaly.schematronassert.schematron.validation.XsltSchematronValidator;
+//import cz.jakubmaly.schematronassert.svrl.model.ValidationOutput;
 import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Set;
 import java.util.logging.Logger;
-import javax.xml.XMLConstants;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
+import javax.xml.transform.stream.*;
 import org.apache.xerces.xs.XSModel;
 import org.opengis.cite.iso19139.SuiteAttribute;
-import org.opengis.cite.iso19139.TestRunArg;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 /**
  * Includes various tests of capability 2.
@@ -43,9 +28,11 @@ public class Capability2Tests {
     private final Logger logr = Logger.getLogger(this.getClass().getPackage().getName());
     private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
     private Set<URI> xsdLocations;
-    private Schema appSchema;
-    private XSModel model;
-    private URI targetNamespace;
+//    private Schema appSchema;
+//    private XSModel model;
+//    private URI targetNamespace;
+//    public StreamSource xmlSource=null;
+//    public Schema schemaSource=null;
 
     /**
      * Obtains the test subject from the ISuite context. The suite attribute
@@ -225,12 +212,15 @@ public class Capability2Tests {
     /**
      * Checks the result of the length function.
      */
-//    @Test(description = "Implements ATC 2-1")
-//    public void checkLength() {
-//        String str = "perihelion";
-//        System.out.println("A.2.1 Test run");
-//        //Assert.assertEquals(str.length(), 10);
-//    }
+    @Test(description = "Implements ATC 2-1")
+    public void checkLength() {
+        String str = "perihelion";
+        System.out.println("A.2.1 Test run");
+//        XsltSchematronValidator validation=new XsltSchematronValidator();
+//        ValidationOutput output = validation.validate(xmlSource, schemaSource);
+//        validator.validate(xmlSource, schemaSource,output);
+        //Assert.assertEquals(str.length(), 10);
+    }
     
     /**
      * Checks the Unicode code point value of the first character.
