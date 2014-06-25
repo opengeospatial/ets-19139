@@ -30,7 +30,7 @@
                 <ctl:form method="POST" width="800" height="600" xmlns="http://www.w3.org/1999/xhtml">
                     <h2>ISO 19139</h2>
                     <div style="background:#F0F8FF" bgcolor="#F0F8FF">
-                        <p>The implementation under test (IUT) is checked against ISO 19139 schema.</p>
+                        <p>This facility validates metadata instances that conform to ISO 19139</p>
                         <ul>
                             <li>
                                 <a href="http://54.209.245.204/teamengine/rest/suites/iso19139/1.0/" target="_blank">ISO 19139's Overview</a>
@@ -38,10 +38,10 @@
                             <li>
                                 <a href="http://hydro10.sdsc.edu/metadata/Raquel_Files/" target="_blank">Lists of XML</a> that conform to ISO 19139 standards.</li>
                        </ul>
-                        <p>Two conformance levels are defined:</p>
+                        <p>Two conformance levels can be tested:</p>
                         <ul>
-                            <li>Level 1</li>
-                            <li>Level 2</li>
+                            <li>Conformance Level 1 (Schema)</li>
+                            <li>Conformance Level 2 (Constraints)</li>
                         </ul>
                     </div>
                     <fieldset style="background:#ccffff">
@@ -50,17 +50,17 @@
                        border-width: medium; padding:4px">Implementation under test</legend>
                         <p>
                             <label for="uri">
-                                <h4 style="margin-bottom: 0.5em">Location of IUT (absolute http: or file: URI)</h4>
+                                <h4 style="margin-bottom: 0.5em">Please provide the URL of the file to be tested:</h4>
                             </label>
                             <input id="uri" name="uri" size="128" type="text" value="http://hydro10.sdsc.edu/metadata/Raquel_Files/178F9F70-E056-4A06-B86E-C255471F99BD.xml" />
                         </p>
                         <p>
                             <label for="doc">
-                                <h4 style="margin-bottom: 0.5em">Upload IUT</h4>
+                                <h4 style="margin-bottom: 0.5em">Upload file to be tested:</h4>
                             </label>
                             <input name="doc" id="doc" size="128" type="file" />
                         </p>
-                        <p>
+                        <p> Select the Conformance Class to be tested:
                             <label for="level">Conformance class: </label>
                             <input id="level-1" type="radio" name="level" value="1" checked="checked" />
                             <label for="level-1"> Level 1 | </label>
