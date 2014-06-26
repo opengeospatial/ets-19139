@@ -105,7 +105,7 @@ public class Capability1Tests {
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
-    @Test(dependsOnGroups = {"inputvalidation.*"})
+    @Test(dependsOnGroups = {"inputvalidation.*"}, description = "Perform validation of XML against XSD")
     public void validateXMLAgainstXSD(ITestContext testContext) throws SAXException,
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -163,8 +163,6 @@ public class Capability1Tests {
                 Schema schema = schemaFactory.newSchema(schemaFile);
                 input=xmlFile.getSystemId();
                 testContext.setAttribute("Input", input);
-                System.out.println("PATH   :");
-                System.out.println(schemaFile);
                 System.out.println("RESULT:\n");
                 Validator validator = schema.newValidator();
                 try {

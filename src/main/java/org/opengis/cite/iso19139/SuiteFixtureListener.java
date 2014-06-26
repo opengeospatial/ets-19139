@@ -1,18 +1,14 @@
 package org.opengis.cite.iso19139;
 
-
+import com.occamlab.te.spi.report.ReportLog;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URI;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
-
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -23,8 +19,6 @@ import org.opengis.cite.iso19139.util.URIUtils;
 import org.opengis.cite.iso19139.util.XMLUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
-import org.testng.ISuiteResult;
-import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.w3c.dom.Document;
 
@@ -66,51 +60,8 @@ public class SuiteFixtureListener implements ISuiteListener {
      */
     @Override
     public void onFinish(ISuite suite) {
-        Reporter.clear(); // clear output from previous test runs
-        // Reporter.log("Test suite parameters:");
-        // Reporter.log(suite.getXmlSuite().getAllParameters().toString());
-        Reporter.log("The result of the test is-\n\n");
+        new ReportLog().generateLogs(suite);
 
-        //Following code gets the suite name
-        String suiteName = suite.getName();
-        //Getting the results for the said suite
-        Map suiteResults = suite.getResults();
-        int count = 0;
-        for (Object obj : suiteResults.values()) {
-            count++;
-            ISuiteResult sr = (ISuiteResult) obj;
-            ITestContext tc = sr.getTestContext();
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Calendar cal = Calendar.getInstance();
-            if (count == 1) {
-                try {
-                    String result=tc.getAttribute("Result").toString();
-                    Reporter.log("**RESULT: "+result);
-                    String input=tc.getAttribute("Input").toString();
-                    Reporter.log("**INPUT: "+input);
-                    Reporter.log("**TEST NAME AND VERSION    :"+suiteName);
-                    Reporter.log("**DATE AND TIME PERFORMED  :"+dateFormat.format(cal.getTime()));
-                    Reporter.log("Passed tests for suite '" + suiteName
-                            + "' is:" + tc.getPassedTests().getAllResults().size());
-
-                    Reporter.log("Failed tests for suite '" + suiteName
-                            + "' is:"
-                            + tc.getFailedTests().getAllResults().size());
-
-                    Reporter.log("Skipped tests for suite '" + suiteName
-                            + "' is:"
-                            + tc.getSkippedTests().getAllResults().size());
-
-                    String failReport = tc.getAttribute("FailReport").toString();
-                    Reporter.log("\nREASON:\n\n");
-                    Reporter.log(failReport);
-
-                } catch (Exception ex) {
-                    Reporter.log("The test did not pass the input validation. Either the file given as the input does not exist or the file is not an XML file");
-
-                }
-            }
-        }
     }
 
     /**
@@ -143,7 +94,6 @@ public class SuiteFixtureListener implements ISuiteListener {
         File dataFile = null;
         Set<URI> schemaURIs = new HashSet<URI>();
 
-        
         if ((dataURI != null) && !dataURI.isEmpty()) {
             try {
                 dataFile = URIUtils.dereferenceURI(URI.create(dataURI));
