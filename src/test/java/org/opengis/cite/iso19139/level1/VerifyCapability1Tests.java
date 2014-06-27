@@ -60,17 +60,17 @@ public class VerifyCapability1Tests {
     }
 
     /**
-     * Test for the validateXMLAgainstXSD when URL exists, points at a XML and
+     * Test for the validateXmlAgainstXsd when URL exists, points at a Xml and
      * conforms to ISO 19139.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test
-    public void testValidateXMLAgainstXSDWhenUrlIsValid() throws SAXException, IOException {
-        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenUrlIsValid\n"
-                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a XML and conforms to ISO 19139.\n"
-                + "      [TS] : Expected Result: XML validation =  PASS\n");
+    public void testValidateXmlAgainstXsdWhenUrlIsValid() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenUrlIsValid\n"
+                + "      [TS] : Description: Test for the validateXmlAgainstXsd when URL exists, points at a Xml and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
@@ -78,21 +78,21 @@ public class VerifyCapability1Tests {
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLAgainstXSD(testContext);
+        iut.validateXmlAgainstXsd(testContext);
     }
 
     /**
-     * Test for the validateXMLAgainstXSD when URL exists but does not points to
-     * any XML.
+     * Test for the validateXmlAgainstXsd when URL exists but does not points to
+     * any Xml.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = NullPointerException.class)
-    public void testValidateXMLAgainstXSDWhenUrlIsNotValid() throws SAXException, IOException {
-        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenUrlIsNotValid\n"
-                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists but does not points to any XML.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL, should throgh NullPointerException\n");
+    public void testValidateXmlAgainstXsdWhenUrlIsNotValid() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenUrlIsNotValid\n"
+                + "      [TS] : Description: Test for the validateXmlAgainstXsd when URL exists but does not points to any Xml.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL, should throgh NullPointerException\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
@@ -100,90 +100,90 @@ public class VerifyCapability1Tests {
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43B.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLAgainstXSD(testContext);
+        iut.validateXmlAgainstXsd(testContext);
     }
 
     /**
-     * Test for the validateXMLAgainstXSD when URL exists, points at a XML and
+     * Test for the validateXmlAgainstXsd when URL exists, points at a Xml and
      * but does not conforms to ISO 19139.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = AssertionError.class)
-    public void testValidateXMLAgainstXSDWhenUrlIsPresentButNotValid() throws SAXException, IOException {
-        LOGGER.info("[TS] : testValidateXMLAgainstXSDWhenUrlIsPresentButNotValid\n"
-                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a XML and but does not conforms to ISO 19139.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL\n");
+    public void testValidateXmlAgainstXsdWhenUrlIsPresentButNotValid() throws SAXException, IOException {
+        LOGGER.info("[TS] : testValidateXmlAgainstXsdWhenUrlIsPresentButNotValid\n"
+                + "      [TS] : Description: Test for the validateXmlAgainstXsd when URL exists, points at a Xml and but does not conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://www.w3schools.com/dom/books.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLAgainstXSD(testContext);
+        iut.validateXmlAgainstXsd(testContext);
     }
 
     /**
-     * Test for the validateXMLAgainstXSD when Physical Path exists, points at a
-     * XML and conforms to ISO 19139.
+     * Test for the validateXmlAgainstXsd when Physical Path exists, points at a
+     * Xml and conforms to ISO 19139.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test
-    public void testValidateXMLAgainstXSDWhenPhysicalPathIsPresent() throws SAXException, IOException {
-        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenPhysicalPathIsPresent\n"
-                + "      [TS] : Description: Test for the validateXMLAgainstXSD when Physical Path exists, points at a XML and conforms to ISO 19139.\n"
-                + "      [TS] : Expected Result: XML validation =  PASS\n");
+    public void testValidateXmlAgainstXsdWhenPhysicalPathIsPresent() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenPhysicalPathIsPresent\n"
+                + "      [TS] : Description: Test for the validateXmlAgainstXsd when Physical Path exists, points at a Xml and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-valid.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLAgainstXSD(testContext);
+        iut.validateXmlAgainstXsd(testContext);
     }
 
     /**
-     * Test for the validateXMLAgainstXSD when Physical Path exists, points at a
-     * XML and but does not conforms to ISO 19139.
+     * Test for the validateXmlAgainstXsd when Physical Path exists, points at a
+     * Xml and but does not conforms to ISO 19139.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = AssertionError.class)
-    public void testValidateXMLAgainstXSDWhenPhysicalPathIsPresentButNotValid() throws SAXException, IOException {
-        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenPhysicalPathIsPresentButNotValid\n"
-                + "      [TS] : Description: Test for the validateXMLAgainstXSD when Physical Path exists, points at a XML and but does not conforms to ISO 19139.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL\n");
+    public void testValidateXmlAgainstXsdWhenPhysicalPathIsPresentButNotValid() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenPhysicalPathIsPresentButNotValid\n"
+                + "      [TS] : Description: Test for the validateXmlAgainstXsd when Physical Path exists, points at a Xml and but does not conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-invalid.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLAgainstXSD(testContext);
+        iut.validateXmlAgainstXsd(testContext);
     }
 
     /**
-     * Test for the validateXMLAgainstXSD when Physical Path exists but does not
-     * points to any XML.
+     * Test for the validateXmlAgainstXsd when Physical Path exists but does not
+     * points to any Xml.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = NullPointerException.class)
-    public void testValidateXMLAgainstXSDWhenPhysicalPathIsNotPresent() throws SAXException, IOException {
-        LOGGER.info("[TS] : Name of Test Case: testValidateXMLAgainstXSDWhenPhysicalPathIsNotPresent\n"
-                + "      [TS] : Description: Test for the validateXMLAgainstXSD when Physical Path exists but does not points to any XML.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL, should throgh NullPointerException\n");
+    public void testValidateXmlAgainstXsdWhenPhysicalPathIsNotPresent() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenPhysicalPathIsNotPresent\n"
+                + "      [TS] : Description: Test for the validateXmlAgainstXsd when Physical Path exists but does not points to any Xml.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL, should throgh NullPointerException\n");
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/book.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLAgainstXSD(testContext);
+        iut.validateXmlAgainstXsd(testContext);
     }
 }

@@ -106,7 +106,7 @@ public class Capability1Tests {
      * @throws java.io.IOException
      */
     @Test(dependsOnGroups = {"inputvalidation.*"}, description = "Perform validation of XML against XSD")
-    public void validateXMLAgainstXSD(ITestContext testContext) throws SAXException,
+    public void validateXmlAgainstXsd(ITestContext testContext) throws SAXException,
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();

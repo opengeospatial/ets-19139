@@ -99,8 +99,8 @@ public class ValidateInputTest {
      * Validates whether the given input file is an XML file (based on its
      * extension OR file content)
      */
-    @Test(groups = {"inputvalidation"}, description = "This function validates XML file", dependsOnMethods = "validateXMLPath")
-    public void validateXMLFile(ITestContext testContext) throws SAXException,
+    @Test(groups = {"inputvalidation"}, description = "This function validates XML file", dependsOnMethods = "validateXmlPath")
+    public void validateXmlFile(ITestContext testContext) throws SAXException,
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -120,7 +120,7 @@ public class ValidateInputTest {
      * Validates whether the given input file exists or not
      */
     @Test(groups = {"inputvalidation"}, description = "This function validates XML file Path")
-    public void validateXMLPath(ITestContext testContext) throws SAXException,
+    public void validateXmlPath(ITestContext testContext) throws SAXException,
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();

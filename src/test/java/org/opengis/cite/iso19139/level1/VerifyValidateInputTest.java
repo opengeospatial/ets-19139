@@ -75,166 +75,166 @@ public class VerifyValidateInputTest {
     }
 
     /**
-     * Test for the validateXMLFile when URL exists and points at a XML.
+     * Test for the validateXmlFile when URL exists and points at a Xml.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test
-    public void testValidateXMLFileWhenUrlIsValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLFileWhenUrlIsValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when URL exists and points at a XML.\n"
-                + "      [TS] : Expected Result: XML validation =  PASS\n");
+    public void testValidateXmlFileWhenUrlIsValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlFileWhenUrlIsValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when URL exists and points at a Xml.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLFile(testContext);
+        iut.validateXmlFile(testContext);
     }
 
     /**
-     * Test for the validateXMLFile when URL exists and does not points at a
-     * XML.
+     * Test for the validateXmlFile when URL exists and does not points at a
+     * Xml.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = AssertionError.class)
-    public void testValidateXMLFileWhenUrlIsNotValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLFileWhenUrlIsNotValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when URL exists and does not points at a XML.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL\n");
+    public void testValidateXmlFileWhenUrlIsNotValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlFileWhenUrlIsNotValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when URL exists and does not points at a Xml.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL\n");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLFile(testContext);
+        iut.validateXmlFile(testContext);
     }
 
     /**
-     * Test for the validateXMLFile when Physical Path exists and points at a
-     * XML.
+     * Test for the validateXmlFile when Physical Path exists and points at a
+     * Xml.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test
-    public void testValidateXMLFileWhenPhysicalPathIsValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLFileWhenPhysicalPathIsValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when Physical Path exists and points at a XML.\n"
-                + "      [TS] : Expected Result: XML validation =  PASS\n");
+    public void testValidateXmlFileWhenPhysicalPathIsValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlFileWhenPhysicalPathIsValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when Physical Path exists and points at a Xml.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-valid.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLFile(testContext);
+        iut.validateXmlFile(testContext);
     }
 
     /**
-     * Test for the validateXMLFile when Physical Path not exists.
+     * Test for the validateXmlFile when Physical Path not exists.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = NullPointerException.class)
-    public void testValidateXMLFileWhenPhysicalPathIsNotValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLFileWhenPhysicalPathIsNotValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when Physical Path not exists.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL, should throgh NullPointerException\n");
+    public void testValidateXmlFileWhenPhysicalPathIsNotValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlFileWhenPhysicalPathIsNotValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when Physical Path not exists.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL, should throgh NullPointerException\n");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-invalid").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLFile(testContext);
+        iut.validateXmlFile(testContext);
     }
 
     /**
-     * Test for the validateXMLFile when Valid URL exists which points to a XML.
+     * Test for the validateXmlFile when Valid URL exists which points to a Xml.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test
-    public void testValidateXMLPathWhenUrlIsValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLFileWhenUrlIsValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when Valid URL exists which points to a XML.\n"
-                + "      [TS] : Expected Result: XML validation =  PASS");
+    public void testValidateXmlPathWhenUrlIsValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlFileWhenUrlIsValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when Valid URL exists which points to a Xml.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLPath(testContext);
+        iut.validateXmlPath(testContext);
     }
 
     /**
-     * Test for the validateXMLFile when Valid URL not exists.
+     * Test for the validateXmlFile when Valid URL not exists.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = AssertionError.class)
-    public void testValidateXMLPathWhenUrlIsNotValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLFileWhenUrlIsNotValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when Valid URL not exists.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL\n");
+    public void testValidateXmlPathWhenUrlIsNotValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlFileWhenUrlIsNotValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when Valid URL not exists.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL\n");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLPath(testContext);
+        iut.validateXmlPath(testContext);
     }
 
     /**
-     * Test for the validateXMLFile when Valid Physical Path exists which points
-     * at a XML.
+     * Test for the validateXmlFile when Valid Physical Path exists which points
+     * at a Xml.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test
-    public void testValidateXMLPathWhenPhysicalPathIsValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLFileWhenPhysicalPathIsValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when Physical Path exists and points at a XML.\n"
-                + "      [TS] : Expected Result: XML validation =  PASS");
+    public void testValidateXmlPathWhenPhysicalPathIsValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlFileWhenPhysicalPathIsValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when Physical Path exists and points at a Xml.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-valid.xml").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLPath(testContext);
+        iut.validateXmlPath(testContext);
     }
 
     /**
-     * Test for the validateXMLFile when Valid Physical Path does not exists.
+     * Test for the validateXmlFile when Valid Physical Path does not exists.
      *
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
     @Test(expected = NullPointerException.class)
-    public void testValidateXMLPathWhenPhysicalPathIsNotValid() throws SAXException, IOException {
-        LOGGER1.info("[TS] : Name of Test Case: testValidateXMLPathWhenPhysicalPathIsNotValid\n"
-                + "      [TS] : Description: Test for the validateXMLFile when Valid Physical Path does not exists.\n"
-                + "      [TS] : Expected Result: XML validation =  FAIL, should throgh NullPointerException\n");
+    public void testValidateXmlPathWhenPhysicalPathIsNotValid() throws SAXException, IOException {
+        LOGGER1.info("[TS] : Name of Test Case: testValidateXmlPathWhenPhysicalPathIsNotValid\n"
+                + "      [TS] : Description: Test for the validateXmlFile when Valid Physical Path does not exists.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL, should throgh NullPointerException\n");
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-invalid").toString());
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXMLPath(testContext);
+        iut.validateXmlPath(testContext);
     }
 
 }
