@@ -12,7 +12,7 @@ Detailed information about this test suite is available [here] (src/main/site/in
 [Apache 2.0 License](LICENSE.md)
 
 ## Using
-The test can be tested at this endpoint:
+The metadata validation service can be tested at this endpoint:
 http://cite-dev-03.opengeospatial.org/teamengine/about/iso19139/1.0/web/overview.html
 
 ### User interface
