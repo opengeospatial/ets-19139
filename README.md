@@ -11,6 +11,38 @@ Detailed information about this test suite is available [here] (src/main/site/in
 
 [Apache 2.0 License](LICENSE.md)
 
+## Using
+The test can be tested at this endpoint:
+http://cite-dev-03.opengeospatial.org/teamengine/about/iso19139/1.0/web/overview.html
+
+### User interface
+Login in to TEAM Engine will allow to use the user interface and send the results via a web form
+
+### HTTP 
+
+URL: http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run
+Parameter is iut = Instance (or implementation) under test
+For example:
+http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml
+
+Results are given in XML TestNG::
+
+   <?xml version="1.0" encoding="UTF-8"?>
+      <testng-results failed="0" passed="3" skipped="0" total="3">
+         <reporter-output>
+            <line>The result of the test is-</line>
+            <line>Passed tests for suite 'iso19139-1.0' is:3</line>
+            <line>Failed tests for suite 'iso19139-1.0' is:0</line>
+            <line>Skipped tests for suite 'iso19139-1.0' is:0</line>
+            <line>REASON:</line>
+            <line>http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml conforms to the clause A.1 of ISO 19139.</line>
+      </reporter-output>
+ 
+</testng-results>
+
+
+
+
 ## Building
 
 This test is build using [Apache Maven](http://maven.apache.org/) To 
