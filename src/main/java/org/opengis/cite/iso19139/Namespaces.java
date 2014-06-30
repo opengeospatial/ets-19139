@@ -32,4 +32,5 @@ public class Namespaces {
      */
     public static final String GMD = "http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd";
 
+    public static final String SCH = "http://purl.oclc.org/dsdl/schematron";
 }

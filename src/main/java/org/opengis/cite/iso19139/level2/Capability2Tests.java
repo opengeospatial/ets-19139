@@ -3,15 +3,41 @@ package org.opengis.cite.iso19139.level2;
 //import cz.jakubmaly.schematronassert.schematron.model.Schema;
 //import cz.jakubmaly.schematronassert.schematron.validation.XsltSchematronValidator;
 //import cz.jakubmaly.schematronassert.svrl.model.ValidationOutput;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
-import java.util.MissingResourceException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.*;
-import org.apache.xerces.xs.XSModel;
+import org.opengis.cite.iso19139.ETSAssert;
+import org.opengis.cite.iso19139.ErrorMessage;
+import org.opengis.cite.iso19139.ErrorMessageKeys;
+import org.opengis.cite.iso19139.Namespaces;
 import org.opengis.cite.iso19139.SuiteAttribute;
+import org.opengis.cite.iso19139.TestRunArg;
+import org.opengis.cite.iso19139.util.TestSuiteLogger;
+import org.opengis.cite.iso19139.util.XMLUtils;
+import org.opengis.cite.validation.SchematronValidator;
+import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 
@@ -21,18 +47,12 @@ import org.w3c.dom.Document;
 public class Capability2Tests {
 
     private Document testSubject;
+    private SchematronValidator dataValidator;
     /**
      * Timeout for compiling schemas /ms
      */
     static final long COMPILE_TIMEOUT = 180000;
-    private final Logger logr = Logger.getLogger(this.getClass().getPackage().getName());
     private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
-    private Set<URI> xsdLocations;
-//    private Schema appSchema;
-//    private XSModel model;
-//    private URI targetNamespace;
-//    public StreamSource xmlSource=null;
-//    public Schema schemaSource=null;
 
     /**
      * Obtains the test subject from the ISuite context. The suite attribute
@@ -50,185 +70,229 @@ public class Capability2Tests {
         }
     }
 
-    /**
-     * Obtains the schema locations from the ISuite context. The suite attribute
-     * {@link SuiteAttribute#SCHEMA_LOC_SET} should evaluate to a Set of URI
-     * objects specifying the locations of the relevant XML Schema grammars.
-     *
-     * @param testContext The test (group) context.
-     */
-    @BeforeClass
-    @SuppressWarnings("unchecked")
-    public void getSchemaURIsFromTestContext(ITestContext testContext) {
-        Object uriSet = testContext.getSuite().getAttribute(
-                SuiteAttribute.SCHEMA_LOC_SET.getName());
-        if ((null != uriSet) && Set.class.isAssignableFrom(uriSet.getClass())) {
-            this.xsdLocations = (Set<URI>) uriSet;
+    @BeforeTest
+    public void validateConfromanceLevelTwoEnabled(ITestContext testContext) {
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String level = params.get(TestRunArg.ICS.toString());
+        if ("2".equals(level)) {
+            Assert.assertTrue(true);
         } else {
-            throw new MissingResourceException(
-                    "Unable to obtain XML Schema locations from ITestContext",
-                    SuiteAttribute.SCHEMA_LOC_SET.getType().getName(),
-                    SuiteAttribute.SCHEMA_LOC_SET.getName());
+            Assert.assertTrue(false, "Conformance level two is not enabled");
         }
     }
 
     /**
-     * Sets the test subject. This method is intended to facilitate unit
-     * testing.
+     * Attempts to construct a Schematron validator from a schema reference
+     * given in (a) the ISO data file, or (b) a test run argument (in the ISuite
+     * context).
      *
-     * @param testSubject A Document node representing the test subject or
-     * metadata about it.
+     * @param testContext The test set context.
      */
-    public void setTestSubject(Document testSubject) {
-        this.testSubject = testSubject;
+    @BeforeClass
+    public void createSchematronValidator(ITestContext testContext) {
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> piData = testContext.getSuite().getXmlSuite().getParameters();
+        String phase = "#ALL";
+        URI schematronURI;
+        Source schema = null;
+        if (isSchematronReference(piData)) {
+            schematronURI = URI.create(piData.get("href"));
+            if (!schematronURI.isAbsolute()) {
+                // resolve relative URI against location of ISO data
+                String dataURI = testContext.getSuite().getParameter(
+                        TestRunArg.IUT.toString());
+                URI baseURI = URI.create(dataURI);
+                schematronURI = baseURI.resolve(schematronURI);
+            }
+            schema = new StreamSource(schematronURI.toString());
+            if (piData.containsKey("phase")) {
+                phase = piData.get("phase");
+            }
+        } else { // look for suite attribute (test run argument)
+            Set<String> suiteAttrs = testContext.getSuite().getAttributeNames();
+            if (suiteAttrs.contains(SuiteAttribute.SCHEMATRON.getName())) {
+                schematronURI = (URI) testContext.getSuite().getAttribute(
+                        SuiteAttribute.SCHEMATRON.getName());
+                schema = new StreamSource(schematronURI.toString());
+            }
+        }
+        if (null != schema) {
+            try {
+                this.dataValidator = new SchematronValidator(schema, phase);
+            } catch (Exception e) {
+                System.out.println("Failed to create SchematronValidator.\n" + e);
+
+            }
+        }
+    }
+
+    public File localFileCreation(ITestContext testContext) {
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        String destinationDir = "";
+        int periodIndex = url.lastIndexOf('.');
+        int slashIndex = url.lastIndexOf("/");
+        boolean testResult = false;
+        params.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
+        String fileName = url.substring(slashIndex + 1);
+
+        if (((periodIndex >= 1) || (periodIndex == -1)) && slashIndex >= 0 && slashIndex < url.length() - 1) {
+            destinationDir = System.getProperty("user.home").toString() + "/XMLFolder/";
+            File directory = new File(destinationDir);
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+            try {
+                directory.setExecutable(true);
+                directory.setReadable(true);
+                directory.setWritable(true);
+                //Runtime.getRuntime().exec(directory.getAbsolutePath().toString());
+            } catch (Exception e) {
+                //Ignore
+            }
+            final int size = 1024;
+            OutputStream outStream = null;
+            @SuppressWarnings("UnusedAssignment")
+            URLConnection uCon = null;
+            InputStream is = null;
+            try {
+                URL Url;
+                byte[] buf;
+                int ByteRead;
+                Url = new URL(url);
+                outStream = new BufferedOutputStream(new FileOutputStream(destinationDir + fileName));
+
+                uCon = Url.openConnection();
+                is = uCon.getInputStream();
+                buf = new byte[size];
+                //Copy the contents of he XML in a physical file
+                while ((ByteRead = is.read(buf)) != -1) {
+                    outStream.write(buf, 0, ByteRead);
+                }
+                is.close();
+                outStream.close();
+            } catch (IOException e) {
+                //XML file is corrupted or malformed
+                testContext.setAttribute("FailReport", "Error in reading or writing from the XML file " + url);
+            }
+        }
+        return new File(destinationDir + fileName);
     }
 
     /**
-     * This test will run only after all the tests belonging to the group
-     * 'inputvalidation' pass successfully. This test method is used to check
-     * whether the given input XML conforms to clause A.2.1 of ISO 19139.
+     * [{@code Test}] Verifies that a ISO instance satisfies the additional
+     * Schematron constraints specified in ISO 19136.
+     *
+     * <h6 style="margin-bottom: 0.5em">Sources</h6>
+     * <ul>
+     * <li><a
+     * href="http://schemas.opengis.net/gml/3.2.1/SchematronConstraints.xml">
+     * Schematron constraints for ISO 19136</a></li>
+     * </ul>
+     *
      * @param testContext
-     * @throws org.xml.sax.SAXException
-     * @throws java.io.IOException
-//     */
-//    @Test(description = "Implements ATC 2-1")
-//    public void validateXMLAgainstSchematron(ITestContext testContext) throws SAXException,
-//            IOException {
-//        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
-//        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
-//        String url = params.get(TestRunArg.IUT.toString());
-//        String failReport = url + " doesn't conform to the clause A.2.1 of ISO 19139.\n\n";
-//        int periodIndex = url.lastIndexOf('.');
-//        int slashIndex = url.lastIndexOf("/");
-//        boolean testResult = false;
-//        params.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "iso19115/schema/ISO19115-3/mdb/1.0/mdb.xsd").toString());
-//        String fileName = url.substring(slashIndex + 1);
-//
-//        if (((periodIndex >= 1) || (periodIndex == -1)) && slashIndex >= 0 && slashIndex < url.length() - 1) {
-//            String destinationDir = System.getProperty("user.home").toString() + "/XMLFolder/";
-//            File directory = new File(destinationDir);
-//            if (!directory.exists()) {
-//                directory.mkdir();
-//            }
-//            try {
-//                directory.setExecutable(true);
-//                directory.setReadable(true);
-//                directory.setWritable(true);
-//                //Runtime.getRuntime().exec(directory.getAbsolutePath().toString());
-//            } catch (Exception e) {
-//                //Ignore
-//            }
-//            final int size = 1024;
-//            OutputStream outStream = null;
-//            @SuppressWarnings("UnusedAssignment")
-//            URLConnection uCon = null;
-//            InputStream is = null;
-//            try {
-//                URL Url;
-//                byte[] buf;
-//                int ByteRead;
-//                Url = new URL(url);
-//                outStream = new BufferedOutputStream(new FileOutputStream(destinationDir + fileName));
-//
-//                uCon = Url.openConnection();
-//                is = uCon.getInputStream();
-//                buf = new byte[size];
-//                //Copy the contents of he XML in a physical file
-//                while ((ByteRead = is.read(buf)) != -1) {
-//                    outStream.write(buf, 0, ByteRead);
-//                }
-//                is.close();
-//                outStream.close();
-//                //Give the gmd.xsd schema (root schema) path
-//                Source schemaFile = new StreamSource((params.get(TestRunArg.XSD.toString())));
-//                String check = params.get(TestRunArg.XSD.toString());
-//                Source xmlFile = new StreamSource(new File(destinationDir + fileName));
-//                SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-//                Schema schema = schemaFactory.newSchema(schemaFile);
-//
-//                System.out.println("RESULT:\n");
-//                Validator validator = schema.newValidator();
-//                try {
-//                    //Validate the XML file against ISO 19139 XSD
-//                    validator.validate(xmlFile);
-//                    System.out.println(url + " conforms to the clause A.2.1 of ISO 19139.\n\n");
-//                    testResult = true;
-//
-//                } catch (SAXParseException e) {
-//
-////                    Print the reason why the XML validation fails
-//                    System.out.println(url + " doesn't conform to the clause A.2.1 of ISO 19139.\n");
-//                    System.out.println("Reason: " + e.getLocalizedMessage());
-//                    System.out.println("Line Number \t: " + e.getLineNumber());
-//                    System.out.println("Column Number\t: " + e.getColumnNumber() + "\n\n");
-//
-//                    failReport = url + " doesn't conform to the clause A.2.1 of ISO 19139,\n"
-//                            + "Reason: " + e.getLocalizedMessage()
-//                            + ",\nLine Number \t: " + e.getLineNumber()
-//                            + ",\nColumn Number\t: " + e.getColumnNumber() + "\n";
-//                    String failReport1 = url + " doesn't conform to the clause A.2.1 of ISO 19139\n"
-//                            + "Reason: " + e.getLocalizedMessage()
-//                            + "\nLine Number \t: " + e.getLineNumber()
-//                            + "\nColumn Number\t: " + e.getColumnNumber() + "\n";
-//                    testContext.setAttribute("FailReport", failReport1);
-//
-//                    testResult = false;
-//                }
-//            } catch (IOException e) {
-//                //XML file is corrupted or malformed
-//                testContext.setAttribute("FailReport", "Error in reading or writing from the XML file " + url);
-//                failReport = "Error in reading or writing from the XML file" + url;
-//            } catch (SAXException e) {
-//                //Schema file (XSD) is corrupted or malformed
-//                testContext.setAttribute("FailReport", "Error in reading the XML Schema.");
-//                failReport = "Error in reading the XML Schema";
-//            } finally {
-//                try {
-//                    is.close();
-//                    outStream.close();
-//                } catch (IOException e) {
-//                    testContext.setAttribute("FailReport", "Error in reading or writing from the XML file " + url);
-//                    failReport = "Error in reading or writing from the XML file " + url;
-//                }
-//            }
-//        }
-//        Assert.assertTrue(testResult, failReport);
-//
-//    }
-
-    /**
-     * Sets the application schema(s) to check. This method is intended only to
-     * facilitate unit testing.
-     *
-     * @param schemaURIs A Set of URI objects representing schema locations.
-     */
-    void setSchemaLocations(Set<URI> schemaURIs) {
-        this.xsdLocations = schemaURIs;
-    }
-
-    private void Assert(boolean testResult, String failReport) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    /**
-     * Checks the result of the length function.
      */
     @Test(description = "Implements ATC 2-1")
-    public void checkLength() {
-        String str = "perihelion";
-        System.out.println("A.2.1 Test run");
-//        XsltSchematronValidator validation=new XsltSchematronValidator();
-//        ValidationOutput output = validation.validate(xmlSource, schemaSource);
-//        validator.validate(xmlSource, schemaSource,output);
-        //Assert.assertEquals(str.length(), 10);
+    public void validateXmlAgainstSchematronForNullReason(ITestContext testContext) {
+        URL schRef = this.getClass().getResource("/org/opengis/cite/iso19139_schematron_nil.sch");
+            File dataFile = localFileCreation(testContext);
+                ETSAssert
+                        .assertSchematronValid(schRef, new StreamSource(dataFile));
+        
     }
-    
+
     /**
-     * Checks the Unicode code point value of the first character.
+     * [{@code Test}] Checks for the presence of any deprecated ISO elements. A
+     * warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
      */
-    @Test(description = "Implements ATC 2-2")
-    public void codePoint() {
-        String str = "perihelion";
-        System.out.println("A.2.2 Test run");
-        //Assert.assertEquals(str.codePointAt(0), 100);
+    @Test(description = "Implements ATC 2-2", dependsOnMethods ="validateXmlAgainstSchematronForNullReason")
+    public void checkForCodeListValidation(ITestContext testContext) {
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron-rules-iso-codeListValidation.sch");
+        File dataFile = localFileCreation(testContext);
+             ETSAssert
+                     .assertSchematronValid(schRef, new StreamSource(dataFile));
+        
+    }
+
+
+    /**
+     * Indicates whether or not the given PI data includes a Schematron schema
+     * reference.
+     *
+     * @param piData A Map containing PI data (pseudo-attributes).
+     * @return {@code true} if the "schematypens" pseudo-attribute has the value
+     * {@value org.opengis.cite.iso19136.Namespaces#SCH}; {@code false}
+     * otherwise;
+     */
+    boolean isSchematronReference(Map<String, String> piData
+    ) {
+        if (null != piData && null != piData.get("schematypens")) {
+            return piData.get("schematypens").equals(Namespaces.SCH);
+        }
+        return false;
+    }
+
+    /**
+     * Extracts the data items from the {@code xml-model} processing
+     * instruction. The PI must appear before the document element.
+     *
+     * @param dataFile A File containing the ISO instance.
+     * @return A Map containing the supplied pseudo-attributes, or {@code null}
+     * if the PI is not present.
+     */
+    Map<String, String> getXmlModelPIData(File dataFile
+    ) {
+        Map<String, String> piData = null;
+        XMLStreamReader reader = null;
+        FileInputStream input = null;
+        try {
+            input = new FileInputStream(dataFile);
+            XMLInputFactory factory = XMLInputFactory.newInstance();
+            reader = factory.createXMLStreamReader(input);
+            int event = reader.getEventType();
+            // Now in START_DOCUMENT state. Stop at document element.
+            while (event != XMLStreamReader.START_ELEMENT) {
+                event = reader.next();
+                if (event == XMLStreamReader.PROCESSING_INSTRUCTION) {
+                    if (reader.getPITarget().equals("xml-model")) {
+                        String[] pseudoAttrs = reader.getPIData().split("\\s+");
+                        piData = new HashMap<String, String>();
+                        for (String pseudoAttr : pseudoAttrs) {
+                            String[] nv = pseudoAttr.split("=");
+                            piData.put(nv[0].trim(), nv[1].replace('"', ' ')
+                                    .trim());
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            TestSuiteLogger.log(Level.WARNING, "Failed to parse document at "
+                    + dataFile.getAbsolutePath(), e);
+            return null; // not an XML document
+        } catch (XMLStreamException e) {
+            TestSuiteLogger.log(Level.WARNING, "Failed to parse document at "
+                    + dataFile.getAbsolutePath(), e);
+            return null; // not an XML document
+        } finally {
+            try {
+                if (null != reader) {
+                    reader.close();
+                }
+                if (null != input) {
+                    input.close();
+                }
+            } catch (XMLStreamException x) {
+                TestSuiteLogger.log(Level.INFO, x.getMessage());
+            } catch (IOException x) {
+                TestSuiteLogger.log(Level.INFO, x.getMessage());
+            }
+        }
+        return piData;
     }
 }

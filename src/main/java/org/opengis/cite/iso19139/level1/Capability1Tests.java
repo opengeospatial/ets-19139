@@ -110,7 +110,7 @@ public class Capability1Tests {
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
-        String url = params.get(TestRunArg.IUT.toString());
+        String url = params.get(TestRunArg.IUT.toString());        
         String failReport = url + " doesn't conform to the clause A.1 of ISO 19139.\n\n";
         String result="FAILED";
         String input=null;

@@ -124,7 +124,7 @@ public class TestNGController implements TestSuiteController {
 
     @Override
     public Source doTestRun(Document objTestRunArgs) throws Exception {
-
+        
         Document testRunArgs = (Document) (objTestRunArgs);
 
         validateTestRunArgs(testRunArgs);

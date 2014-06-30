@@ -126,9 +126,58 @@ public class ETSAssert {
             throw new AssertionError(msg);
         }
         DOMResult result = validator.validate(xmlSource);
-        Assert.assertFalse(validator.ruleViolationsDetected(), ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                validator.getRuleViolationCount(),
-                XMLUtils.writeNodeToString(result.getNode())));
+
+        // Get number of violation count
+        String countNo = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
+                validator.getRuleViolationCount());
+        
+        // Fetch error message when schema is not valid
+        String errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
+                XMLUtils.writeNodeToString(result.getNode()));
+        
+        String error = "";
+        
+        String delims = "<svrl:failed-assert";
+        String[] failedAssertList = errorMessage.split(delims);
+        
+        for (int i = 1; i < failedAssertList.length; i++) {
+            
+            delims = "location=";
+            String[] locationToken = failedAssertList[i].split(delims);
+            
+            for (int j = 1; j < locationToken.length; j++) {
+                error = error + ",Location:"+",";
+                
+                delims = "/\\*:";
+                String[] tokens2 = locationToken[j].split(delims);
+                for (int k = 1; k < tokens2.length; k++) {
+                                
+                    if (tokens2[k].contains("<svrl:text>")) {
+                        
+                        delims = "<svrl:text>";
+                        String[] failedAssertMessage = tokens2[k].split(delims);
+                        
+                        for (int l = 0; l < failedAssertMessage.length; l++) {
+                            if(failedAssertMessage[l].contains("</svrl:text>"))
+                            {
+                                failedAssertMessage[l]="Reason :," + failedAssertMessage[l].split("</svrl:text>")[0];
+                            }
+                            else{
+                                failedAssertMessage[l]=failedAssertMessage[l].split(">")[0];
+                            }
+                            error = error + failedAssertMessage[l]+",";
+                        }
+                    }
+                     else {
+                                error = error + tokens2[k]+",";                            
+                    }
+                }
+            }
+        }
+        
+        errorMessage = countNo + "," + error;
+        
+        Assert.assertFalse(validator.ruleViolationsDetected(), errorMessage);
     }
 
     /**
