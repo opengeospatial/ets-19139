@@ -20,8 +20,8 @@ Login in to TEAM Engine will allow to use the user interface and send the result
 
 ### HTTP 
 
-URL: [http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run](http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run)
-Parameter is iut = Instance (or implementation) under test
+- URL: [http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run](http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run)
+- Parameter is iut = Instance (or implementation) under test
 
 For example:
 
