@@ -22,10 +22,14 @@ Login in to TEAM Engine will allow to use the user interface and send the result
 
 URL: http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run
 Parameter is iut = Instance (or implementation) under test
+
 For example:
+
 http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml
 
-Results are given in XML TestNG::
+Results are given in XML TestNG:
+
+```xml
 
    <?xml version="1.0" encoding="UTF-8"?>
       <testng-results failed="0" passed="3" skipped="0" total="3">
@@ -38,9 +42,9 @@ Results are given in XML TestNG::
             <line>http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml conforms to the clause A.1 of ISO 19139.</line>
       </reporter-output>
  
-</testng-results>
+     </testng-results>
 
-
+````
 
 
 ## Building
