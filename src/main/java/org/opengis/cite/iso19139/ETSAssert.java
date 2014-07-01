@@ -1,5 +1,6 @@
 package org.opengis.cite.iso19139;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ import org.testng.Assert;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Provides a set of custom assertion methods.
@@ -96,7 +98,10 @@ public class ETSAssert {
         validator.setErrorHandler(errHandler);
         try {
             validator.validate(source);
-        } catch (Exception e) {
+        } catch (IOException e) {
+            throw new AssertionError(ErrorMessage.format(
+                    ErrorMessageKeys.XML_ERROR, e.getMessage()));
+        } catch (SAXException e) {
             throw new AssertionError(ErrorMessage.format(
                     ErrorMessageKeys.XML_ERROR, e.getMessage()));
         }
@@ -176,7 +181,7 @@ public class ETSAssert {
         }
         
         errorMessage = countNo + "," + error;
-        
+       
         Assert.assertFalse(validator.ruleViolationsDetected(), errorMessage);
     }
 
