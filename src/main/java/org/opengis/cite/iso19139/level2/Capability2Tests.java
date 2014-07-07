@@ -25,6 +25,7 @@ import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.*;
+import org.opengis.cite.iso19139.ETSAssert;
 import org.opengis.cite.iso19139.ErrorMessage;
 import org.opengis.cite.iso19139.ErrorMessageKeys;
 import org.opengis.cite.iso19139.Namespaces;
@@ -203,7 +204,7 @@ public class Capability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
-        URL schRef = this.getClass().getResource("/org/opengis/cite/iso19139_schematron_nil.sch");
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/iso19139_schematron_nil.sch");
             File dataFile = localFileCreation(url);
      SchematronValidator validator;
         try {
@@ -286,85 +287,127 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Implements ATC 2-2", dependsOnMethods ="validateXmlAgainstSchematronForNullReason")
-    public void checkForCodeListValidation(ITestContext testContext) {
+    
+    @Test(description = "Checking XML File encoding standard", dependsOnMethods ="validateXmlAgainstSchematronForNullReason")
+    public void checkEncodingStandard(ITestContext testContext){
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
-        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron-rules-iso-codeListValidation.sch");
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkEncodingStandard.sch");
         File dataFile = localFileCreation(url);
-     SchematronValidator validator;
-        try {
-            validator = new SchematronValidator(new StreamSource(
-                    schRef.toString()), "#ALL");
-        } catch (Exception e) {
-            StringBuilder msg = new StringBuilder(
-                    "Failed to process Schematron schema at ");
-            msg.append(schRef).append('\n');
-            msg.append(e.getMessage());
-            throw new AssertionError(msg);
-        }
-        DOMResult result = validator.validate(new StreamSource(dataFile));
-
-        // Get number of violation count
-        String countNo = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                validator.getRuleViolationCount());
-        // Fetch error message when schema is not valid
-        String errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                validator.getRuleViolationCount(),
-                XMLUtils.writeNodeToString(result.getNode()));
-        String error = "";
-        
-        String delims = "<svrl:failed-assert";
-        String[] failedAssertList = errorMessage.split(delims);
-        
-        for (int i = 1; i < failedAssertList.length; i++) {
-            
-            delims = "location=";
-            String[] locationToken = failedAssertList[i].split(delims);
-            
-            for (int j = 1; j < locationToken.length; j++) {
-                error = error + ",Location:"+",";
-                
-                delims = "/\\*:";
-                String[] tokens2 = locationToken[j].split(delims);
-                for (int k = 1; k < tokens2.length; k++) {
-                                
-                    if (tokens2[k].contains("<svrl:text>")) {
-                        
-                        delims = "<svrl:text>";
-                        String[] failedAssertMessage = tokens2[k].split(delims);
-                        
-                        for (int l = 0; l < failedAssertMessage.length; l++) {
-                            if(failedAssertMessage[l].contains("</svrl:text>"))
-                            {
-                                failedAssertMessage[l]="Reason :," + failedAssertMessage[l].split("</svrl:text>")[0];
-                            }
-                            else{
-                                failedAssertMessage[l]=failedAssertMessage[l].split(">")[0];
-                            }
-                            error = error + failedAssertMessage[l]+",";
-                        }
-                    }
-                     else {
-                                error = error + tokens2[k]+",";                            
-                    }
-                }
-            }
-        }
-        
-        errorMessage = countNo + "," + error;
-        if(validator.ruleViolationsDetected())
-        {
-            testContext.setAttribute("FailedReport1","Conferms the clause of A.2.2 of ISO19139");
-        }
-        else
-        {
-            testContext.setAttribute("FailedReport1","Does not conferms the clause of A.2.2 of ISO19139");
-        }
-            Assert.assertFalse(validator.ruleViolationsDetected(), errorMessage);    
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
-
+    
+    @Test(description = "Checking Data Identification of XML File", dependsOnMethods ="checkEncodingStandard")
+    public void checkDataIdentification(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkDataIdentification.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking aggregate information of XML File", dependsOnMethods ="checkDataIdentification")
+    public void checkAggregateInformation(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkAggregateInformation.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking legal constraints of XML File", dependsOnMethods ="checkAggregateInformation")
+    public void checkLegalConstraints(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkLegalConstraints.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking scope of XML File", dependsOnMethods ="checkLegalConstraints")
+    public void checkScopeOfXmlFile(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkScopeOfXmlFile.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking georectified of XML File", dependsOnMethods ="checkScopeOfXmlFile")
+    public void checkGeorectified(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkGeorectified.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking band value of XML File", dependsOnMethods ="checkGeorectified")
+    public void checkBandValueOfXml(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkBandValueOfXml.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking medium of XML File", dependsOnMethods ="checkBandValueOfXml")
+    public void checkMediumOfXml(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkMediumOfXml.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking extended element information of XML File", dependsOnMethods ="checkMediumOfXml")
+    public void checkExtendedElementInformation(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkExtendedElementInformation.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking extent value of XML File", dependsOnMethods ="checkExtendedElementInformation")
+    public void checkExtentValueOfXml(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkExtentValueOfXml.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
+    
+    @Test(description = "Checking responcible party of XML File", dependsOnMethods ="checkExtentValueOfXml")
+    public void checkResponsiblePartyOfXml(ITestContext testContext){
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
+        String url = params.get(TestRunArg.IUT.toString());
+        URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkResponsiblePartyOfXml.sch");
+        File dataFile = localFileCreation(url);
+        ETSAssert
+                .assertSchematronValid(schRef, new StreamSource(dataFile));
+    }
 
     /**
      * Indicates whether or not the given PI data includes a Schematron schema

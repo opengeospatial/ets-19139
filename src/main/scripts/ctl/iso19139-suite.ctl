@@ -65,7 +65,7 @@
                             <input id="level-1" type="radio" name="level" value="1" checked="checked" />
                             <label for="level-1"> Level 1 | </label>
                             <input id="level-2" type="radio" name="level" value="2" />
-                            <label class="form-label" for="level-2"> Level 2</label>
+                            <label class="form-label" for="level-2"> Level 1 + Level 2</label>
                         </p>
                     </fieldset>
                     <p>

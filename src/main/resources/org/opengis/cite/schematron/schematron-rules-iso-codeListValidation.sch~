@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    /**
+    *
+    * This file is part of SeaDataNet metadata profile of ISO 19115.
+    *
+    * Copyright (C) 2012 Enrico Boldrini, Stefano Nativi
+    * CNR - Institute of Atmospheric Pollution Research
+    *
+    * schematron rules version 10.0.0
+    */
+-->
+<sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+   <sch:title>SeaDatanet profile schematron</sch:title>
+   <sch:ns prefix="gmd" uri="http://www.isotc211.org/2005/gmd" />
+   <sch:ns prefix="gco" uri="http://www.isotc211.org/2005/gco" />
+   <sch:ns prefix="gml" uri="http://www.opengis.net/gml/3.2" />
+   <sch:ns prefix="gml32" uri="http://www.opengis.net/gml/3.2" />
+   <!-- Metadata information -->
+   
+
+   
+
+   
+   
+
+
+   <sch:pattern>
+      <sch:title>$loc/strings/M18</sch:title>
+      <sch:rule context="//gmd:MD_Medium">
+         <sch:let name="density" value="gmd:density and not(gmd:densityUnits[@gco:nilReason!='missing' or not(@gco:nilReason)])" />
+         <sch:assert test="$density = false()">$loc/strings/alert.M18</sch:assert>
+      </sch:rule>
+   </sch:pattern>
+
+   <!-- <sch:pattern>
+      <sch:title>$loc/strings/M19</sch:title>
+      <sch:rule context="//gmd:MD_Distribution">
+         <sch:let name="count" value="count(gmd:distributionFormat)&gt;0 or count(gmd:distributor/gmd:MD_Distributor/gmd:distributorFormat)&gt;0" />
+         <sch:assert test="$count">$loc/strings/alert.M19</sch:assert>
+      </sch:rule>
+   </sch:pattern>
+-->
+   <sch:pattern>
+      <sch:title>$loc/strings/M26</sch:title>
+      <sch:rule context="//gmd:MD_ExtendedElementInformation">
+         <sch:assert test="(gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='codelist' or gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='enumeration' or gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='codelistElement') or (gmd:obligation and ((normalize-space(gmd:obligation) != '') or (gmd:obligation/gmd:MD_ObligationCode) or (gmd:obligation/@gco:nilReason and contains('inapplicable missing template unknown withheld',gmd:obligation/@gco:nilReason))))">$loc/strings/alert.M26.obligation</sch:assert>
+         <sch:assert test="(gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='codelist' or gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='enumeration' or gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='codelistElement') or (gmd:maximumOccurrence and ((normalize-space(gmd:maximumOccurrence) != '') or (normalize-space(gmd:maximumOccurrence/gco:CharacterString) != '') or (gmd:maximumOccurrence/@gco:nilReason and contains('inapplicable missing template unknown withheld',gmd:maximumOccurrence/@gco:nilReason))))">$loc/strings/alert.M26.maximumOccurence</sch:assert>
+         <sch:assert test="(gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='codelist' or gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='enumeration' or gmd:dataType/gmd:MD_DatatypeCode/@codeListValue='codelistElement') or (gmd:domainValue and ((normalize-space(gmd:domainValue) != '') or (normalize-space(gmd:domainValue/gco:CharacterString) != '') or (gmd:domainValue/@gco:nilReason and contains('inapplicable missing template unknown withheld',gmd:domainValue/@gco:nilReason))))">$loc/strings/alert.M26.domainValue</sch:assert>
+      </sch:rule>
+   </sch:pattern>
+
+   <sch:pattern>
+      <sch:title>$loc/strings/M20</sch:title>
+      <sch:rule context="//gmd:EX_Extent">
+         <sch:let name="count" value="count(gmd:description[@gco:nilReason!='missing' or not(@gco:nilReason)])&gt;0 or count(gmd:geographicElement)&gt;0 or count(gmd:temporalElement)&gt;0 or count(gmd:verticalElement)&gt;0" />
+         <sch:assert test="$count">$loc/strings/alert.M20</sch:assert>
+      </sch:rule>
+   </sch:pattern>
+
+   <sch:pattern>
+      <sch:title>$loc/strings/M8</sch:title>
+      <sch:rule context="//*[gmd:CI_ResponsibleParty]">
+         <sch:let name="count" value="(count(gmd:CI_ResponsibleParty/gmd:individualName[@gco:nilReason!='missing' or not(@gco:nilReason)]) + count(gmd:CI_ResponsibleParty/gmd:organisationName[@gco:nilReason!='missing' or not(@gco:nilReason)]) + count(gmd:CI_ResponsibleParty/gmd:positionName[@gco:nilReason!='missing' or not(@gco:nilReason)]))" />
+         <sch:assert test="$count &gt; 0">$loc/strings/alert.M8</sch:assert>
+      </sch:rule>
+   </sch:pattern>
+</sch:schema>
