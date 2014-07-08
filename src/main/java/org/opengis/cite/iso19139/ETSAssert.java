@@ -132,28 +132,32 @@ public class ETSAssert {
         }
         DOMResult result = validator.validate(xmlSource);
 
-       // Fetch error message when schema is not valid
+        // Fetch error message when schema is not valid
         String errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
                 validator.getRuleViolationCount(),
                 XMLUtils.writeNodeToString(result.getNode()));
         String error = "";
-        
+
         String delims = "<svrl:failed-assert";
-         
-                        delims = "<svrl:text>";
-                        String[] failedAssertMessage = errorMessage.split(delims);
-                        
-                        for (int l = 1; l < failedAssertMessage.length; l++) {
-                            if(failedAssertMessage[l].contains("</svrl:text>"))
-                            {
-                                failedAssertMessage[l]= failedAssertMessage[l].split("</svrl:text>")[0];
-                            }
-                            error = error + failedAssertMessage[l]+",";
-                        }
-                    
-        
+
+        delims = "<svrl:text>";
+        String[] failedAssertMessage = errorMessage.split(delims);
+
+        for (int l = 1; l < failedAssertMessage.length; l++) {
+            if (failedAssertMessage[l].contains("</svrl:text>")) {
+                failedAssertMessage[l] = failedAssertMessage[l].split("</svrl:text>")[0];
+            }
+            error = error + failedAssertMessage[l] + ",";
+        }
+
         errorMessage = error;
-        Assert.assertFalse(validator.ruleViolationsDetected(), errorMessage);    
+        if (null != errorMessage && errorMessage.length() > 0) {
+            int endIndex = errorMessage.lastIndexOf(",");
+            if (endIndex != -1) {
+                errorMessage = errorMessage.substring(0, endIndex);
+            }
+        }
+        Assert.assertFalse(validator.ruleViolationsDetected(), errorMessage);
     }
 
     /**
