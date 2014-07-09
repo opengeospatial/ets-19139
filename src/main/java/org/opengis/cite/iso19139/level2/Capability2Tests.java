@@ -1,8 +1,5 @@
 package org.opengis.cite.iso19139.level2;
 
-//import cz.jakubmaly.schematronassert.schematron.model.Schema;
-//import cz.jakubmaly.schematronassert.schematron.validation.XsltSchematronValidator;
-//import cz.jakubmaly.schematronassert.svrl.model.ValidationOutput;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +13,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.MissingResourceException;
 import java.util.Set;
 import java.util.logging.Level;
 import javax.xml.stream.XMLInputFactory;
@@ -138,6 +134,12 @@ public class Capability2Tests {
         }
     }
 
+    /**
+     * Attempts to construct a local XML file.
+     *
+     * @param testContext The test set context.
+     * @return
+     */
     public File localFileCreation(String testContext) {
         String url = testContext;
         String destinationDir = "";
@@ -188,7 +190,7 @@ public class Capability2Tests {
     }
 
     /**
-     * [{@code Test}] Verifies that a ISO instance satisfies the additional
+     * [{@code Test}] Verifies that a ISO instance satisfies the nilReason
      * Schematron constraints specified in ISO 19136.
      *
      * <h6 style="margin-bottom: 0.5em">Sources</h6>
@@ -216,73 +218,73 @@ public class Capability2Tests {
             String msg = "Failed due to XML file not contain a valid xml file format";
             throw new AssertionError(msg);
         }
-        String errorMessage =null;
-        try{
-        DOMResult result = validator.validate(new StreamSource(dataFile));
+        String errorMessage = null;
+        try {
+            DOMResult result = validator.validate(new StreamSource(dataFile));
 
-        // Get number of violation count
-        String countNo = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                validator.getRuleViolationCount());
+            // Get number of violation count
+            String countNo = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
+                    validator.getRuleViolationCount());
 
-        // Fetch error message when schema is not valid
-        errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                XMLUtils.writeNodeToString(result.getNode()));
+            // Fetch error message when schema is not valid
+            errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
+                    XMLUtils.writeNodeToString(result.getNode()));
 
-        String error = "";
+            String error = "";
 
-        String delims = "<svrl:failed-assert";
-        String[] failedAssertList = errorMessage.split(delims);
+            String delims = "<svrl:failed-assert";
+            String[] failedAssertList = errorMessage.split(delims);
 
-        for (int i = 1; i < failedAssertList.length; i++) {
+            for (int i = 1; i < failedAssertList.length; i++) {
 
-            delims = "location=";
-            String[] locationToken = failedAssertList[i].split(delims);
+                delims = "location=";
+                String[] locationToken = failedAssertList[i].split(delims);
 
-            for (int j = 1; j < locationToken.length; j++) {
-                error = error + ",Location:" + ",";
+                for (int j = 1; j < locationToken.length; j++) {
+                    error = error + ",Location:" + ",";
 
-                delims = "/\\*:";
-                String[] tokens2 = locationToken[j].split(delims);
-                for (int k = 1; k < tokens2.length; k++) {
+                    delims = "/\\*:";
+                    String[] tokens2 = locationToken[j].split(delims);
+                    for (int k = 1; k < tokens2.length; k++) {
 
-                    if (tokens2[k].contains("<svrl:text>")) {
+                        if (tokens2[k].contains("<svrl:text>")) {
 
-                        delims = "<svrl:text>";
-                        String[] failedAssertMessage = tokens2[k].split(delims);
+                            delims = "<svrl:text>";
+                            String[] failedAssertMessage = tokens2[k].split(delims);
 
-                        for (int l = 0; l < failedAssertMessage.length; l++) {
-                            if (failedAssertMessage[l].contains("</svrl:text>")) {
-                                failedAssertMessage[l] = "Reason :," + failedAssertMessage[l].split("</svrl:text>")[0];
-                            } else {
-                                failedAssertMessage[l] = failedAssertMessage[l].split(">")[0];
+                            for (int l = 0; l < failedAssertMessage.length; l++) {
+                                if (failedAssertMessage[l].contains("</svrl:text>")) {
+                                    failedAssertMessage[l] = "Reason :," + failedAssertMessage[l].split("</svrl:text>")[0];
+                                } else {
+                                    failedAssertMessage[l] = failedAssertMessage[l].split(">")[0];
+                                }
+                                error = error + failedAssertMessage[l] + ",";
                             }
-                            error = error + failedAssertMessage[l] + ",";
+                        } else {
+                            error = error + tokens2[k] + ",";
                         }
-                    } else {
-                        error = error + tokens2[k] + ",";
                     }
                 }
             }
+
+            errorMessage = countNo + "," + error;
+            if (null != errorMessage && errorMessage.length() > 0) {
+                int endIndex = errorMessage.lastIndexOf(",");
+                if (endIndex != -1) {
+                    errorMessage = errorMessage.substring(0, endIndex); // not forgot to put check if(endIndex != -1)
+                }
+            }
+            testResult = false;
+        } catch (Exception e) {
+            errorMessage = "Failed due to XML file not contain a valid xml file format";
         }
 
-        errorMessage = countNo + "," + error;
-        if (null != errorMessage && errorMessage.length() > 0) {
-            int endIndex = errorMessage.lastIndexOf(",");
-            if (endIndex != -1) {
-                errorMessage = errorMessage.substring(0, endIndex); // not forgot to put check if(endIndex != -1)
-            }
-        }
-        testResult=true;
-        }catch(Exception e){
-            errorMessage="Failed due to XML file not contain a valid xml file format";
-        }
-                
         Assert.assertFalse(testResult, errorMessage);
     }
 
     /**
-     * [{@code Test}] Checks for the presence of any deprecated ISO elements. A
-     * warning is issued for each occurrence.
+     * [{@code Test}] Checks for the presence of any Encoding error on ISO
+     * elements. A warning is issued for each occurrence.
      *
      * @param testContext
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
@@ -299,6 +301,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Data Identification on ISO
+     * elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking Data Identification of XML File", dependsOnMethods = "checkEncodingStandard")
     public void checkDataIdentification(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -310,6 +320,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Aggregate Information on
+     * ISO elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking aggregate information of XML File", dependsOnMethods = "checkDataIdentification")
     public void checkAggregateInformation(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -321,6 +339,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Legal Constraints on ISO
+     * elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking legal constraints of XML File", dependsOnMethods = "checkAggregateInformation")
     public void checkLegalConstraints(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -332,6 +358,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Scope of file on ISO
+     * elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking scope of XML File", dependsOnMethods = "checkLegalConstraints")
     public void checkScopeOfXmlFile(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -343,6 +377,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Georectified error on ISO
+     * elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking georectified of XML File", dependsOnMethods = "checkScopeOfXmlFile")
     public void checkGeorectified(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -354,6 +396,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Band Value of XML on ISO
+     * elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking band value of XML File", dependsOnMethods = "checkGeorectified")
     public void checkBandValueOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -365,6 +415,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Medium of XML on ISO
+     * elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking medium of XML File", dependsOnMethods = "checkBandValueOfXml")
     public void checkMediumOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -376,6 +434,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Extended element
+     * information on ISO elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking extended element information of XML File", dependsOnMethods = "checkMediumOfXml")
     public void checkExtendedElementInformation(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -387,6 +453,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Extent value of XML on ISO
+     * elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking extent value of XML File", dependsOnMethods = "checkExtendedElementInformation")
     public void checkExtentValueOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -398,6 +472,14 @@ public class Capability2Tests {
                 .assertSchematronValid(schRef, new StreamSource(dataFile));
     }
 
+    /**
+     * [{@code Test}] Checks for the presence of any Responsible party of XML
+     * information on ISO elements. A warning is issued for each occurrence.
+     *
+     * @param testContext
+     * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
+     * of ISO"
+     */
     @Test(description = "Checking responcible party of XML File", dependsOnMethods = "checkExtentValueOfXml")
     public void checkResponsiblePartyOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");

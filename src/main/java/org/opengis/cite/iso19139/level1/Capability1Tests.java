@@ -101,6 +101,7 @@ public class Capability1Tests {
      * This test will run only after all the tests belonging to the group
      * 'inputvalidation' pass successfully. This test method is used to check
      * whether the given input XML conforms to clause A.1 of ISO 19139.
+     *
      * @param testContext
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
@@ -110,10 +111,10 @@ public class Capability1Tests {
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
-        String url = params.get(TestRunArg.IUT.toString());        
+        String url = params.get(TestRunArg.IUT.toString());
         String failReport = url + " doesn't conform to the clause A.1 of ISO 19139.\n\n";
-        String result="FAILED";
-        String input=null;
+        String result = "FAILED";
+        String input = null;
         int periodIndex = url.lastIndexOf('.');
         int slashIndex = url.lastIndexOf("/");
         boolean testResult = false;
@@ -161,7 +162,7 @@ public class Capability1Tests {
                 Source xmlFile = new StreamSource(new File(destinationDir + fileName));
                 SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
                 Schema schema = schemaFactory.newSchema(schemaFile);
-                input=xmlFile.getSystemId();
+                input = xmlFile.getSystemId();
                 testContext.setAttribute("Input", input);
                 System.out.println("RESULT:\n");
                 Validator validator = schema.newValidator();
@@ -171,22 +172,21 @@ public class Capability1Tests {
                     System.out.println(url + " conforms to the clause A.1 of ISO 19139.\n\n");
                     testResult = true;
                     failReport = url + " conform to the clause A.1 of ISO 19139\n";
-                    result="PASS";
+                    result = "PASS";
                     testContext.setAttribute("Result", result);
                     testContext.setAttribute("FailReport", failReport);
                 } catch (SAXParseException e) {
-                    String reason=e.getLocalizedMessage();
-                    if(e.getLocalizedMessage().startsWith("cvc-elt.1.a"))
-                    {
+                    String reason = e.getLocalizedMessage();
+                    if (e.getLocalizedMessage().startsWith("cvc-elt.1.a")) {
                         String segments[] = reason.split("'");
-                        reason="Root element of given XML file should be <gmd:MD_metadata> but instead the it is <" + segments[segments.length - 2]+">.";
-                  }
+                        reason = "Root element of given XML file should be <gmd:MD_metadata> but instead the it is <" + segments[segments.length - 2] + ">.";
+                    }
 //                    Print the reason why the XML validation fails
                     System.out.println(url + " doesn't conform to the clause A.1 of ISO 19139.\n");
                     System.out.println("Reason: " + reason);
                     System.out.println("Line Number \t: " + e.getLineNumber());
                     System.out.println("Column Number\t: " + e.getColumnNumber() + "\n\n");
-                    
+
                     failReport = url + " doesn't conform to the clause A.1 of ISO 19139,\n"
                             + "Reason: " + reason
                             + ",\nLine Number \t: " + e.getLineNumber()

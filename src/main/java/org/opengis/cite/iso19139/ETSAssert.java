@@ -138,9 +138,7 @@ public class ETSAssert {
                 XMLUtils.writeNodeToString(result.getNode()));
         String error = "";
 
-        String delims = "<svrl:failed-assert";
-
-        delims = "<svrl:text>";
+        String delims = "<svrl:text>";
         String[] failedAssertMessage = errorMessage.split(delims);
 
         for (int l = 1; l < failedAssertMessage.length; l++) {
