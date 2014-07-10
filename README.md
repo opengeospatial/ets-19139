@@ -11,17 +11,25 @@ Detailed information about this test suite is available [here] (src/main/site/in
 
 [Apache 2.0 License](LICENSE.md)
 
-## Using
-The metadata validation service can be tested at this endpoint:
-http://cite-dev-03.opengeospatial.org/teamengine/about/iso19139/1.0/web/overview.html
+## Validating Metadata Instances
 
-### User interface
-Login in to TEAM Engine will allow to use the user interface and send the results via a web form
+There are two ways to validate an instance.
 
-### HTTP 
+   1. Via a web user interface
+   2. Via HTTP request
 
-- URL: [http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run](http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run)
-- Parameter is iut = Instance (or implementation) under test
+### Validating via a Web User Interface
+The web site is available here:
+   http://cite-dev-03.opengeospatial.org/teamengine/
+
+It requires an easy registrationa and login  process.
+
+###  Validating via an HTTP Request
+
+
+- URL: http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run
+- Parameter is:
+      iut = Instance (or implementation) under test
 
 For example:
 
@@ -40,12 +48,12 @@ Results are given in XML TestNG:
             <line>Skipped tests for suite 'iso19139-1.0' is:0</line>
             <line>REASON:</line>
             <line>http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml conforms to the clause A.1 of ISO 19139.</line>
-      </reporter-output>
+        </reporter-output>
+    </testng-results>
  
-     </testng-results>
-
 ````
 
+More detales at the [Overview Page](http://cite-dev-03.opengeospatial.org/teamengine/about/iso19139/1.0/web/overview.html)
 
 ## Building
 
