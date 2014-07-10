@@ -14,8 +14,9 @@ Detailed information about this test suite is available [here] (src/main/site/in
 ## Validating Metadata Instances
 
 There are two ways to validate an instance.
-1. Via a web user interface
-2. Via HTTP request
+
+   1. Via a web user interface
+   2. Via HTTP request
 
 ### Validating via a Web User Interface
 The web site is available here:
