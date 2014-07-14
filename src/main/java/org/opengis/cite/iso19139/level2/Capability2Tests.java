@@ -290,7 +290,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking XML File encoding standard", dependsOnMethods = "validateXmlAgainstSchematronForNullReason")
+    @Test(description = "TableA1-Rule1-MD_Metadata=Rule 1 of Table A.1 ISO 19139,-language: documented if not defined by the encoding standard.,-characterSet: documented if ISO/IEC 10646 not used and not defined by the encoding standard.", dependsOnMethods = "validateXmlAgainstSchematronForNullReason")
     public void checkEncodingStandard(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -309,7 +309,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking Data Identification of XML File", dependsOnMethods = "checkEncodingStandard")
+    @Test(description = "TableA1-Rule2-MD_DataIdentification=Rule 2 of Table A.1 ISO 19139,-characterSet: documented if ISO/IEC 10646 is not used.,-MD_Metadata.hierarchyLevel = \"dataset\" implies count(extent.geographicElement.EX_GeographicBoundingBox) + count(extent.geographicElement.EX_GeographicDescription) >=1.,-MD_Metadata.hierarchyLevel notEqual \"dataset\" implies topicCategory is not mandatory.", dependsOnMethods = "checkEncodingStandard")
     public void checkDataIdentification(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -328,7 +328,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking aggregate information of XML File", dependsOnMethods = "checkDataIdentification")
+    @Test(description = "TableA1-Rule3-MD_AggregateInformation=Rule 3 of Table A.1 ISO 19139,-Either \"aggregateDataSetName\" or \"aggregateDataSetIdentifier\" must be documented.", dependsOnMethods = "checkDataIdentification")
     public void checkAggregateInformation(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -347,7 +347,8 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking legal constraints of XML File", dependsOnMethods = "checkAggregateInformation")
+    @Test(description = "TableA1-Rule4-MD_LegalConstraints=Rule 4 of Table A.1 ISO 19139,-otherConstraints: documented if accessConstraints or useConstraints =\n" +
+    "\"otherRestrictions\".", dependsOnMethods = "checkAggregateInformation")
     public void checkLegalConstraints(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -366,7 +367,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking scope of XML File", dependsOnMethods = "checkLegalConstraints")
+    @Test(description = "TableA1-Rule6-DQ_Scope=Rule 6 of Table A.1 ISO 19139,-\" levelDescription\" is mandatory if \"level\" notEqual 'dataset' or 'series'.", dependsOnMethods = "checkLegalConstraints")
     public void checkScopeOfXmlFile(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -385,7 +386,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking georectified of XML File", dependsOnMethods = "checkScopeOfXmlFile")
+    @Test(description = "TableA1-Rule9-MD_Georectified=Rule 9 of Table A.1 ISO 19139,-\"checkPointDescription\" is mandatory if \"checkPointAvailability\" = 1.", dependsOnMethods = "checkScopeOfXmlFile")
     public void checkGeorectified(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -404,7 +405,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking band value of XML File", dependsOnMethods = "checkGeorectified")
+    @Test(description = "TableA1-Rule10-MD_Band=Rule 10 of Table A.1 ISO 19139,-\"units\" is mandatory if \"maxValue\" or \"minValue\" are provided.", dependsOnMethods = "checkGeorectified")
     public void checkBandValueOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -423,7 +424,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking medium of XML File", dependsOnMethods = "checkBandValueOfXml")
+    @Test(description = "TableA1-Rule11-MD_Medium=Rule 11 of Table A.1 ISO 19139,-\"densityUnits\" is mandatory if \"density\" is provided.", dependsOnMethods = "checkBandValueOfXml")
     public void checkMediumOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -442,7 +443,8 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking extended element information of XML File", dependsOnMethods = "checkMediumOfXml")
+    @Test(description = "TableA1-Rule13-MD_ExtendedElementInformation=Rule 13 of Table A.1 ISO 19139,-if \"dataType\" notEqual 'codelist'; 'enumeration' or 'codelistElement' then\n" +
+"\"obligation\"; \"maximumOccurence\" and \"domainValue\" are mandatory.,-if \"obligation\" = 'conditional' then \"condition\" is mandatory.,-if \"dataType\" = 'codelistElement' then \"domainCode\" is mandatory.,-if \"dataType\" notEqual 'codelistElement' then \"shortName\" is mandatory.", dependsOnMethods = "checkMediumOfXml")
     public void checkExtendedElementInformation(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -461,7 +463,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking extent value of XML File", dependsOnMethods = "checkExtendedElementInformation")
+    @Test(description = "TableA1-Rule14-EX_Extent=Rule 14 of Table A.1 ISO 19139,-count(description + geographicElement + temporalElement + verticalElement) >0\").", dependsOnMethods = "checkExtendedElementInformation")
     public void checkExtentValueOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -480,7 +482,7 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "Checking responcible party of XML File", dependsOnMethods = "checkExtentValueOfXml")
+    @Test(description = "TableA1-Rule15-CI_ResponsibleParty=Rule 15 of Table A.1 ISO 19139,-count of (individualName + organisationName + positionName) > 0\").", dependsOnMethods = "checkExtentValueOfXml")
     public void checkResponsiblePartyOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
