@@ -117,8 +117,9 @@ public class ETSAssert {
      *
      * @param schemaRef A URL that denotes the location of a Schematron schema.
      * @param xmlSource The XML Source to be validated.
+     * @param Desription
      */
-    public static void assertSchematronValid(URL schemaRef, Source xmlSource) {
+    public static void assertSchematronValid(URL schemaRef, Source xmlSource,String description) {
         SchematronValidator validator;
         try {
             validator = new SchematronValidator(new StreamSource(
@@ -128,7 +129,7 @@ public class ETSAssert {
                     "Failed to process Schematron schema at ");
             msg.append(schemaRef).append('\n');
             msg.append(e.getMessage());
-            throw new AssertionError(msg);
+           throw new AssertionError(msg);
         }
         DOMResult result = validator.validate(xmlSource);
 
@@ -155,6 +156,29 @@ public class ETSAssert {
                 errorMessage = errorMessage.substring(0, endIndex);
             }
         }
+        String[] output=description.split("=", 2);
+        System.out.println("TEST NAME : \n"+ output[0]);
+        System.out.println("DESCRIPTION :");
+        String[] descript=output[1].split(",");
+        for (String descript1 : descript) {
+            System.out.println(descript1);
+        }
+        System.out.println("RESULT : ");        
+        if(validator.ruleViolationsDetected()==true)
+        {
+            System.out.println("FAIL");
+            System.out.println("REASON FOR FAIL : ");
+            String[] errorSet=errorMessage.split(",");
+            for (String errorSet1 : errorSet) {
+                System.out.println(errorSet1);
+            }
+                    
+        }
+        else
+        {
+            System.out.println("PASS");
+        }
+        System.out.println();
         Assert.assertFalse(validator.ruleViolationsDetected(), errorMessage);
     }
 

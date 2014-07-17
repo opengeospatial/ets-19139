@@ -32,7 +32,6 @@ import org.opengis.cite.iso19139.util.XMLUtils;
 import org.opengis.cite.validation.SchematronValidator;
 import org.testng.Assert;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -60,6 +59,8 @@ public class Capability2Tests {
      */
     @BeforeClass(alwaysRun = true)
     public void obtainTestSubject(ITestContext testContext) {
+        System.out.println("CONFORMANCE LEVEL 2 :");
+        System.out.println();
         Object obj = testContext.getSuite().getAttribute(
                 SuiteAttribute.TEST_SUBJECT.getName());
         if ((null != obj) && Document.class.isAssignableFrom(obj.getClass())) {
@@ -278,7 +279,24 @@ public class Capability2Tests {
         } catch (Exception e) {
             errorMessage = "Failed due to XML file not contain a valid xml file format";
         }
-
+        System.out.println("TEST NAME: \nValidate Xml Against Schematron For Null Reason");
+        System.out.println("DESCRIPTION : ");
+        System.out.println("Implements ATC 2-1");
+        System.out.println("RESULT : ");
+        if(testResult==true)
+        {
+            System.out.println("FAIL");
+            System.out.println("REASON FOR FAIL : ");
+            String[] errorSet=errorMessage.split(",");
+            for (String errorSet1 : errorSet) {
+                System.out.println(errorSet1);
+            }
+        }
+        else
+        {
+            System.out.println("PASS");
+        }
+        System.out.println();
         Assert.assertFalse(testResult, errorMessage);
     }
 
@@ -297,8 +315,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkEncodingStandard.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule1-MD_Metadata=Rule 1 of Table A.1 ISO 19139,-language: documented if not defined by the encoding standard.,-characterSet: documented if ISO/IEC 10646 not used and not defined by the encoding standard.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -316,8 +335,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkDataIdentification.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule2-MD_DataIdentification=Rule 2 of Table A.1 ISO 19139,-characterSet: documented if ISO/IEC 10646 is not used.,-MD_Metadata.hierarchyLevel = \"dataset\" implies count(extent.geographicElement.EX_GeographicBoundingBox) + count(extent.geographicElement.EX_GeographicDescription) >=1.,-MD_Metadata.hierarchyLevel notEqual \"dataset\" implies topicCategory is not mandatory.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -335,8 +355,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkAggregateInformation.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule3-MD_AggregateInformation=Rule 3 of Table A.1 ISO 19139,-Either \"aggregateDataSetName\" or \"aggregateDataSetIdentifier\" must be documented.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -347,16 +368,17 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "TableA1-Rule4-MD_LegalConstraints=Rule 4 of Table A.1 ISO 19139,-otherConstraints: documented if accessConstraints or useConstraints =\n" +
-    "\"otherRestrictions\".", dependsOnMethods = "checkAggregateInformation")
+    @Test(description = "TableA1-Rule4-MD_LegalConstraints=Rule 4 of Table A.1 ISO 19139,-otherConstraints: documented if accessConstraints or useConstraints =\n"
+            + "\"otherRestrictions\".", dependsOnMethods = "checkAggregateInformation")
     public void checkLegalConstraints(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkLegalConstraints.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule4-MD_LegalConstraints=Rule 4 of Table A.1 ISO 19139,-otherConstraints: documented if accessConstraints or useConstraints = \"otherRestrictions\".";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -374,8 +396,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkScopeOfXmlFile.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule6-DQ_Scope=Rule 6 of Table A.1 ISO 19139,-\" levelDescription\" is mandatory if \"level\" notEqual 'dataset' or 'series'.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -393,8 +416,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkGeorectified.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule9-MD_Georectified=Rule 9 of Table A.1 ISO 19139,-\"checkPointDescription\" is mandatory if \"checkPointAvailability\" = 1.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -412,8 +436,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkBandValueOfXml.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule10-MD_Band=Rule 10 of Table A.1 ISO 19139,-\"units\" is mandatory if \"maxValue\" or \"minValue\" are provided.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -431,8 +456,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkMediumOfXml.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule11-MD_Medium=Rule 11 of Table A.1 ISO 19139,-\"densityUnits\" is mandatory if \"density\" is provided.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -443,16 +469,17 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "TableA1-Rule13-MD_ExtendedElementInformation=Rule 13 of Table A.1 ISO 19139,-if \"dataType\" notEqual 'codelist'; 'enumeration' or 'codelistElement' then\n" +
-"\"obligation\"; \"maximumOccurence\" and \"domainValue\" are mandatory.,-if \"obligation\" = 'conditional' then \"condition\" is mandatory.,-if \"dataType\" = 'codelistElement' then \"domainCode\" is mandatory.,-if \"dataType\" notEqual 'codelistElement' then \"shortName\" is mandatory.", dependsOnMethods = "checkMediumOfXml")
+    @Test(description = "TableA1-Rule13-MD_ExtendedElementInformation=Rule 13 of Table A.1 ISO 19139,-if \"dataType\" notEqual 'codelist'; 'enumeration' or 'codelistElement' then\n"
+            + "\"obligation\"; \"maximumOccurence\" and \"domainValue\" are mandatory.,-if \"obligation\" = 'conditional' then \"condition\" is mandatory.,-if \"dataType\" = 'codelistElement' then \"domainCode\" is mandatory.,-if \"dataType\" notEqual 'codelistElement' then \"shortName\" is mandatory.", dependsOnMethods = "checkMediumOfXml")
     public void checkExtendedElementInformation(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkExtendedElementInformation.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule13-MD_ExtendedElementInformation=Rule 13 of Table A.1 ISO 19139,-if \"dataType\" notEqual 'codelist'; 'enumeration' or 'codelistElement' then \"obligation\"; \"maximumOccurence\" and \"domainValue\" are mandatory.,-if \"obligation\" = 'conditional' then \"condition\" is mandatory.,-if \"dataType\" = 'codelistElement' then \"domainCode\" is mandatory.,-if \"dataType\" notEqual 'codelistElement' then \"shortName\" is mandatory.";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -470,8 +497,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkExtentValueOfXml.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule14-EX_Extent=Rule 14 of Table A.1 ISO 19139,-count(description + geographicElement + temporalElement + verticalElement) >0\").";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**
@@ -489,8 +517,9 @@ public class Capability2Tests {
         String url = params.get(TestRunArg.IUT.toString());
         URL schRef = this.getClass().getResource("/org/opengis/cite/schematron/checkResponsiblePartyOfXml.sch");
         File dataFile = localFileCreation(url);
+        String description = "TableA1-Rule15-CI_ResponsibleParty=Rule 15 of Table A.1 ISO 19139,-count of (individualName + organisationName + positionName) > 0\").";
         ETSAssert
-                .assertSchematronValid(schRef, new StreamSource(dataFile));
+                .assertSchematronValid(schRef, new StreamSource(dataFile),description);
     }
 
     /**

@@ -55,6 +55,7 @@ public class ValidateInputTest {
      */
     @BeforeClass(alwaysRun = true)
     public void obtainTestSubject(ITestContext testContext) {
+        System.out.println("\nCONFORMANCE LEVEL 1 :");
         Object obj = testContext.getSuite().getAttribute(
                 SuiteAttribute.TEST_SUBJECT.getName());
         if ((null != obj) && Document.class.isAssignableFrom(obj.getClass())) {
