@@ -55,7 +55,7 @@ public class ValidateInputTest {
      */
     @BeforeClass(alwaysRun = true)
     public void obtainTestSubject(ITestContext testContext) {
-        System.out.println("\nCONFORMANCE LEVEL 1 :");
+        System.out.println("\nCONFORMANCE LEVEL 1 :\n");
         Object obj = testContext.getSuite().getAttribute(
                 SuiteAttribute.TEST_SUBJECT.getName());
         if ((null != obj) && Document.class.isAssignableFrom(obj.getClass())) {
@@ -116,11 +116,11 @@ public class ValidateInputTest {
         System.out.println("This function validates XML file");
         System.out.println("RESULT : ");
         if (hasValidExt) {
-            System.out.println("PASS");
+            System.out.println("PASS\n");
         } else {
             System.out.println("FAIL");
             System.out.println("REASON FOR FAIL : ");
-            System.out.println("The file path or URL given as the input '" + url + "' does not point to an XML.");
+            System.out.println("The file path or URL given as the input '" + url + "' does not point to an XML.\n");
             testContext.setAttribute("FailReport", "The file path or URL given as the input '" + url + "' does not point to an XML.");
         }
         Assert.assertTrue(hasValidExt, "File extension of the given input is not valid.");
@@ -150,23 +150,23 @@ public class ValidateInputTest {
             http = (HttpURLConnection) urlValidator.openConnection();
             int statusCode = http.getResponseCode();
             if (statusCode == 200) {
-                System.out.println("PASS");
+                System.out.println("PASS\n");
                 hasValidPath = true;
             } else {
                  System.out.println("FAIL");
                  System.out.println("REASON FOR FAIL : ");
-                 System.out.println("The URL given as the input '" + url + "' is not a valid URL or it responding.");
+                 System.out.println("The URL given as the input '" + url + "' is not a valid URL or it responding.\n");
                 testContext.setAttribute("FailReport", "The URL given as the input '" + url + "' is not a valid URL or it responding.");
             }
         } else {
             InputValidator iv = new InputValidator();
             hasValidPath = iv.pathValid(url);
             if (hasValidPath) {
-                System.out.println("PASS");
+                System.out.println("PASS\n");
             } else {
                 System.out.println("FAIL");
                 System.out.println("REASON FOR FAIL : ");
-                System.out.println("The uploaded file or the file whose path is given as the input '" + url + "' is not present.");
+                System.out.println("The uploaded file or the file whose path is given as the input '" + url + "' is not present.\n");
                 testContext.setAttribute("FailReport", "The uploaded file or the file whose path is given as the input '" + url + "' is not present.");
             }
         }

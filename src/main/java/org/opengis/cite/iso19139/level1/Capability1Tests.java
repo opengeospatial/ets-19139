@@ -172,7 +172,7 @@ public class Capability1Tests {
                 try {
                     //Validate the XML file against ISO 19139 XSD
                     validator.validate(xmlFile);
-                    System.out.println("PASS");
+                    System.out.println("PASS\n");
                     testResult = true;
                     failReport = url + " conform to the clause A.1 of ISO 19139\n";
                     result = "PASS";
