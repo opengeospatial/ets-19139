@@ -14,7 +14,7 @@ import org.apache.xerces.xs.XSModel;
  */
 @SuppressWarnings("rawtypes")
 public enum SuiteAttribute {
-
+    
     /**
      * A {@code Set<URI>} specifying the locations of XML Schema grammars.
      */

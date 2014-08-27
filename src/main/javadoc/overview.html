@@ -201,11 +201,11 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
         <h2>Release notes</h2>
 
         <h3>ISO19139-1.0</h3>
-        <h4>Initial release, covers the following features:</h4>
+        <h4>Initial release 1:</h4>
         <ul> <b>Test Cases:</b>
            <li>Capabilty 1 test to check whether the XML conforms to A.1 clause of ISO 19139.</li>
         <li>Input Validation test to chcek whether the given input exists i.e the file path or URL actually to an existing resource.</li>
-        <li>Input Validation test to chcek whether the given input isan XML file.</li>
+        <li>Input Validation test to chcek whether the given input is an XML file.</li>
         </ul>
 <ul> <b>Rest Suite for ISO 19139:</b>
            <li>Using rest suite of ISO 19139 to validate  whether the XML conforms to A.1 clause of ISO 19139.</li>
@@ -219,6 +219,40 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
 <ul> <b>JUnit Tests (both positive and negative scenarios) are done for the following test classes:</b>
            <li>ValidateInputTests</li>
 	<li>Capability1Tests</li>
+        </ul>
+        <h4>Release 2:</h4>
+        <ul> <b>Changes made in Test Report:</b>
+           <li>Added summary of the result in "Result overview" page including pie chart. It includes following statistics:</li>
+           <ul><li>Test Name and Version</li>
+               <li>Session Id</li>
+           <li>Result</li>
+           <li>Input</li>
+           <li>Date and Time Performed</li>
+           </ul> 
+           <li>Added these Contents on Reporter Output Page:</li>
+            <ul><li>Total no of passed tests.</li>
+               <li>Total no of skipped tests.</li>
+               <li>Total no of failed tests.</li>
+               <li>Final result of test.</li>
+           </ul>
+           <li>Added description column in the Result page.</li>
+           <li>Added user friendly error messages in the Result page.</li>
+           <li>Added user friendly name of test in the Result page.</li>
+           <li>Changed the styling if the Result page</li>
+        </ul>
+        <h4>Release 3:</h4>
+        <ul> <b>Test Cases:</b>
+           <li>Capabilty 2 test to check whether the XML conforms to A.2 clause of ISO 19139.</li>
+        </ul>
+<ul> <b>Rest Suite for ISO 19139:</b>
+           <li>Using rest suite of ISO 19139 to validate  whether the XML conforms to A.2 clause of ISO 19139.</li>
+        <li>User friendly error message is shown after the tests fail.</li>
+        </ul>
+        <ul> <b>Error handling is done for the following cases:</b>
+           <li>When user select level 1 at that time no conformance level A.2 rules not run.</li>
+	</ul>
+<ul> <b>JUnit Tests (both positive and negative scenarios) are done for the following test classes:</b>
+           <li>Capability2Tests</li>
         </ul>
     </body>
 </html>

@@ -5,11 +5,55 @@ This Test-Suite provides the Executable Test Script (ETS) to test implementation
 - [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
 
 
-Detailed information about this test suite is available [here] (src/main/site/index.html).
+Detailed information about this test suite is available [here] (http://htmlpreview.github.com/?https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/overview.html).
 
 ## License
 
 [Apache 2.0 License](LICENSE.md)
+
+## Validating Metadata Instances
+
+There are two ways to validate an instance.
+
+   1. Via a web user interface
+   2. Via HTTP request
+
+### Validating via a Web User Interface
+The web site is available here:
+   http://cite-dev-03.opengeospatial.org/teamengine/
+
+It requires an easy registrationa and login  process.
+
+###  Validating via an HTTP Request
+
+
+- URL: http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run
+- Parameter is:
+      iut = Instance (or implementation) under test
+
+For example:
+
+[http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml](http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml)
+
+Results are given in XML TestNG:
+
+```xml
+
+   <?xml version="1.0" encoding="UTF-8"?>
+      <testng-results failed="0" passed="3" skipped="0" total="3">
+         <reporter-output>
+            <line>The result of the test is-</line>
+            <line>Passed tests for suite 'iso19139-1.0' is:3</line>
+            <line>Failed tests for suite 'iso19139-1.0' is:0</line>
+            <line>Skipped tests for suite 'iso19139-1.0' is:0</line>
+            <line>REASON:</line>
+            <line>http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml conforms to the clause A.1 of ISO 19139.</line>
+        </reporter-output>
+    </testng-results>
+ 
+````
+
+More detales at the [Overview Page](http://cite-dev-03.opengeospatial.org/teamengine/about/iso19139/1.0/web/overview.html)
 
 ## Building
 

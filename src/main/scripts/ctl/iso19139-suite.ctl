@@ -52,7 +52,7 @@
                             <label for="uri">
                                 <h4 style="margin-bottom: 0.5em">Please provide the URL of the file to be tested:</h4>
                             </label>
-                            <input id="uri" name="uri" size="128" type="text" value="http://hydro10.sdsc.edu/metadata/Raquel_Files/178F9F70-E056-4A06-B86E-C255471F99BD.xml" />
+                            <input id="uri" name="uri" size="128" type="text" value="http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/018F7983-78AA-4368-989A-B84F4FEB36D9.xml" />
                         </p>
                         <p>
                             <label for="doc">
@@ -65,7 +65,7 @@
                             <input id="level-1" type="radio" name="level" value="1" checked="checked" />
                             <label for="level-1"> Level 1 | </label>
                             <input id="level-2" type="radio" name="level" value="2" />
-                            <label class="form-label" for="level-2"> Level 2</label>
+                            <label class="form-label" for="level-2"> Level 1 + Level 2</label>
                         </p>
                     </fieldset>
                     <p>

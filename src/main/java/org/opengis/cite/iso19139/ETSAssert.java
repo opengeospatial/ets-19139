@@ -1,5 +1,6 @@
 package org.opengis.cite.iso19139;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ import org.testng.Assert;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Provides a set of custom assertion methods.
@@ -96,7 +98,10 @@ public class ETSAssert {
         validator.setErrorHandler(errHandler);
         try {
             validator.validate(source);
-        } catch (Exception e) {
+        } catch (IOException e) {
+            throw new AssertionError(ErrorMessage.format(
+                    ErrorMessageKeys.XML_ERROR, e.getMessage()));
+        } catch (SAXException e) {
             throw new AssertionError(ErrorMessage.format(
                     ErrorMessageKeys.XML_ERROR, e.getMessage()));
         }
@@ -112,8 +117,9 @@ public class ETSAssert {
      *
      * @param schemaRef A URL that denotes the location of a Schematron schema.
      * @param xmlSource The XML Source to be validated.
+     * @param Desription
      */
-    public static void assertSchematronValid(URL schemaRef, Source xmlSource) {
+    public static void assertSchematronValid(URL schemaRef, Source xmlSource,String description) {
         SchematronValidator validator;
         try {
             validator = new SchematronValidator(new StreamSource(
@@ -123,12 +129,57 @@ public class ETSAssert {
                     "Failed to process Schematron schema at ");
             msg.append(schemaRef).append('\n');
             msg.append(e.getMessage());
-            throw new AssertionError(msg);
+           throw new AssertionError(msg);
         }
         DOMResult result = validator.validate(xmlSource);
-        Assert.assertFalse(validator.ruleViolationsDetected(), ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
+
+        // Fetch error message when schema is not valid
+        String errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
                 validator.getRuleViolationCount(),
-                XMLUtils.writeNodeToString(result.getNode())));
+                XMLUtils.writeNodeToString(result.getNode()));
+        String error = "";
+
+        String delims = "<svrl:text>";
+        String[] failedAssertMessage = errorMessage.split(delims);
+
+        for (int l = 1; l < failedAssertMessage.length; l++) {
+            if (failedAssertMessage[l].contains("</svrl:text>")) {
+                failedAssertMessage[l] = failedAssertMessage[l].split("</svrl:text>")[0];
+            }
+            error = error + failedAssertMessage[l] + ",";
+        }
+
+        errorMessage = error;
+        if (null != errorMessage && errorMessage.length() > 0) {
+            int endIndex = errorMessage.lastIndexOf(",");
+            if (endIndex != -1) {
+                errorMessage = errorMessage.substring(0, endIndex);
+            }
+        }
+        String[] output=description.split("=", 2);
+        System.out.println("TEST NAME : \n"+ output[0]);
+        System.out.println("DESCRIPTION :");
+        String[] descript=output[1].split(",");
+        for (String descript1 : descript) {
+            System.out.println(descript1);
+        }
+        System.out.println("RESULT : ");        
+        if(validator.ruleViolationsDetected()==true)
+        {
+            System.out.println("FAIL");
+            System.out.println("REASON FOR FAIL : ");
+            String[] errorSet=errorMessage.split(",");
+            for (String errorSet1 : errorSet) {
+                System.out.println(errorSet1);
+            }
+                    
+        }
+        else
+        {
+            System.out.println("PASS");
+        }
+        System.out.println();
+        Assert.assertFalse(validator.ruleViolationsDetected(), errorMessage);
     }
 
     /**

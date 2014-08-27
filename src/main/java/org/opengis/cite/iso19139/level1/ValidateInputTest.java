@@ -55,6 +55,7 @@ public class ValidateInputTest {
      */
     @BeforeClass(alwaysRun = true)
     public void obtainTestSubject(ITestContext testContext) {
+        System.out.println("\nCONFORMANCE LEVEL 1 :\n");
         Object obj = testContext.getSuite().getAttribute(
                 SuiteAttribute.TEST_SUBJECT.getName());
         if ((null != obj) && Document.class.isAssignableFrom(obj.getClass())) {
@@ -98,6 +99,9 @@ public class ValidateInputTest {
     /**
      * Validates whether the given input file is an XML file (based on its
      * extension OR file content)
+     * @param testContext
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
      */
     @Test(groups = {"inputvalidation"}, description = "This function validates XML file", dependsOnMethods = "validateXmlPath")
     public void validateXmlFile(ITestContext testContext) throws SAXException,
@@ -107,9 +111,16 @@ public class ValidateInputTest {
         String url = params.get(TestRunArg.IUT.toString());
         InputValidator iv = new InputValidator();
         boolean hasValidExt = iv.extension(url, ".xml");
+        System.out.println("TEST NAME: \nValidate Xml File");
+        System.out.println("DESCRIPTION : ");
+        System.out.println("This function validates XML file");
+        System.out.println("RESULT : ");
         if (hasValidExt) {
-            System.out.println("RESULT:\n" + url + " is an XML file.\n\n");
+            System.out.println("PASS\n");
         } else {
+            System.out.println("FAIL");
+            System.out.println("REASON FOR FAIL : ");
+            System.out.println("The file path or URL given as the input '" + url + "' does not point to an XML.\n");
             testContext.setAttribute("FailReport", "The file path or URL given as the input '" + url + "' does not point to an XML.");
         }
         Assert.assertTrue(hasValidExt, "File extension of the given input is not valid.");
@@ -117,7 +128,10 @@ public class ValidateInputTest {
     }
 
     /**
+     * @param testContext
      * Validates whether the given input file exists or not
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
      */
     @Test(groups = {"inputvalidation"}, description = "This function validates XML file Path")
     public void validateXmlPath(ITestContext testContext) throws SAXException,
@@ -126,29 +140,37 @@ public class ValidateInputTest {
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
         boolean hasValidPath = false;
+        System.out.println("TEST NAME: \nValidate Xml Path");
+        System.out.println("DESCRIPTION : ");
+        System.out.println("This function validates XML file Path");
+        System.out.println("RESULT : ");
         if (url.startsWith("http:")) {
             URL urlValidator = new URL(url);
             HttpURLConnection http;
             http = (HttpURLConnection) urlValidator.openConnection();
             int statusCode = http.getResponseCode();
             if (statusCode == 200) {
-                System.out.println("\nRESULT:\n" + url + " is given as input does exists.\n\n");
+                System.out.println("PASS\n");
                 hasValidPath = true;
             } else {
+                 System.out.println("FAIL");
+                 System.out.println("REASON FOR FAIL : ");
+                 System.out.println("The URL given as the input '" + url + "' is not a valid URL or it responding.\n");
                 testContext.setAttribute("FailReport", "The URL given as the input '" + url + "' is not a valid URL or it responding.");
             }
-            Assert.assertTrue(hasValidPath, "File path of the given input is not valid.");
         } else {
             InputValidator iv = new InputValidator();
             hasValidPath = iv.pathValid(url);
             if (hasValidPath) {
-                System.out.println("\nRESULT:\n" + url + " is given as input does exists.\n\n");
+                System.out.println("PASS\n");
             } else {
+                System.out.println("FAIL");
+                System.out.println("REASON FOR FAIL : ");
+                System.out.println("The uploaded file or the file whose path is given as the input '" + url + "' is not present.\n");
                 testContext.setAttribute("FailReport", "The uploaded file or the file whose path is given as the input '" + url + "' is not present.");
             }
-
-            Assert.assertTrue(hasValidPath, "File path of the given input is not valid.");
         }
-
+        Assert.assertTrue(hasValidPath, "File path of the given input is not valid.");
     }
+    
 }
