@@ -5,7 +5,7 @@ This Test-Suite provides the Executable Test Script (ETS) to test implementation
 - [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
 
 
-Detailed information about this test suite is available [here] (src/main/site/index.html).
+Detailed information about this test suite is available [here] (http://htmlpreview.github.com/?https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/overview.html).
 
 ## License
 

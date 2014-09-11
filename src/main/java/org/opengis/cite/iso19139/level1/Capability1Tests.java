@@ -163,13 +163,17 @@ public class Capability1Tests {
                 SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
                 Schema schema = schemaFactory.newSchema(schemaFile);
                 input = xmlFile.getSystemId();
+
                 testContext.setAttribute("Input", url);
-                System.out.println("RESULT:\n");
+                System.out.println("TEST NAME: \nValidate Xml Against XSD");
+                System.out.println("DESCRIPTION : ");
+                System.out.println("Perform validation of XML against XSD");
+                System.out.println("RESULT : ");
                 Validator validator = schema.newValidator();
                 try {
                     //Validate the XML file against ISO 19139 XSD
                     validator.validate(xmlFile);
-                    System.out.println(url + " conforms to the clause A.1 of ISO 19139.\n\n");
+                    System.out.println("PASS\n");
                     testResult = true;
                     failReport = url + " conform to the clause A.1 of ISO 19139\n";
                     result = "PASS";
@@ -182,8 +186,8 @@ public class Capability1Tests {
                         reason = "Root element of given XML file should be <gmd:MD_metadata> but instead the it is <" + segments[segments.length - 2] + ">.";
                     }
 //                    Print the reason why the XML validation fails
-                    System.out.println(url + " doesn't conform to the clause A.1 of ISO 19139.\n");
-                    System.out.println("Reason: " + reason);
+                    System.out.println("FAIL");
+                    System.out.println("REASON: \n" + reason);
                     System.out.println("Line Number \t: " + e.getLineNumber());
                     System.out.println("Column Number\t: " + e.getColumnNumber() + "\n\n");
 
@@ -217,6 +221,7 @@ public class Capability1Tests {
                 }
             }
         }
+        System.out.println();
         testContext.setAttribute("Result", result);
         Assert.assertTrue(testResult, failReport);
 
