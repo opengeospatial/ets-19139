@@ -28,10 +28,7 @@ import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
 import org.w3c.dom.Document;
 
-/**
- *
- * @author upendra
- */
+
 public class VerifyCapability2Tests {
     static final Logger LOGGER = Logger.getLogger("MY Log");
     private static final String SUBJ = "testSubject";

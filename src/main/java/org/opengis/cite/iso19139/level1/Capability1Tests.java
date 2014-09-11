@@ -163,7 +163,7 @@ public class Capability1Tests {
                 SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
                 Schema schema = schemaFactory.newSchema(schemaFile);
                 input = xmlFile.getSystemId();
-                testContext.setAttribute("Input", input);
+                testContext.setAttribute("Input", url);
                 System.out.println("RESULT:\n");
                 Validator validator = schema.newValidator();
                 try {

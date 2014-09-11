@@ -36,6 +36,7 @@ public class TestNGController implements TestSuiteController {
      * argument is supplied, the file located at ${user.home}/test-run-props.xml
      * will be used.
      *
+     * @param args
      * @throws Exception If the test run cannot be executed (usually due to
      * unsatisfied pre-conditions).
      */
