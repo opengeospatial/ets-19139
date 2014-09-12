@@ -11,39 +11,34 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Test iso 05/09/2014 using get" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="ISO_REST_API_TEST" enabled="true">
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">8</stringProp>
         <stringProp name="ThreadGroup.ramp_time">0</stringProp>
-        <longProp name="ThreadGroup.start_time">1409919710000</longProp>
-        <longProp name="ThreadGroup.end_time">1409919710000</longProp>
+        <longProp name="ThreadGroup.start_time">1410505273000</longProp>
+        <longProp name="ThreadGroup.end_time">1410505273000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">54.209.245.204/</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">teamengine/</stringProp>
-        </ConfigTestElement>
-        <hashTree/>
         <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
         <hashTree>
           <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="/teamengine/rest/suites/iso19139/1.0/run" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="iut" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">iut</stringProp>
+                  <stringProp name="Argument.value">${path}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
             </elementProp>
             <stringProp name="HTTPSampler.domain">54.209.245.204</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
@@ -52,12 +47,12 @@
             <stringProp name="HTTPSampler.protocol">http</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/teamengine/rest/suites/iso19139/1.0/run</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
-            <stringProp name="HTTPSampler.FILE_NAME">/home/upendra/Desktop/new xml/DateTimeValueIncorrect.xml</stringProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.FILE_NAME"></stringProp>
             <stringProp name="HTTPSampler.FILE_FIELD"></stringProp>
             <stringProp name="HTTPSampler.mimetype"></stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
@@ -91,6 +86,19 @@
             <hashTree/>
           </hashTree>
         </hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">54.209.245.204/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">teamengine/rest/suites/iso19139/1.0/run</stringProp>
+        </ConfigTestElement>
+        <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -124,25 +132,14 @@
         </ResultCollector>
         <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="path" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
           <stringProp name="filename">/home/upendra/test.csv</stringProp>
-          <stringProp name="fileEncoding"></stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">All threads</stringProp>
+          <boolProp name="stopThread">false</boolProp>
           <stringProp name="variableNames">path</stringProp>
-          <stringProp name="delimiter"></stringProp>
-          <boolProp name="quotedData">true</boolProp>
-          <boolProp name="recycle">true</boolProp>
-          <boolProp name="stopThread">true</boolProp>
-          <stringProp name="shareMode">All threads</stringProp>
-        </CSVDataSet>
-        <hashTree/>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="value" enabled="true">
-          <stringProp name="filename">/home/upendra/value.csv</stringProp>
-          <stringProp name="fileEncoding"></stringProp>
-          <stringProp name="variableNames">value</stringProp>
-          <stringProp name="delimiter"></stringProp>
-          <boolProp name="quotedData">true</boolProp>
-          <boolProp name="recycle">true</boolProp>
-          <boolProp name="stopThread">true</boolProp>
-          <stringProp name="shareMode">All threads</stringProp>
         </CSVDataSet>
         <hashTree/>
       </hashTree>
