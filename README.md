@@ -57,7 +57,6 @@ More detales at the [Overview Page](http://cite-dev-03.opengeospatial.org/teamen
 
 ## Extracting Failed Test Information
 
-XPath
 The following Snippet will help you parse the result(response) of the test and display title, description, and details of the failed tests, and shows you the XPath:
 
 ```xml
