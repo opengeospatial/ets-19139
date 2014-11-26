@@ -55,6 +55,26 @@ Results are given in XML TestNG:
 
 More detales at the [Overview Page](http://cite-dev-03.opengeospatial.org/teamengine/about/iso19139/1.0/web/overview.html)
 
+## Extracting Failed Test Information
+
+XPath
+The following Snippet will help you parse the result(response) of the test and display title, description, and details of the failed tests, and shows you the XPath:
+
+```xml
+<xsl:variable name="failed-test">
+      <service-requests>
+          <xsl:copy-of select="doc({filepath})"/>
+      </service-requests>
+</xsl:variable>
+<b><xsl:text>Test Name :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/@name)"/>
+<br/>
+<b><xsl:text>Test Discription :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/@description)"/>
+<br/>   
+<b><xsl:text>Test Detail :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/exception/message)"/>
+````
+
+JAVA Code Snippet:
+// Code snippet is ready and to be uploaded
 ## Building
 
 This test is build using [Apache Maven](http://maven.apache.org/) To 
