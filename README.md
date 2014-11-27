@@ -73,7 +73,10 @@ The following Snippet will help you parse the result(response) of the test and d
 ````
 
 JAVA Code Snippet:
-// Code snippet is ready and to be uploaded
+
+Please find the JAVA code snippet to extract failed test information on the below given link
+[https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resources/resultParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resources/resultParser.java)
+
 ## Building
 
 This test is build using [Apache Maven](http://maven.apache.org/) To 
