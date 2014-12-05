@@ -52,24 +52,24 @@ public class TestNGController implements TestSuiteController {
       String homeDir = System.getProperty("user.home");
       xmlArgs = new File(homeDir, "test-run-props.xml");
       xmlFileArg = homeDir + "test-run-props.xml";
+        }
+        if (!xmlArgs.exists()) {
+            throw new Exception(
+                    "Test run arguments not found at " + xmlArgs);
+        }
+        Document testRunArgs = null;
+        String str2 = xmlArgs.toString();
+        if (inputValidator.extension(xmlArgs.toString(), ".xml") && inputValidator.pathValid(xmlArgs.toString())) {
+            testRunArgs = db.parse(xmlArgs);
+        } else if (!inputValidator.pathValid(xmlFileArg)) {
+            throw new CustomException("The file given as an input does not exist.");
+        } else {
+            throw new CustomException("The file given as an input is not valid. The input file needs to be an XML file.");
+        }
+        TestNGController controller = new TestNGController();
+        Source testResults = controller.doTestRun(testRunArgs);
+        System.out.println("Test results: " + testResults.getSystemId());
     }
-    if (!xmlArgs.exists()) {
-      throw new Exception(
-              "Test run arguments not found at " + xmlArgs);
-    }
-    Document testRunArgs = null;
-    String str2 = xmlArgs.toString();
-    if (inputValidator.extension(xmlArgs.toString(), ".xml") && inputValidator.pathValid(xmlArgs.toString())) {
-      testRunArgs = db.parse(xmlArgs);
-    } else if (!inputValidator.pathValid(xmlFileArg)) {
-      throw new CustomException("The file given as an input does not exist.");
-    } else {
-      throw new CustomException("The file given as an input is not valid. The input file needs to be an XML file.");
-    }
-    TestNGController controller = new TestNGController();
-    Source testResults = controller.doTestRun(testRunArgs);
-    System.out.println("Test results: " + testResults.getSystemId());
-  }
 
   /**
    * Default constructor uses the location given by the "user.home" system

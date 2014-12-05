@@ -5,7 +5,7 @@ This Test-Suite provides the Executable Test Script (ETS) to test implementation
 - [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
 
 
-Detailed information about this test suite is available [here] (src/main/site/index.html).
+Detailed information about this test suite is available [here] (http://htmlpreview.github.com/?https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/overview.html).
 
 ## License
 
@@ -54,6 +54,28 @@ Results are given in XML TestNG:
 ````
 
 More detales at the [Overview Page](http://cite-dev-03.opengeospatial.org/teamengine/about/iso19139/1.0/web/overview.html)
+
+## Extracting Failed Test Information
+
+The following Snippet will help you parse the result(response) of the test and display title, description, and details of the failed tests, and shows you the XPath:
+
+```xml
+<xsl:variable name="failed-test">
+      <service-requests>
+          <xsl:copy-of select="doc({filepath})"/>
+      </service-requests>
+</xsl:variable>
+<b><xsl:text>Test Name :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/@name)"/>
+<br/>
+<b><xsl:text>Test Discription :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/@description)"/>
+<br/>   
+<b><xsl:text>Test Detail :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/exception/message)"/>
+````
+
+JAVA Code Snippet:
+
+Please find the JAVA code snippet to extract failed test information on the below given link
+[https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java)
 
 ## Building
 

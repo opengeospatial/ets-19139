@@ -163,7 +163,8 @@ public class Capability1Tests {
                 SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
                 Schema schema = schemaFactory.newSchema(schemaFile);
                 input = xmlFile.getSystemId();
-                testContext.setAttribute("Input", input);
+
+                testContext.setAttribute("Input", url);
                 System.out.println("TEST NAME: \nValidate Xml Against XSD");
                 System.out.println("DESCRIPTION : ");
                 System.out.println("Perform validation of XML against XSD");
