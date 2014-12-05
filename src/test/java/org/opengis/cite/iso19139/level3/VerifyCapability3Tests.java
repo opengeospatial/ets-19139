@@ -25,7 +25,7 @@ import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
 
-
+//Junit test case for Conformance level 3.
 public class VerifyCapability3Tests {
   static final Logger LOGGER = Logger.getLogger("MY Log");
     private static final String SUBJ = "testSubject";
