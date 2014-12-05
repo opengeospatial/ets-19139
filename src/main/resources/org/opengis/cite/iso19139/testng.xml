@@ -2,7 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="${ets-code}-${version}" verbose="0" configfailurepolicy="skip">
   <parameter name="iut"  value=""/>
-  <parameter name="ics"  value="2"/>
+  <parameter name="ics"  value="3"/>
+  <parameter name="sch"  value=""/>
 
   <listeners>
     <listener class-name="org.opengis.cite.iso19139.TestRunListener" />
@@ -19,6 +20,11 @@
     <test name="Conformance Level 2">
         <classes>
           <class name="org.opengis.cite.iso19139.level2.Capability2Tests" />
+        </classes>
+      </test>
+      <test name="Conformance Level 3">
+        <classes>
+          <class name="org.opengis.cite.iso19139.level3.Capability3Tests" />
         </classes>
       </test>
 </suite>

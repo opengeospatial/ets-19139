@@ -25,10 +25,7 @@ import org.testng.xml.XmlSuite;
 import org.xml.sax.SAXException;
 import java.util.logging.Logger;
 
-/**
- *
- * @author upendra
- */
+
 public class VerifyValidateInputTest {
 
     static final Logger LOGGER1 = Logger.getLogger("MY Logs");

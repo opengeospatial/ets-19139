@@ -16,6 +16,8 @@ public enum TestRunArg {
      */
     IUT,
     
+    SCH,
+    
     ICS;
 
     @Override

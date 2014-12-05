@@ -80,10 +80,10 @@ public class Capability2Tests {
     }
 
     @BeforeTest
-    public void validateConfromanceLevelTwoEnabled(ITestContext testContext) {
+    public void validateConfromanceLevelTwoEnabled(ITestContext testContext) throws IOException {
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
-        String level = params.get(TestRunArg.ICS.toString());
-        if ("2".equals(level)) {
+        int level=Integer.parseInt(params.get(TestRunArg.ICS.toString()));
+        if (level>1) {
             Assert.assertTrue(true);
         } else {
             Assert.assertTrue(false, "Conformance level two is not enabled");

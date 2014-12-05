@@ -6,16 +6,13 @@
 
 package org.opengis.cite.iso19139.level2;
 
-import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,12 +23,8 @@ import org.opengis.cite.iso19139.TestRunArg;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
-import org.w3c.dom.Document;
 
-/**
- *
- * @author upendra
- */
+
 public class VerifyCapability2Tests {
     static final Logger LOGGER = Logger.getLogger("MY Log");
     private static final String SUBJ = "testSubject";
