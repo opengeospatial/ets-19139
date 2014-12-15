@@ -17,6 +17,7 @@ There are two ways to validate an instance.
 
    1. Via a web user interface
    2. Via HTTP request
+   3. Via console
 
 ### Validating via a Web User Interface
 The web site is available here:
@@ -76,6 +77,25 @@ JAVA Code Snippet:
 
 Please find the JAVA code snippet to extract failed test information on the below given link
 [https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java)
+## Revisions
+
+REVISION 1.0
+
+Capabilities of conformance level 1
+
+Minimum conformance with this Technical Specification requires that geographic metadata instance (XML) documents can be validated without error against the XML schemas. While many tools are available to test validation of XML instance documents against provided XML Schemas, it is important to understand that not all validation tools implement the full W3C XML Schema recommendation and not all validation tools interpret the W3C XML Schema recommendation in the same manner. It is recommended that a tool with strict interpretation of XML Schema and full support for the W3C XML Schema recommendation be used to ensure conformance.
+Capabilities of conformance level 2
+
+   1. A.2.1 By-Value or By-Reference or gco:nilReason
+   Validation of XML instance documents against the schemas described in this document is not all that is required for conformance to this specification. However, because of the design of the XCPT the property element may have no content or attributes, or it may have both content and attributes and still be XML Schema-valid. It is not possible to constrain the co-occurrence of content or attributes. Some mechanism in addition to an XML Schema validation (e.g., Schematron, XSL Transformations) must be used to restrict a property to be exclusively by-value, or by-reference, or expressing a NULL reason.
+   
+   2. A.2.2 Co-Constraints
+   XML 1.0 does not support the enforcement of certain types of constraints. For example, co-constraints such as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox' or 'EX_GeographicDescription' be used in the 'MD_DataIdentification' object when the 'hierarchyLevel' of 'MD_Metadata' is equal to "dataset" can not be enforced with an XML schema.
+
+REVISION 1.1
+
+Capabilities of conformance level 3:
+This conformance level validates an XML instance documents against a schematron uploaded by the users. This revison lets users test the XML instance against conformance 1 and 2 along with conformance 3 to validate the XML agsint the technical specifications as well as any other rules that are defined in the user entered schematron.
 
 ## Building
 
