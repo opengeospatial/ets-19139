@@ -29,12 +29,20 @@ It requires an easy registrationa and login  process.
 
 
 - URL: http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run
-- Parameter is:
-      iut = Instance (or implementation) under test
+- Parameters can be:
+      iut = Instance (or implementation) under test (Mandatory)
+      ics = An implementation conformance statement that indicates which conformance classes or options are supported.
+      sch = A URI that refers to the schematron and when ics=3 then sch is mandatory.
+
+      NOTE: Ampersand ('&') characters must be percent-encoded as '%26'
 
 For example:
 
 [http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml](http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml)
+
+Example with sch:
+
+[http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/1E97BD2D-0FDD-4BAC-8DEA-FEB57AB53A6E.xml&sch=http://cite-dev-03.opengeospatial.org/teamengine/checkScopeOfXmlFile.sch](http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/1E97BD2D-0FDD-4BAC-8DEA-FEB57AB53A6E.xml&sch=http://cite-dev-03.opengeospatial.org/teamengine/checkScopeOfXmlFile.sch)
 
 Results are given in XML TestNG:
 
@@ -79,11 +87,13 @@ Please find the JAVA code snippet to extract failed test information on the belo
 [https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java)
 ## Revisions
 
-<b>REVISION 1.0</b>
+<b>r1</b>
 
 Capabilities of conformance level 1
 
 Minimum conformance with this Technical Specification requires that geographic metadata instance (XML) documents can be validated without error against the XML schemas. While many tools are available to test validation of XML instance documents against provided XML Schemas, it is important to understand that not all validation tools implement the full W3C XML Schema recommendation and not all validation tools interpret the W3C XML Schema recommendation in the same manner. It is recommended that a tool with strict interpretation of XML Schema and full support for the W3C XML Schema recommendation be used to ensure conformance.
+
+<b>r2</b>
 
 Capabilities of conformance level 2
 
@@ -93,7 +103,7 @@ Capabilities of conformance level 2
    2. A.2.2 Co-Constraints
    XML 1.0 does not support the enforcement of certain types of constraints. For example, co-constraints such as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox' or 'EX_GeographicDescription' be used in the 'MD_DataIdentification' object when the 'hierarchyLevel' of 'MD_Metadata' is equal to "dataset" can not be enforced with an XML schema.
 
-<b>REVISION 1.1</b>
+<b>r3</b>
 
 Capabilities of conformance level 3:
 
