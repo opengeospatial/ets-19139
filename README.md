@@ -31,7 +31,9 @@ It requires an easy registrationa and login  process.
 - URL: http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run
 - Parameters can be:
       iut = Instance (or implementation) under test (Mandatory)
+
       ics = An implementation conformance statement that indicates which conformance classes or options are supported.
+      
       sch = A URI that refers to the schematron and when ics=3 then sch is mandatory.
 
       NOTE: Ampersand ('&') characters must be percent-encoded as '%26'
