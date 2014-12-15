@@ -79,11 +79,12 @@ Please find the JAVA code snippet to extract failed test information on the belo
 [https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java)
 ## Revisions
 
-REVISION 1.0
+<b>REVISION 1.0</b>
 
 Capabilities of conformance level 1
 
 Minimum conformance with this Technical Specification requires that geographic metadata instance (XML) documents can be validated without error against the XML schemas. While many tools are available to test validation of XML instance documents against provided XML Schemas, it is important to understand that not all validation tools implement the full W3C XML Schema recommendation and not all validation tools interpret the W3C XML Schema recommendation in the same manner. It is recommended that a tool with strict interpretation of XML Schema and full support for the W3C XML Schema recommendation be used to ensure conformance.
+
 Capabilities of conformance level 2
 
    1. A.2.1 By-Value or By-Reference or gco:nilReason
@@ -92,9 +93,10 @@ Capabilities of conformance level 2
    2. A.2.2 Co-Constraints
    XML 1.0 does not support the enforcement of certain types of constraints. For example, co-constraints such as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox' or 'EX_GeographicDescription' be used in the 'MD_DataIdentification' object when the 'hierarchyLevel' of 'MD_Metadata' is equal to "dataset" can not be enforced with an XML schema.
 
-REVISION 1.1
+<b>REVISION 1.1</b>
 
 Capabilities of conformance level 3:
+
 This conformance level validates an XML instance documents against a schematron uploaded by the users. This revison lets users test the XML instance against conformance 1 and 2 along with conformance 3 to validate the XML agsint the technical specifications as well as any other rules that are defined in the user entered schematron.
 
 ## Building
