@@ -100,7 +100,7 @@ public class XmlParser
 		if(nodeList != null)
 		{
 			for (int count = 0; count < nodeList.getLength(); count++)
-	2014a		{
+		{
 				Node tempNode = nodeList.item(count);
 				
 				if (tempNode.getNodeType() == Node.ELEMENT_NODE) 

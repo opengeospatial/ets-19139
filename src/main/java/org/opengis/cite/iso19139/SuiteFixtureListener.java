@@ -1,6 +1,5 @@
 package org.opengis.cite.iso19139;
 
-import com.occamlab.te.spi.report.ReportLog;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -60,7 +59,9 @@ public class SuiteFixtureListener implements ISuiteListener {
      */
     @Override
     public void onFinish(ISuite suite) {
-        new ReportLog().generateLogs(suite);
+            Reporter.clear(); // clear output from previous test runs
+        Reporter.log("Test suite parameters:");
+        Reporter.log(suite.getXmlSuite().getAllParameters().toString());
 
     }
 

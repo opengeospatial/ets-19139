@@ -66,6 +66,12 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.opengis.cite.teamengine</groupId>
+            <artifactId>teamengine-spi</artifactId>
+            <version>4.0.6-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
