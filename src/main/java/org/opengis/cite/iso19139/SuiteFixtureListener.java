@@ -13,6 +13,7 @@ import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.events.StartElement;
+import com.occamlab.te.spi.report.ReportLog;
 import org.opengis.cite.iso19139.util.TestSuiteLogger;
 import org.opengis.cite.iso19139.util.URIUtils;
 import org.opengis.cite.iso19139.util.XMLUtils;
@@ -59,9 +60,7 @@ public class SuiteFixtureListener implements ISuiteListener {
      */
     @Override
     public void onFinish(ISuite suite) {
-            Reporter.clear(); // clear output from previous test runs
-        Reporter.log("Test suite parameters:");
-        Reporter.log(suite.getXmlSuite().getAllParameters().toString());
+            new ReportLog().generateLogs(suite);
 
     }
 
