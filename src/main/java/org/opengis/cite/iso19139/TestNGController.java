@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -89,22 +91,25 @@ public class TestNGController implements TestSuiteController {
    * exist.
    */
   public TestNGController(String outputDirUri) {
-    InputStream is = getClass().getResourceAsStream("ets.properties");
-    String outputDir = outputDirUri;
-    try {
-      this.etsProperties.load(is);
-    } catch (IOException ex) {
-      TestSuiteLogger.log(Level.WARNING,
-              "Unable to load ets.properties. " + ex.getMessage());
+    synchronized(this){
+      InputStream is = getClass().getResourceAsStream("ets.properties");
+    
+      String outputDir = outputDirUri;
+      try {
+        this.etsProperties.load(is);
+      } catch (IOException ex) {
+        TestSuiteLogger.log(Level.WARNING,
+                "Unable to load ets.properties. " + ex.getMessage());
+      }
+      URL tngSuite = TestNGController.class.getResource("testng.xml");
+      File resultsDir = new File(URI.create(outputDirUri));
+      TestSuiteLogger.log(Level.CONFIG, "Using TestNG config: " + tngSuite);
+      TestSuiteLogger.log(Level.CONFIG,
+              "Using outputDirPath: " + resultsDir.getAbsolutePath());
+      // NOTE: setting third argument to 'true' enables the default listeners
+      this.executor = new TestNGExecutor(tngSuite.toString(),
+              resultsDir.getAbsolutePath(), true);
     }
-    URL tngSuite = TestNGController.class.getResource("testng.xml");
-    File resultsDir = new File(URI.create(outputDirUri));
-    TestSuiteLogger.log(Level.CONFIG, "Using TestNG config: " + tngSuite);
-    TestSuiteLogger.log(Level.CONFIG,
-            "Using outputDirPath: " + resultsDir.getAbsolutePath());
-    // NOTE: setting third argument to 'true' enables the default listeners
-    this.executor = new TestNGExecutor(tngSuite.toString(),
-            resultsDir.getAbsolutePath(), true);
   }
 
   @Override
@@ -123,7 +128,7 @@ public class TestNGController implements TestSuiteController {
   }
 
   @Override
-  public Source doTestRun(Document objTestRunArgs) throws Exception {
+  public synchronized Source doTestRun(Document objTestRunArgs) throws Exception {
 
     Document testRunArgs = (Document) (objTestRunArgs);
     

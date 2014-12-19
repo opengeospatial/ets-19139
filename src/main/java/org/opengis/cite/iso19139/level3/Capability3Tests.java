@@ -198,7 +198,7 @@ public class Capability3Tests {
    * ISO"
    */
   @Test(description = "Implements ATC 3")
-  public void validateXmlAgainstUserDefinedSchematron(ITestContext testContext) throws MalformedURLException {
+  public synchronized void validateXmlAgainstUserDefinedSchematron(ITestContext testContext) throws MalformedURLException {
     testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
     Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
     String url = params.get(TestRunArg.IUT.toString());

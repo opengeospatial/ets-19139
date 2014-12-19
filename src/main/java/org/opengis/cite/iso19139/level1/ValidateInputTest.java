@@ -103,8 +103,8 @@ public class ValidateInputTest {
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
-    @Test(groups = {"inputvalidation"}, description = "This function validates XML file", dependsOnMethods = "validateXmlPath")
-    public void validateXmlFile(ITestContext testContext) throws SAXException,
+    @Test(groups = {"inputvalidation"}, description = "This function validates XML file", dependsOnMethods = "validateXMLPath")
+    public synchronized void validateXMLFile(ITestContext testContext) throws SAXException,
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
@@ -134,7 +134,7 @@ public class ValidateInputTest {
      * @throws java.io.IOException
      */
     @Test(groups = {"inputvalidation"}, description = "This function validates XML file Path")
-    public void validateXmlPath(ITestContext testContext) throws SAXException,
+    public synchronized void validateXMLPath(ITestContext testContext) throws SAXException,
             IOException {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();

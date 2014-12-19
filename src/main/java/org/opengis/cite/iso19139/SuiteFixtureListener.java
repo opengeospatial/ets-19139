@@ -1,5 +1,6 @@
 package org.opengis.cite.iso19139;
 
+import com.occamlab.te.spi.report.ReportLog;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -13,7 +14,6 @@ import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.events.StartElement;
-import com.occamlab.te.spi.report.ReportLog;
 import org.opengis.cite.iso19139.util.TestSuiteLogger;
 import org.opengis.cite.iso19139.util.URIUtils;
 import org.opengis.cite.iso19139.util.XMLUtils;
