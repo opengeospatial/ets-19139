@@ -103,7 +103,7 @@ public class VerifyCapability3Tests {
   public void testValidateXmlAgainstUserDefinedSchematronWhenPhysicalPathIsNotValid() throws Exception {
     LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstUserDefinedSchematronWhenPhysicalPathLIsNotValid\n"
                 + "      [TS] : Description: Test for the ValidateXmlAgainstUserDefinedSchematron when physical path is not valid, points at a Schematron and conforms to ISO 19139.\n"
-                + "      [TS] : Expected Result: Xml validation =  PASS\n");
+                + "      [TS] : Expected Result: Xml validation =  FAIL\n");
         Capability3Tests iut = new Capability3Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
@@ -113,5 +113,5 @@ public class VerifyCapability3Tests {
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXmlAgainstUserDefinedSchematron(testContext);
   }
-
+  
 }

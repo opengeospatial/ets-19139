@@ -67,16 +67,15 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>org.opengis.cite.teamengine</groupId>
-            <artifactId>teamengine-spi</artifactId>
-            <version>4.0.5</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.opengis.cite.teamengine</groupId>
+            <artifactId>teamengine-spi</artifactId>
+            <version>4.0.6-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
