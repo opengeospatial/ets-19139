@@ -78,7 +78,7 @@ public class VerifyCapability3Tests {
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
-        params1.put(TestRunArg.SCH.toString(), "http://54.209.245.204/teamengine/checkScopeOfXmlFile.sch");
+        params1.put(TestRunArg.SCH.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-valid-schematron-for-schematron.sch").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXmlAgainstUserDefinedSchematron(testContext);
   }

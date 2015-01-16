@@ -74,7 +74,7 @@
                 <input name="XSDdoc" id="XSDdoc" size="128" type="file" />
               </p>
             </div>      
-            <p> Sselect the Conformance Class to be tested:
+            <p> Select the Conformance Class to be tested:
               <label for="level">Conformance class: </label>
               <input id="level-1" type="radio" name="level" value="1" checked="checked" onclick="document.getElementById('toggleLevelThree').style.display='none'" />
               <label for="level-1"> Level 1 | </label>
