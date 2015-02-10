@@ -13,7 +13,7 @@ Detailed information about this test suite is available [here] (http://htmlprevi
 
 ## Validating Metadata Instances
 
-There are two ways to validate an instance.
+These are the folling ways to validate an instance.
 
    1. Via a web user interface
    2. Via HTTP request
