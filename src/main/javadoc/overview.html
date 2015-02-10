@@ -204,10 +204,11 @@ This conformance level validates an XML instance documents against a schematron 
                 </tr>
                 <tr>
                     <td>ics</td>
-                    <td>A comma-separated list of string values.</td>
+                    <td>int(1,2,3)</td>
                     <td>O</td>
-                    <td>An implementation conformance statement that indicates which conformance 
-                        classes or options are supported.</td>
+                    <td><li>ics=1, to run only Conformance Level 1.</li>
+                      <li>ics=2, to run both Conformance Level 1 and 2.</li>
+                      <li>ics=3, to run Conformance Level 1, 2 and 3.</li></td>
                 </tr>
 		<tr>
                     <td>sch</td>
@@ -218,7 +219,14 @@ This conformance level validates an XML instance documents against a schematron 
                 </tr>
             </tbody>
         </table>
+        <h3>For GET Request:</h3> iut and sch are URI's
 
+        <h4>To test GET API:</h4>Example curl request <br/><b>curl -sS 'http://teamengineProjectURI/rest/suites/testName/1.0/run?iut=Metadata.xml&sch=Schematron.sch.sch&ics=3'</b>
+
+        <h3>For Post API</h3>
+        iut and sch are keys of the files attached in the POST Body.
+        <h4>To test POST API:</h4>Whenever a user wants to test a Metadata file against a given Schematron (both given as a input by the user) with the help of the Teamengine's REST POST API. Example curl request<br/><b>curl -X POST --header "Content-Type:multipart/form-data" -F "iut=@path/to/XML" -F "sch=@path/to/Schematorn" http://teamengineProjectURI/rest/suites/testName/1.0/run</b><br/>
+        path/to/XML is the path to the Metadata file and path/to/Schematorn is the path to the Schematron file.
         <h2>Release notes</h2>
 
         <h3>ISO19139-1.0</h3>
@@ -289,6 +297,10 @@ This conformance level validates an XML instance documents against a schematron 
 	</ul>
 <ul> <b>JUnit Tests (both positive and negative scenarios) are done for the following test classes:</b>
            <li>Capability3Tests</li>
+        </ul>
+        <h4>r4:</h4>
+        <ul> <b>Changes made in TeamEngine-ServiceProvider for Conformance Level 3:</b>
+           <li>Added REST API Handler in Teamengine Service Provider Module to handle POST requests where both Metadata and Schematron are sent as files in post body.</li>
         </ul>
     </body>
 </html>
