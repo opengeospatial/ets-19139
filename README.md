@@ -47,6 +47,21 @@ Example with sch:
 
 [http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/1E97BD2D-0FDD-4BAC-8DEA-FEB57AB53A6E.xml&sch=http://cite-dev-03.opengeospatial.org/teamengine/checkScopeOfXmlFile.sch](http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/1E97BD2D-0FDD-4BAC-8DEA-FEB57AB53A6E.xml&sch=http://cite-dev-03.opengeospatial.org/teamengine/checkScopeOfXmlFile.sch)
 
+     In GET Request : iut and sch are URI's
+
+     In POST Request : iut and sch are keys of the files attached in the POST Body
+
+     To test GET API : 
+
+    curl -sS 'http://teamengineProjectURI/rest/suites/testName/1.0/run?iut=Metadata.xml&sch=Schematron.sch.sch&ics=3'
+  
+     To test POST API : Whenever a user wants to test a Metadata file against a given Schematron (both given as a input by the user) with the help of the Teamengine's REST POST API:
+
+      curl -X POST --header "Content-Type:multipart/form-data" -F "iut=@path/to/XML" -F "sch=@path/to/Schematorn" http://teamengineProjectURI/rest/suites/testName/1.0/run
+
+
+path/to/XML is the path to the Metadata file and path/to/Schematorn is the path to the Schematron file.
+
 Results are given in XML TestNG:
 
 ```xml
@@ -111,6 +126,10 @@ Capabilities of conformance level 2
 Capabilities of conformance level 3:
 
 This conformance level validates an XML instance documents against a schematron uploaded by the users. This revison lets users test the XML instance against conformance 1 and 2 along with conformance 3 to validate the XML agsint the technical specifications as well as any other rules that are defined in the user entered schematron.
+
+<b>r4</b>
+Changes made in TeamEngine-ServiceProvider for Conformance Level 3:
+Added REST API Handler in Teamengine Service Provider Module to handle POST requests where both Metadata and Schematron are sent as files in post body.
 
 ## Building
 
