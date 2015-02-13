@@ -51,18 +51,26 @@ Example with sch:
 
      In POST Request : iut and sch are keys of the files attached in the POST Body
 
-     To test GET API : 
+### To test via GET API :
+ 
+   Using the GET API you can send the URL's as query parameters. For ics=2 (i.e. Conformance level 2) iut (i.e. Metadata URL) is mandatory.
+   
+   For ics=3 (i.e. Conformance level 3) iut (i.e. Metadata URL) is mandatory and sch (i.e. Schematron URL) also needs to be passed otherwise the confomrance 3 tests will fail.
 
-    curl -sS 'http://teamengineProjectURI/rest/suites/testName/1.0/run?iut=Metadata.xml&sch=Schematron.sch.sch&ics=3'
+    curl -sS 'http://teamengineProjectURI/rest/suites/testName/1.0/run?iut=www.exampleURL/Metadata.xml&sch=www.exampleURL/Schematron.sch&ics=3'
   
-     To test POST API : Whenever a user wants to test a Metadata file against a given Schematron (both given as a input by the user) with the help of the Teamengine's REST POST API:
+### To test via POST API :
+   
+   A POST request by default take ics=3  (i.e. Conformance level 3)
+   
+   Whenever a user wants to test a Metadata file against a given Schematron (both given as a input by the user) with the help of the Teamengine's REST POST API where both the Metadata and Schematron is present in the Local file system then he needs to send these files via POST body instead of query parameters(as shown in the example below):
 
       curl -X POST --header "Content-Type:multipart/form-data" -F "iut=@path/to/XML" -F "sch=@path/to/Schematorn" http://teamengineProjectURI/rest/suites/testName/1.0/run
 
 
-path/to/XML is the path to the Metadata file and path/to/Schematorn is the path to the Schematron file.
+In the above example path/to/XML is the path to the Local Metadata file and path/to/Schematorn is the path to the Local Schematron file.
 
-Results are given in XML TestNG:
+### Results are given in XML TestNG:
 
 ```xml
 
