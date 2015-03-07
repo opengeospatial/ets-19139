@@ -110,7 +110,7 @@ The following Snippet will help you parse the result(response) of the test and d
 JAVA Code Snippet:
 
 Please find the JAVA code snippet to extract failed test information on the below given link
-[https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java)
+[https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/XmlParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/resultParser.java)
 ## Revisions
 
 <b>r1</b>
