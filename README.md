@@ -92,19 +92,94 @@ More detales at the [Overview Page](http://cite-dev-03.opengeospatial.org/teamen
 
 ## Extracting Failed Test Information
 
-The following Snippet will help you parse the result(response) of the test and display title, description, and details of the failed tests, and shows you the XPath:
+The following Snippet will help you parse the result(response) of the test and display title and details of the tests running time, and shows you the test detail in table:
 
 ```xml
-<xsl:variable name="failed-test">
-      <service-requests>
-          <xsl:copy-of select="doc({filepath})"/>
-      </service-requests>
-</xsl:variable>
-<b><xsl:text>Test Name :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/@name)"/>
-<br/>
-<b><xsl:text>Test Discription :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/@description)"/>
-<br/>   
-<b><xsl:text>Test Detail :</xsl:text></b><xsl:value-of select="string($failed-test//test-method[@status='FAIL']/exception/message)"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" version="1.0">
+   <xsl:output encoding="UTF-8" indent="yes" method="xml" standalone="no" omit-xml-declaration="no" />
+   <xsl:template match="testng-results">
+      <html>
+         <body>
+            <h3>
+               <font color="black">
+                  Test Name:
+                  <xsl:value-of select="suite/@name" />
+                  <br />
+                  Start Time:-
+                  <xsl:value-of select="suite/@started-at" />
+                  <br />
+                  Stop Time:-
+                  <xsl:value-of select="suite/@finished-at" />
+               </font>
+            </h3>
+            <table border="1">
+               <tbody>
+                  <tr>
+                     <th>Name</th>
+                     <th>Started</th>
+                     <th>Duration</th>
+                     <th>Reason</th>
+                  </tr>
+                  <xsl:for-each select="//test-method">
+                     <xsl:if test="not(@is-config='true')">
+                        <xsl:if test="@status='PASS'">
+                           <tr bgcolor="blue">
+                              <td>
+                                 <xsl:value-of select="@name" />
+                              </td>
+                              <td>
+                                 <xsl:value-of select="@started-at" />
+                              </td>
+                              <td>
+                                 <xsl:value-of select="@duration-ms" />
+                                 ms
+                              </td>
+                              <td />
+                           </tr>
+                        </xsl:if>
+                        <xsl:if test="@status='FAIL'">
+                           <tr bgcolor="red">
+                              <td>
+                                 <xsl:value-of select="@name" />
+                              </td>
+                              <td>
+                                 <xsl:value-of select="@started-at" />
+                              </td>
+                              <td>
+                                 <xsl:value-of select="@duration-ms" />
+                                 ms
+                              </td>
+                              <td>
+                                 <xsl:if test="@status='FAIL'">
+                                    <xsl:value-of select=".//message" />
+                                 </xsl:if>
+                              </td>
+                           </tr>
+                        </xsl:if>
+                        <xsl:if test="@status='SKIP'">
+                           <tr bgcolor="grey">
+                              <td>
+                                 <xsl:value-of select="@name" />
+                              </td>
+                              <td>
+                                 <xsl:value-of select="@started-at" />
+                              </td>
+                              <td>
+                                 <xsl:value-of select="@duration-ms" />
+                                 ms
+                              </td>
+                              <td />
+                           </tr>
+                        </xsl:if>
+                     </xsl:if>
+                  </xsl:for-each>
+               </tbody>
+            </table>
+         </body>
+      </html>
+   </xsl:template>
+</xsl:stylesheet>
 ````
 
 JAVA Code Snippet:
