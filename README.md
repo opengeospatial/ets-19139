@@ -92,7 +92,7 @@ More detales at the [Overview Page](http://cite-dev-03.opengeospatial.org/teamen
 
 ## Extracting Failed Test Information
 
-The following Snippet will help you parse the result(response) of the test and display title and details of the tests running time, and shows you the test detail in table:
+The following Snippet will help you parse the result(response) of the test and display title and tests running time, and shows you the test detail in tabular form:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
