@@ -186,6 +186,16 @@ JAVA Code Snippet:
 
 Please find the JAVA code snippet to extract failed test information on the below given link
 [https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/XmlParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/XmlParser.java)
+
+## Example of incorrect schematron files
+
+- http://cite-dev-03.opengeospatial.org/teamengine/DateTimeValueIncorrect.xml
+- http://cite-dev-03.opengeospatial.org/teamengine/LangCodesIncorrect.xml
+- http://cite-dev-03.opengeospatial.org/teamengine/MissingMDTransferOptions_noLinks.xml
+- http://cite-dev-03.opengeospatial.org/teamengine/MissingNameSpace_gmd.xml
+- http://cite-dev-03.opengeospatial.org/teamengine/SouthandEastLatLongOutofOrder.xml
+
+
 ## Revisions
 
 <b>r1</b>
