@@ -187,7 +187,7 @@ JAVA Code Snippet:
 Please find the JAVA code snippet to extract failed test information on the below given link
 [https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/XmlParser.java](https://github.com/opengeospatial/ets-19139/blob/master/src/main/javadoc/XmlParser.java)
 
-## Example of incorrect schematron files
+## Example of files with errors
 
 - http://cite-dev-03.opengeospatial.org/teamengine/DateTimeValueIncorrect.xml
 - http://cite-dev-03.opengeospatial.org/teamengine/LangCodesIncorrect.xml
