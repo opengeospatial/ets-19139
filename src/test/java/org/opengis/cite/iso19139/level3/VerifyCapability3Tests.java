@@ -114,4 +114,48 @@ public class VerifyCapability3Tests {
         iut.validateXmlAgainstUserDefinedSchematron(testContext);
   }
   
+  @Test
+  public void testValidateXmlAgainstUserDefinedSchematronWhenInputXMLIsValid() throws Exception {
+    LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstUserDefinedSchematronWhenInputXMLIsValid\n"
+                + "      [TS] : Description: Test for the ValidateXmlAgainstUserDefinedSchematron when input XML is valid, points at a Schematron and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
+        Capability3Tests iut = new Capability3Tests();
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        // Map<String, String> params1=null;
+        Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
+        params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-validXMLFile.xml").toString());
+        params1.put(TestRunArg.SCH.toString(),  this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-ISOStyle.sch").toString());
+        testContext.getSuite().getXmlSuite().setParameters(null);
+        iut.validateXmlAgainstUserDefinedSchematron(testContext);
+  }
+  
+  @Test(expected = AssertionError.class)
+  public void testValidateXmlAgainstUserDefinedSchematronWhenInputXMLIsNotValidFirstCase() throws Exception {
+    LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstUserDefinedSchematronWhenInputXMLIsNotValidFirstCase\n"
+                + "      [TS] : Description: Test for the ValidateXmlAgainstUserDefinedSchematron when input XML is not valid, points at a Schematron and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL\n");
+        Capability3Tests iut = new Capability3Tests();
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        // Map<String, String> params1=null;
+        Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
+        params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-inValidXMLFileCase1.xml").toString());
+        params1.put(TestRunArg.SCH.toString(),  this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-ISOStyle.sch").toString());
+        testContext.getSuite().getXmlSuite().setParameters(null);
+        iut.validateXmlAgainstUserDefinedSchematron(testContext);
+  }
+  
+  @Test(expected = AssertionError.class)
+  public void testValidateXmlAgainstUserDefinedSchematronWhenInputXMLIsNotValidSecondCase() throws Exception {
+    LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstUserDefinedSchematronWhenInputXMLIsNotValidSecondCase\n"
+                + "      [TS] : Description: Test for the ValidateXmlAgainstUserDefinedSchematron when input XML is not valid, points at a Schematron and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  FAIL\n");
+        Capability3Tests iut = new Capability3Tests();
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        // Map<String, String> params1=null;
+        Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
+        params1.put(TestRunArg.IUT.toString(), this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-inValidXMLFileCase2.xml").toString());
+        params1.put(TestRunArg.SCH.toString(),  this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-ISOStyle.sch").toString());
+        testContext.getSuite().getXmlSuite().setParameters(null);
+        iut.validateXmlAgainstUserDefinedSchematron(testContext);
+  }
 }
