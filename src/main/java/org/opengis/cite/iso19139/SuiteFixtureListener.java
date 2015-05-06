@@ -60,7 +60,7 @@ public class SuiteFixtureListener implements ISuiteListener {
      */
     @Override
     public void onFinish(ISuite suite) {
-        new ReportLog().generateLogs(suite);
+            new ReportLog().generateLogs(suite);
 
     }
 

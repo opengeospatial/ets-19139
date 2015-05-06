@@ -15,6 +15,11 @@ public enum TestRunArg {
      * metadata about it.
      */
     IUT,
+    /**
+     * An absolute URI that refers to a representation of the test schematron
+     * about it.
+     */
+    SCH,
     
     ICS;
 

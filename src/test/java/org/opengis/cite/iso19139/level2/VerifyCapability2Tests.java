@@ -6,16 +6,13 @@
 
 package org.opengis.cite.iso19139.level2;
 
-import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,12 +23,8 @@ import org.opengis.cite.iso19139.TestRunArg;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
-import org.w3c.dom.Document;
 
-/**
- *
- * @author upendra
- */
+
 public class VerifyCapability2Tests {
     static final Logger LOGGER = Logger.getLogger("MY Log");
     private static final String SUBJ = "testSubject";
@@ -72,12 +65,12 @@ public class VerifyCapability2Tests {
     }
 
     /**
-     * Test of validateXmlAgainstSchematronForNullReason method, of class Capability2Tests.
+     * Test of validateXMLAgainstSchematronForNullReason method, of class Capability2Tests.
      */
     @Test
     public void testValidateXmlAgainstSchematronForNullReasonWhenUrlIsValid() {
         LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstSchematronForNullReasonWhenUrlIsValid\n"
-                + "      [TS] : Description: Test for the validateXmlAgainstSchematronForNullReason when URL valid, points at a Xml and conforms to ISO 19139.\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstSchematronForNullReason when URL valid, points at a Xml and conforms to ISO 19139.\n"
                 + "      [TS] : Expected Result: Xml validation =  PASS\n");
         Capability2Tests iut = new Capability2Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -85,13 +78,13 @@ public class VerifyCapability2Tests {
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXmlAgainstSchematronForNullReason(testContext);
+        iut.validateXMLAgainstSchematronForNullReason(testContext);
     }
     
     @Test
     public void testValidateXmlAgainstSchematronForNullReasonWhenPhysicalPathIsValid() {
         LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstSchematronForNullReasonWhenPhysicalPathIsValid\n"
-                + "      [TS] : Description: Test for the validateXmlAgainstSchematronForNullReason when Physical Path valid, points at a Xml and conforms to ISO 19139.\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstSchematronForNullReason when Physical Path valid, points at a Xml and conforms to ISO 19139.\n"
                 + "      [TS] : Expected Result: Xml validation =  PASS\n");
         Capability2Tests iut = new Capability2Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
@@ -99,7 +92,7 @@ public class VerifyCapability2Tests {
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
         params1.put(TestRunArg.IUT.toString(),  this.getClass().getResource(ETS_ROOT_PKG + "TestAssets/test-arg-valid-xml-for-schematron.xml").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
-        iut.validateXmlAgainstSchematronForNullReason(testContext);
+        iut.validateXMLAgainstSchematronForNullReason(testContext);
     }
 
     

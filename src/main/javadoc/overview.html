@@ -83,6 +83,12 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
 'EX_GeographicDescription' be used in the 'MD_DataIdentification' object when the 'hierarchyLevel' of
 'MD_Metadata' is equal to "dataset" can not be enforced with an XML schema.
 </dd>
+
+<dt>Capabilities of conformance level 3</dt></br>
+            <dd><b>A.3 Against user define Schematron</b></br>
+This conformance level validates an XML instance documents against a schematron uploaded by the users. This conformance level lets users test the XML instance against conformance 1 and 2 along with conformance 3 to validate the XML agsint the technical specifications as well as any other rules that are defined in the user entered schematron.
+
+</br></br></dd>
         </dl>
 	
 	<h2>Test coverage</h2>
@@ -139,6 +145,14 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
                         </ul>
                     </td>
                 </tr>
+		<tr style="vertical-align: top;">
+                    <td>Conformance Level 3</td>
+                    <td>
+                        <ul style="list-style: none;">
+                            <li>org.opengis.cite.iso19139.level3.Capability3Tests</li>
+                        </ul>
+                    </td>
+                </tr>
             </tbody>
         </table>
 
@@ -190,18 +204,33 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
                 </tr>
                 <tr>
                     <td>ics</td>
-                    <td>A comma-separated list of string values.</td>
+                    <td>int(1,2,3)</td>
                     <td>O</td>
-                    <td>An implementation conformance statement that indicates which conformance 
-                        classes or options are supported.</td>
+                    <td><li>ics=1, to run only Conformance Level 1.</li>
+                      <li>ics=2, to run both Conformance Level 1 and 2.</li>
+                      <li>ics=3, to run Conformance Level 1, 2 and 3.</li></td>
+                </tr>
+		<tr>
+                    <td>sch</td>
+                    <td>URI</td>
+                    <td>M</td>
+                    <td>A URI that refers to the schematron.
+                        Ampersand ('&amp;') characters must be percent-encoded as '%26' and when select ics=3 at that time it is mandatory.</td>
                 </tr>
             </tbody>
         </table>
+        <h3>For GET Request:</h3> iut and sch are URI's
 
+        <h4>To test GET API:</h4>Example curl request <br/><b>curl -sS 'http://teamengineProjectURI/rest/suites/testName/1.0/run?iut=Metadata.xml&sch=Schematron.sch.sch&ics=3'</b>
+
+        <h3>For Post API</h3>
+        iut and sch are keys of the files attached in the POST Body.
+        <h4>To test POST API:</h4>Whenever a user wants to test a Metadata file against a given Schematron (both given as a input by the user) with the help of the Teamengine's REST POST API. Example curl request<br/><b>curl -X POST --header "Content-Type:multipart/form-data" -F "iut=@path/to/XML" -F "sch=@path/to/Schematorn" http://teamengineProjectURI/rest/suites/testName/1.0/run</b><br/>
+        path/to/XML is the path to the Metadata file and path/to/Schematorn is the path to the Schematron file.
         <h2>Release notes</h2>
 
         <h3>ISO19139-1.0</h3>
-        <h4>Initial release 1:</h4>
+        <h4>r0:</h4>
         <ul> <b>Test Cases:</b>
            <li>Capabilty 1 test to check whether the XML conforms to A.1 clause of ISO 19139.</li>
         <li>Input Validation test to chcek whether the given input exists i.e the file path or URL actually to an existing resource.</li>
@@ -220,7 +249,7 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
            <li>ValidateInputTests</li>
 	<li>Capability1Tests</li>
         </ul>
-        <h4>Release 2:</h4>
+        <h4>r1:</h4>
         <ul> <b>Changes made in Test Report:</b>
            <li>Added summary of the result in "Result overview" page including pie chart. It includes following statistics:</li>
            <ul><li>Test Name and Version</li>
@@ -240,7 +269,7 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
            <li>Added user friendly name of test in the Result page.</li>
            <li>Changed the styling if the Result page</li>
         </ul>
-        <h4>Release 3:</h4>
+        <h4>r2:</h4>
         <ul> <b>Test Cases:</b>
            <li>Capabilty 2 test to check whether the XML conforms to A.2 clause of ISO 19139.</li>
         </ul>
@@ -253,6 +282,25 @@ as the requirement that an 'extent' in the form of an 'EX_GeographicBoundingBox'
 	</ul>
 <ul> <b>JUnit Tests (both positive and negative scenarios) are done for the following test classes:</b>
            <li>Capability2Tests</li>
+        </ul>
+	<h4>r3:</h4>
+        <ul> <b>Test Cases:</b>
+           <li>Capabilty 3 test to check whether the XML conforms to A.3 clause of ISO 19139.</li>
+        </ul>
+<ul> <b>Rest Suite for ISO 19139:</b>
+           <li>Using rest suite of ISO 19139 to validate  whether the XML conforms to A.3 clause of ISO 19139.</li>
+        <li>User friendly error message is shown after the tests fail.</li>
+        </ul>
+        <ul> <b>Error handling is done for the following cases:</b>
+           <li>When user select level 1 or (level 1+level 2) at that time no conformance level A.3 rules not run.</li>
+	   <li>when user select (level 1+level 2+level 3) at that time if user not give schematron file or give wrong input path then result should be failed and give failure reason on final report.
+	</ul>
+<ul> <b>JUnit Tests (both positive and negative scenarios) are done for the following test classes:</b>
+           <li>Capability3Tests</li>
+        </ul>
+        <h4>r4:</h4>
+        <ul> <b>Changes made in TeamEngine-ServiceProvider for Conformance Level 3:</b>
+           <li>Added REST API Handler in Teamengine Service Provider Module to handle POST requests where both Metadata and Schematron are sent as files in post body.</li>
         </ul>
     </body>
 </html>

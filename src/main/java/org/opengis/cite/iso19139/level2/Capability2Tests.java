@@ -80,10 +80,10 @@ public class Capability2Tests {
     }
 
     @BeforeTest
-    public void validateConfromanceLevelTwoEnabled(ITestContext testContext) {
+    public void validateConfromanceLevelTwoEnabled(ITestContext testContext) throws IOException {
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
-        String level = params.get(TestRunArg.ICS.toString());
-        if ("2".equals(level)) {
+        int level=Integer.parseInt(params.get(TestRunArg.ICS.toString()));
+        if (level>1) {
             Assert.assertTrue(true);
         } else {
             Assert.assertTrue(false, "Conformance level two is not enabled");
@@ -204,7 +204,7 @@ public class Capability2Tests {
      * @param testContext
      */
     @Test(description = "Implements ATC 2-1")
-    public void validateXmlAgainstSchematronForNullReason(ITestContext testContext) {
+    public synchronized void validateXMLAgainstSchematronForNullReason(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -308,8 +308,8 @@ public class Capability2Tests {
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
-    @Test(description = "TableA1-Rule1-MD_Metadata=Rule 1 of Table A.1 ISO 19139,-language: documented if not defined by the encoding standard.,-characterSet: documented if ISO/IEC 10646 not used and not defined by the encoding standard.", dependsOnMethods = "validateXmlAgainstSchematronForNullReason")
-    public void checkEncodingStandard(ITestContext testContext) {
+    @Test(description = "TableA1-Rule1-MD_Metadata=Rule 1 of Table A.1 ISO 19139,-language: documented if not defined by the encoding standard.,-characterSet: documented if ISO/IEC 10646 not used and not defined by the encoding standard.", dependsOnMethods = "validateXMLAgainstSchematronForNullReason")
+    public synchronized void checkEncodingStandard(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -329,7 +329,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule2-MD_DataIdentification=Rule 2 of Table A.1 ISO 19139,-characterSet: documented if ISO/IEC 10646 is not used.,-MD_Metadata.hierarchyLevel = \"dataset\" implies count(extent.geographicElement.EX_GeographicBoundingBox) + count(extent.geographicElement.EX_GeographicDescription) >=1.,-MD_Metadata.hierarchyLevel notEqual \"dataset\" implies topicCategory is not mandatory.", dependsOnMethods = "checkEncodingStandard")
-    public void checkDataIdentification(ITestContext testContext) {
+    public synchronized void checkDataIdentification(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -349,7 +349,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule3-MD_AggregateInformation=Rule 3 of Table A.1 ISO 19139,-Either \"aggregateDataSetName\" or \"aggregateDataSetIdentifier\" must be documented.", dependsOnMethods = "checkDataIdentification")
-    public void checkAggregateInformation(ITestContext testContext) {
+    public synchronized void checkAggregateInformation(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -370,7 +370,7 @@ public class Capability2Tests {
      */
     @Test(description = "TableA1-Rule4-MD_LegalConstraints=Rule 4 of Table A.1 ISO 19139,-otherConstraints: documented if accessConstraints or useConstraints =\n"
             + "\"otherRestrictions\".", dependsOnMethods = "checkAggregateInformation")
-    public void checkLegalConstraints(ITestContext testContext) {
+    public synchronized void checkLegalConstraints(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -390,7 +390,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule6-DQ_Scope=Rule 6 of Table A.1 ISO 19139,-\" levelDescription\" is mandatory if \"level\" notEqual 'dataset' or 'series'.", dependsOnMethods = "checkLegalConstraints")
-    public void checkScopeOfXmlFile(ITestContext testContext) {
+    public synchronized void checkScopeOfXmlFile(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -410,7 +410,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule9-MD_Georectified=Rule 9 of Table A.1 ISO 19139,-\"checkPointDescription\" is mandatory if \"checkPointAvailability\" = 1.", dependsOnMethods = "checkScopeOfXmlFile")
-    public void checkGeorectified(ITestContext testContext) {
+    public synchronized void checkGeorectified(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -430,7 +430,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule10-MD_Band=Rule 10 of Table A.1 ISO 19139,-\"units\" is mandatory if \"maxValue\" or \"minValue\" are provided.", dependsOnMethods = "checkGeorectified")
-    public void checkBandValueOfXml(ITestContext testContext) {
+    public synchronized void checkBandValueOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -450,7 +450,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule11-MD_Medium=Rule 11 of Table A.1 ISO 19139,-\"densityUnits\" is mandatory if \"density\" is provided.", dependsOnMethods = "checkBandValueOfXml")
-    public void checkMediumOfXml(ITestContext testContext) {
+    public synchronized void checkMediumOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -471,7 +471,7 @@ public class Capability2Tests {
      */
     @Test(description = "TableA1-Rule13-MD_ExtendedElementInformation=Rule 13 of Table A.1 ISO 19139,-if \"dataType\" notEqual 'codelist'; 'enumeration' or 'codelistElement' then\n"
             + "\"obligation\"; \"maximumOccurence\" and \"domainValue\" are mandatory.,-if \"obligation\" = 'conditional' then \"condition\" is mandatory.,-if \"dataType\" = 'codelistElement' then \"domainCode\" is mandatory.,-if \"dataType\" notEqual 'codelistElement' then \"shortName\" is mandatory.", dependsOnMethods = "checkMediumOfXml")
-    public void checkExtendedElementInformation(ITestContext testContext) {
+    public synchronized void checkExtendedElementInformation(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -491,7 +491,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule14-EX_Extent=Rule 14 of Table A.1 ISO 19139,-count(description + geographicElement + temporalElement + verticalElement) >0\").", dependsOnMethods = "checkExtendedElementInformation")
-    public void checkExtentValueOfXml(ITestContext testContext) {
+    public synchronized void checkExtentValueOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
@@ -511,7 +511,7 @@ public class Capability2Tests {
      * of ISO"
      */
     @Test(description = "TableA1-Rule15-CI_ResponsibleParty=Rule 15 of Table A.1 ISO 19139,-count of (individualName + organisationName + positionName) > 0\").", dependsOnMethods = "checkExtentValueOfXml")
-    public void checkResponsiblePartyOfXml(ITestContext testContext) {
+    public synchronized void checkResponsiblePartyOfXml(ITestContext testContext) {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
         String url = params.get(TestRunArg.IUT.toString());
