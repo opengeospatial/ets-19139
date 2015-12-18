@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?><testng-results failed="1" passed="15" skipped="0" total="16">
+  <reporter-output>
+    <line>
+      The result of the test is-
+
+
+    </line>
+    <line>
+      **RESULT: Fail
+    </line>
+    <line>
+      **INPUT: http://54.209.245.204/teamengine/test-arg-inValidXMLFileCase2.xml
+    </line>
+    <line>
+      **TEST NAME AND VERSION    :iso19139-1.0
+    </line>
+    <line>
+      **DATE AND TIME PERFORMED  :2015/05/06 23:23:14
+    </line>
+    <line>
+      Passed tests for suite 'iso19139-1.0' is:15
+    </line>
+    <line>
+      Failed tests for suite 'iso19139-1.0' is:1
+    </line>
+    <line>
+      Skipped tests for suite 'iso19139-1.0' is:0
+    </line>
+    <line>
+      
+REASON:
+
+
+    </line>
+    <line>
+      http://54.209.245.204/teamengine/test-arg-inValidXMLFileCase2.xml conform to the clause A.1 of ISO 19139
+
+    </line>
+    <line>
+      ,, http://54.209.245.204/teamengine/test-arg-inValidXMLFileCase2.xml conform to the clause A.2 of ISO 19139, http://54.209.245.204/teamengine/test-arg-inValidXMLFileCase2.xml does not conform to the clause A.3 of ISO 19139
+    </line>
+  </reporter-output>
+  <suite duration-ms="1731" finished-at="2015-05-06T23:23:14Z" name="iso19139-1.0" started-at="2015-05-06T23:23:12Z">
+    <groups>
+      <group name="inputvalidation">
+        <method class="org.opengis.cite.iso19139.level1.ValidateInputTest" name="validateXMLPath" signature="ValidateInputTest.validateXMLPath(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.ValidateInputTest@592cfdfd]"/>
+        <method class="org.opengis.cite.iso19139.level1.ValidateInputTest" name="validateXMLFile" signature="ValidateInputTest.validateXMLFile(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.ValidateInputTest@592cfdfd]"/>
+      </group> <!-- inputvalidation -->
+    </groups>
+    <test duration-ms="105" finished-at="2015-05-06T23:23:13Z" name="Conformance Level 1" started-at="2015-05-06T23:23:12Z">
+      <class name="org.opengis.cite.iso19139.level1.ValidateInputTest">
+        <test-method duration-ms="1" finished-at="2015-05-06T23:23:12Z" is-config="true" name="getSchemaURIsFromTestContext" signature="getSchemaURIsFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.ValidateInputTest@592cfdfd]" started-at="2015-05-06T23:23:12Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@2694495d
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getSchemaURIsFromTestContext -->
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:12Z" is-config="true" name="obtainTestSubject" signature="obtainTestSubject(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.ValidateInputTest@592cfdfd]" started-at="2015-05-06T23:23:12Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@2694495d
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- obtainTestSubject -->
+        <test-method description="This function validates XML file Path" duration-ms="9" finished-at="2015-05-06T23:23:12Z" name="validateXMLPath" signature="validateXMLPath(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.ValidateInputTest@592cfdfd]" started-at="2015-05-06T23:23:12Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@2694495d
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateXMLPath -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level1.ValidateInputTest.validateXMLPath" description="This function validates XML file" duration-ms="0" finished-at="2015-05-06T23:23:12Z" name="validateXMLFile" signature="validateXMLFile(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.ValidateInputTest@592cfdfd]" started-at="2015-05-06T23:23:12Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@2694495d
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateXMLFile -->
+      </class> <!-- org.opengis.cite.iso19139.level1.ValidateInputTest -->
+      <class name="org.opengis.cite.iso19139.level1.Capability1Tests">
+        <test-method depends-on-groups="inputvalidation.*" description="Perform validation of XML against XSD" duration-ms="94" finished-at="2015-05-06T23:23:13Z" name="validateXMLAgainstXSD" signature="validateXMLAgainstXSD(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.Capability1Tests@e8184ab]" started-at="2015-05-06T23:23:12Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@2694495d
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateXMLAgainstXSD -->
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:12Z" is-config="true" name="obtainTestSubject" signature="obtainTestSubject(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.Capability1Tests@e8184ab]" started-at="2015-05-06T23:23:12Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@2694495d
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- obtainTestSubject -->
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:12Z" is-config="true" name="getSchemaURIsFromTestContext" signature="getSchemaURIsFromTestContext(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level1.Capability1Tests@e8184ab]" started-at="2015-05-06T23:23:12Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@2694495d
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getSchemaURIsFromTestContext -->
+      </class> <!-- org.opengis.cite.iso19139.level1.Capability1Tests -->
+    </test> <!-- Conformance Level 1 -->
+    <test duration-ms="1469" finished-at="2015-05-06T23:23:14Z" name="Conformance Level 2" started-at="2015-05-06T23:23:13Z">
+      <class name="org.opengis.cite.iso19139.level2.Capability2Tests">
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:13Z" is-config="true" name="createSchematronValidator" signature="createSchematronValidator(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createSchematronValidator -->
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:13Z" is-config="true" name="validateConfromanceLevelTwoEnabled" signature="validateConfromanceLevelTwoEnabled(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateConfromanceLevelTwoEnabled -->
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:13Z" is-config="true" name="obtainTestSubject" signature="obtainTestSubject(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- obtainTestSubject -->
+        <test-method description="Implements ATC 2-1" duration-ms="92" finished-at="2015-05-06T23:23:13Z" name="validateXMLAgainstSchematronForNullReason" signature="validateXMLAgainstSchematronForNullReason(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateXMLAgainstSchematronForNullReason -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.validateXMLAgainstSchematronForNullReason" description="TableA1-Rule1-MD_Metadata=Rule 1 of Table A.1 ISO 19139,-language: documented if not defined by the encoding standard.,-characterSet: documented if ISO/IEC 10646 not used and not defined by the encoding standard." duration-ms="115" finished-at="2015-05-06T23:23:13Z" name="checkEncodingStandard" signature="checkEncodingStandard(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkEncodingStandard -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkEncodingStandard" description="TableA1-Rule2-MD_DataIdentification=Rule 2 of Table A.1 ISO 19139,-characterSet: documented if ISO/IEC 10646 is not used.,-MD_Metadata.hierarchyLevel = &#34;dataset&#34; implies count(extent.geographicElement.EX_GeographicBoundingBox) + count(extent.geographicElement.EX_GeographicDescription) &gt;=1.,-MD_Metadata.hierarchyLevel notEqual &#34;dataset&#34; implies topicCategory is not mandatory." duration-ms="97" finished-at="2015-05-06T23:23:13Z" name="checkDataIdentification" signature="checkDataIdentification(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkDataIdentification -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkDataIdentification" description="TableA1-Rule3-MD_AggregateInformation=Rule 3 of Table A.1 ISO 19139,-Either &#34;aggregateDataSetName&#34; or &#34;aggregateDataSetIdentifier&#34; must be documented." duration-ms="125" finished-at="2015-05-06T23:23:13Z" name="checkAggregateInformation" signature="checkAggregateInformation(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkAggregateInformation -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkAggregateInformation" description="TableA1-Rule4-MD_LegalConstraints=Rule 4 of Table A.1 ISO 19139,-otherConstraints: documented if accessConstraints or useConstraints = &#34;otherRestrictions&#34;." duration-ms="89" finished-at="2015-05-06T23:23:13Z" name="checkLegalConstraints" signature="checkLegalConstraints(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkLegalConstraints -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkLegalConstraints" description="TableA1-Rule6-DQ_Scope=Rule 6 of Table A.1 ISO 19139,-&#34; levelDescription&#34; is mandatory if &#34;level&#34; notEqual 'dataset' or 'series'." duration-ms="106" finished-at="2015-05-06T23:23:13Z" name="checkScopeOfXmlFile" signature="checkScopeOfXmlFile(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkScopeOfXmlFile -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkScopeOfXmlFile" description="TableA1-Rule9-MD_Georectified=Rule 9 of Table A.1 ISO 19139,-&#34;checkPointDescription&#34; is mandatory if &#34;checkPointAvailability&#34; = 1." duration-ms="81" finished-at="2015-05-06T23:23:13Z" name="checkGeorectified" signature="checkGeorectified(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkGeorectified -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkGeorectified" description="TableA1-Rule10-MD_Band=Rule 10 of Table A.1 ISO 19139,-&#34;units&#34; is mandatory if &#34;maxValue&#34; or &#34;minValue&#34; are provided." duration-ms="90" finished-at="2015-05-06T23:23:13Z" name="checkBandValueOfXml" signature="checkBandValueOfXml(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkBandValueOfXml -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkBandValueOfXml" description="TableA1-Rule11-MD_Medium=Rule 11 of Table A.1 ISO 19139,-&#34;densityUnits&#34; is mandatory if &#34;density&#34; is provided." duration-ms="96" finished-at="2015-05-06T23:23:13Z" name="checkMediumOfXml" signature="checkMediumOfXml(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkMediumOfXml -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkMediumOfXml" description="TableA1-Rule13-MD_ExtendedElementInformation=Rule 13 of Table A.1 ISO 19139,-if &#34;dataType&#34; notEqual 'codelist'; 'enumeration' or 'codelistElement' then &#34;obligation&#34;; &#34;maximumOccurence&#34; and &#34;domainValue&#34; are mandatory.,-if &#34;obligation&#34; = 'conditional' then &#34;condition&#34; is mandatory.,-if &#34;dataType&#34; = 'codelistElement' then &#34;domainCode&#34; is mandatory.,-if &#34;dataType&#34; notEqual 'codelistElement' then &#34;shortName&#34; is mandatory." duration-ms="115" finished-at="2015-05-06T23:23:14Z" name="checkExtendedElementInformation" signature="checkExtendedElementInformation(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:13Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkExtendedElementInformation -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkExtendedElementInformation" description="TableA1-Rule14-EX_Extent=Rule 14 of Table A.1 ISO 19139,-count(description + geographicElement + temporalElement + verticalElement) &gt;0&#34;)." duration-ms="359" finished-at="2015-05-06T23:23:14Z" name="checkExtentValueOfXml" signature="checkExtentValueOfXml(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:14Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkExtentValueOfXml -->
+        <test-method depends-on-methods="org.opengis.cite.iso19139.level2.Capability2Tests.checkExtentValueOfXml" description="TableA1-Rule15-CI_ResponsibleParty=Rule 15 of Table A.1 ISO 19139,-count of (individualName + organisationName + positionName) &gt; 0&#34;)." duration-ms="98" finished-at="2015-05-06T23:23:14Z" name="checkResponsiblePartyOfXml" signature="checkResponsiblePartyOfXml(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level2.Capability2Tests@6b229334]" started-at="2015-05-06T23:23:14Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@6c31fb5a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkResponsiblePartyOfXml -->
+      </class> <!-- org.opengis.cite.iso19139.level2.Capability2Tests -->
+    </test> <!-- Conformance Level 2 -->
+    <test duration-ms="156" finished-at="2015-05-06T23:23:14Z" name="Conformance Level 3" started-at="2015-05-06T23:23:14Z">
+      <class name="org.opengis.cite.iso19139.level3.Capability3Tests">
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:14Z" is-config="true" name="validateConfromanceLevelThreeEnabled" signature="validateConfromanceLevelThreeEnabled(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level3.Capability3Tests@21268365]" started-at="2015-05-06T23:23:14Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@20757b2a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateConfromanceLevelThreeEnabled -->
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:14Z" is-config="true" name="createSchematronValidator" signature="createSchematronValidator(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level3.Capability3Tests@21268365]" started-at="2015-05-06T23:23:14Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@20757b2a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createSchematronValidator -->
+        <test-method duration-ms="0" finished-at="2015-05-06T23:23:14Z" is-config="true" name="obtainTestSubject" signature="obtainTestSubject(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level3.Capability3Tests@21268365]" started-at="2015-05-06T23:23:14Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@20757b2a
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- obtainTestSubject -->
+        <test-method description="Implements ATC 3" duration-ms="155" finished-at="2015-05-06T23:23:14Z" name="validateXmlAgainstUserDefinedSchematron" signature="validateXmlAgainstUserDefinedSchematron(org.testng.ITestContext)[pri:0, instance:org.opengis.cite.iso19139.level3.Capability3Tests@21268365]" started-at="2015-05-06T23:23:14Z" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                org.testng.TestRunner@20757b2a
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              [ISOStyle:codeListForm] Make the codeListValue attribute match the content of the codeList element,[ISOStyle:boundingExtentId] Add an id="boundingExtent" to the bounding EX_Extent (only one allowed),[ISOStyle:boundingGeographicElement] Add a geographicElement to the boundingExtent (one is required),[ISOStyle:boundingGeographicBoundingBox] Add a geographicBoundingBox to the boundingExtent (one is required),[ISOStyle:boundingGeographicBoundingBoxId] Add a id="boundingGeographicBoundingBox" to the EX_GeographicBoundingBox in the
+        bounding extent,[ISOStyle:oneBoundingGeographicBoundingBox] Delete the extra EX_GeographicBoundingBox with id="boundingGeographicBoundingBox" (only one
+        allowed),[ISOStyle:boundingTemporalElement] Add a temporalElement to the boundingExtent (one is required),[ISOStyle:boundingTemporalExtent] Add a EX_TemporalExtent to the boundingExtent (one is required),[ISOStyle:boundingTemporalExtentId] Add a EX_TemporalExtent identified with id="boundingTemporalExtent" to the bounding extent,[ISOStyle:oneBoundingTemporalExtent] Delete the extra EX_TemporalExtent with id="boundingTemporalExtent" (only one allowed),[ISOStyle:boundingGeographicBoundingBox] Add a geographicBoundingBox to the boundingExtent (one is required),Add westBoundLongitude to the EX_GeographicBoundingBox,Add eastBoundLongitude to the EX_GeographicBoundingBox,Add northBoundLatitude to the EX_GeographicBoundingBox,Add southBoundLatitude to the EX_GeographicBoundingBox expected [false] but found [true]
+            </message>
+            <full-stacktrace>
+              java.lang.AssertionError: [ISOStyle:codeListForm] Make the codeListValue attribute match the content of the codeList element,[ISOStyle:boundingExtentId] Add an id="boundingExtent" to the bounding EX_Extent (only one allowed),[ISOStyle:boundingGeographicElement] Add a geographicElement to the boundingExtent (one is required),[ISOStyle:boundingGeographicBoundingBox] Add a geographicBoundingBox to the boundingExtent (one is required),[ISOStyle:boundingGeographicBoundingBoxId] Add a id="boundingGeographicBoundingBox" to the EX_GeographicBoundingBox in the
+        bounding extent,[ISOStyle:oneBoundingGeographicBoundingBox] Delete the extra EX_GeographicBoundingBox with id="boundingGeographicBoundingBox" (only one
+        allowed),[ISOStyle:boundingTemporalElement] Add a temporalElement to the boundingExtent (one is required),[ISOStyle:boundingTemporalExtent] Add a EX_TemporalExtent to the boundingExtent (one is required),[ISOStyle:boundingTemporalExtentId] Add a EX_TemporalExtent identified with id="boundingTemporalExtent" to the bounding extent,[ISOStyle:oneBoundingTemporalExtent] Delete the extra EX_TemporalExtent with id="boundingTemporalExtent" (only one allowed),[ISOStyle:boundingGeographicBoundingBox] Add a geographicBoundingBox to the boundingExtent (one is required),Add westBoundLongitude to the EX_GeographicBoundingBox,Add eastBoundLongitude to the EX_GeographicBoundingBox,Add northBoundLatitude to the EX_GeographicBoundingBox,Add southBoundLatitude to the EX_GeographicBoundingBox expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertFalse(Assert.java:63)
+	at org.opengis.cite.iso19139.ETSAssert.assertSchematronValid(ETSAssert.java:182)
+	at org.opengis.cite.iso19139.level3.Capability3Tests.validateXmlAgainstUserDefinedSchematron(Capability3Tests.java:218)
+	at sun.reflect.GeneratedMethodAccessor93.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at com.occamlab.te.spi.executors.testng.TestNGExecutor.execute(TestNGExecutor.java:113)
+	at org.opengis.cite.iso19139.TestNGController.doTestRun(TestNGController.java:137)
+	at com.occamlab.te.spi.jaxrs.resources.TestRunResource.executeTestRun(TestRunResource.java:220)
+	at com.occamlab.te.spi.jaxrs.resources.TestRunResource.handleGet(TestRunResource.java:80)
+	at sun.reflect.GeneratedMethodAccessor34.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+	at com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$TypeOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:185)
+	at com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+	at com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:302)
+	at com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+	at com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+	at com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1542)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1473)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1419)
+	at com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1409)
+	at com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:409)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:540)
+	at com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:715)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:122)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:501)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:170)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:950)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.ajp.AjpAprProcessor.process(AjpAprProcessor.java:190)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:607)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketWithOptionsProcessor.run(AprEndpoint.java:2378)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateXmlAgainstUserDefinedSchematron -->
+      </class> <!-- org.opengis.cite.iso19139.level3.Capability3Tests -->
+    </test> <!-- Conformance Level 3 -->
+  </suite> <!-- iso19139-1.0 -->
+</testng-results>
