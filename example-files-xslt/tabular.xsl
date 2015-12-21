@@ -90,17 +90,18 @@
                                 <td>
                                     <xsl:if test="@status='FAIL'">
                                         <xsl:variable name="message">
-                                            <xsl:call-template name="string-replace-all">
-                                                <xsl:with-param name="text" select=".//message"/>
-                                                <xsl:with-param name="replace" select="'['"/>
-                                                <xsl:with-param name="by"
-                                                  select="'&lt;br&gt;&lt;br&gt;['"/>
-                                            </xsl:call-template>
-
-
+                                              <xsl:choose>
+                        			<xsl:when test="substring-before(exception/message,'expected [')">
+                           				<xsl:value-of select="substring-before(exception/message,'expected [')"/>
+                        			</xsl:when>
+                        		<xsl:otherwise>
+                             			<xsl:value-of select="exception/message"/>
+                        		</xsl:otherwise>
+					</xsl:choose>
                                         </xsl:variable>
-                                        <xsl:value-of select="$message"
-                                            disable-output-escaping="yes"/>
+                                        <xsl:call-template name="split">
+            					<xsl:with-param name="str" select="$message"/>
+        				</xsl:call-template>
                                     </xsl:if>
                                 </td>
                             </tr>
@@ -124,42 +125,17 @@
 
     </xsl:template>
 
-    <xsl:template name="string-replace-all">
-        <xsl:param name="text"/>
-        <xsl:param name="replace"/>
-        <xsl:param name="by"/>
-        <xsl:choose>
-            <xsl:when test="contains($text, $replace)">
-
-                <xsl:choose>
-                    <xsl:when test="not(starts-with(substring-after($text,$replace),'false')) and not(starts-with(substring-after($text,$replace),'true')) ">
-                        <xsl:value-of select="substring-before($text,$replace)"/>
-                        <xsl:value-of select="$by"/>
-                        <xsl:call-template name="string-replace-all">
-                            <xsl:with-param name="text" select="substring-after($text,$replace)"/>
-                            <xsl:with-param name="replace" select="$replace"/>
-                            <xsl:with-param name="by" select="$by"/>
-                        </xsl:call-template>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        
-                        
-                        <xsl:value-of select="substring-before($text,$replace)"/>
-                        <xsl:text>[</xsl:text>
-                        <xsl:call-template name="string-replace-all">
-                            <xsl:with-param name="text" select="substring-after($text,$replace)"/>
-                            <xsl:with-param name="replace" select="$replace"/>
-                            <xsl:with-param name="by" select="$by"/>
-                        </xsl:call-template>
-                        
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$text"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
+ 	<xsl:template match="text()" name="split">
+    <xsl:param name="str" select="."/>
+    <xsl:if test="string-length($str)">
+      <xsl:value-of select="substring-before(concat($str,','),',')"/>
+      <xsl:if test="not($str=.)">
+        <br />
+      </xsl:if>
+      <xsl:call-template name="split">
+        <xsl:with-param name="str" select="substring-after($str, ',')"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
 
 </xsl:stylesheet>
