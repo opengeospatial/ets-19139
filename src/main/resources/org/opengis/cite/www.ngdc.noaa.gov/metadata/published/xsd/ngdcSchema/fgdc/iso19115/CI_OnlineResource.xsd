@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The object of this schema is to define CI_OnlineResource in iso 19115    
+    The only element remaining that is mandatory in addition to base FGDC items is the dataset identifier.    
+-->    
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sch="http://www.ascc.net/xml/schematron" blockDefault="#all">
+
+    <xsd:element name="CI_OnlineResource" type="CI_OnlineResourceType" >
+        <xsd:annotation>
+            <xsd:documentation>
+                    Element: CI_OnlineResource
+                    Description: information about on-line sources from which the dataset, specification, or community profile name and extended metadata elements can be found.
+            </xsd:documentation>
+            <xsd:appinfo>
+                    <sch:title>Online Resource</sch:title>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CI_OnlineResourceType">
+        <xsd:sequence>
+            <xsd:element name="linkage" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                            Element: linkage
+                            Description: location (address) for on-line access using a Uniform Resource Locator address or similar addressing scheme such as http://www.statkart.no/isotc211
+                    </xsd:documentation>
+                    <xsd:appinfo>
+                            <sch:title>Linkage</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="protocol" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                            Element: protocol
+                            Description: connection protocol to be use
+                    </xsd:documentation>
+                    <xsd:appinfo>
+                            <sch:title>Protocol</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="applicationProfile" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                            Element: Application Profile
+                            Description: name of an application profile that can be used with the online resource
+                    </xsd:documentation>
+                    <xsd:appinfo>
+                            <sch:title>Application Profile</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="name" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                            Element: Name
+                            Description: name of the online resource
+                    </xsd:documentation>
+                    <xsd:appinfo>
+                            <sch:title>Name</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="description" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                            Element: Description
+                            Description: detailed text description of what the online resource is/does
+                    </xsd:documentation>
+                    <xsd:appinfo>
+                            <sch:title>Description</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="function" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                            Element: Function
+                            Description: code for function performed by the online resource
+                    </xsd:documentation>
+                    <xsd:appinfo>
+                            <sch:title>Function</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>    
+
+
+</xsd:schema>

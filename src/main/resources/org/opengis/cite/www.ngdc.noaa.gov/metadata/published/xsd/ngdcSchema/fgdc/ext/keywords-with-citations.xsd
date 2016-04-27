@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sch="http://www.ascc.net/xml/schematron">
+    
+    <xsd:complexType name="keywordsType_forISO">                
+        <xsd:sequence>
+            <xsd:element name="theme" type="themeType_forISO" maxOccurs="unbounded"/>
+            <xsd:element name="place" type="placeType_forISO" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="stratum" type="stratumType_forISO" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="temporal" type="temporalType_forISO" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="themeType_forISO">
+        <xsd:sequence>
+            <xsd:element ref="themekt"/>
+            <xsd:element ref="thesaurus_citeinfo" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="themekey" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="placeType_forISO">
+        <xsd:sequence>
+            <xsd:element ref="placekt"/>
+            <xsd:element ref="thesaurus_citeinfo" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="placekey" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="stratumType_forISO">
+        <xsd:sequence>
+            <xsd:element ref="stratkt"/>
+            <xsd:element ref="thesaurus_citeinfo" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="stratkey" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="temporalType_forISO">
+        <xsd:sequence>
+            <xsd:element ref="tempkt"/>
+            <xsd:element ref="thesaurus_citeinfo" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="tempkey" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:element name="thesaurus_citeinfo">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="citeinfo"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+</xsd:schema>
+

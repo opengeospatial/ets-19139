@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : mission-with-name.xsd
+    Created on : Nov 10, 2005
+    Author     : fozzard
+    Description:
+        Override definitions in fgdc-std-012-2002-missinfo.xsd
+        to include missname.
+        Also replaces fgdc-std-012-2002-plmiinfo.xsd, which includes
+        fgdc-std-012-2002-missinfo.xsd.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified"
+            xmlns:sch="http://www.ascc.net/xml/schematron">
+            
+    <!-- from fgdc-std-012-2002-plmiinfo.xsd 
+        Don't include fgdc-std-012-2002-missinfo.xsd, other elements unchanged. -->
+         
+    <xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-platinfo.xsd"/>
+    
+    <xsd:element name="plmiinfo" type="plmiinfoType">
+        <xsd:annotation>
+            <xsd:documentation> Element: Platform and Mission Information Description: Descriptive
+                information about the platform from which the measurements that produced the data
+                and about the program of which the data collection was a part. </xsd:documentation>
+            <xsd:appinfo>
+                <sch:title>Platform and Mission Information</sch:title>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="plmiinfoType">
+        <xsd:sequence>
+            <xsd:element ref="missinfo" minOccurs="0"/>
+            <xsd:element ref="platinfo" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    
+    <!-- from fgdc-std-012-2002-missinfo.xsd 
+        New missinfo definition including missname. Others unchanged. -->
+
+    <xsd:element name="missinfo" type="ngdcMissinfoType">
+        <xsd:annotation>
+            <xsd:documentation> Element: Mission Information Description: General information about
+                the overall data gathering program to which the data contribute.
+                Includes Mission Name. 
+            </xsd:documentation>
+            <xsd:appinfo>
+                <sch:title>Mission Information</sch:title>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ngdcMissinfoType">
+        <xsd:sequence>
+            <!-- Note: missname defined in fgdc-std-012-2002-sect01 -->
+            <xsd:element ref="missname" minOccurs="0"/>
+            <xsd:element name="missdesc" type="FGDCstring" minOccurs="0"/>
+            <xsd:element name="misshist" type="misshistType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>    
+
+    <xsd:complexType name="misshistType">
+        <xsd:sequence>
+            <xsd:element name="missstdt" type="missstdtType">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Mission Start Date Description: Date that mission
+                        during which data were taken began. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Mission Start Date</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="misssige" type="misssigeType" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+            <xsd:documentation>
+                        Element: Mission Significant Event
+                        Description: Date and description of a major occurrence during mission.
+            </xsd:documentation>
+            <xsd:appinfo>
+                        <sch:title>Mission Significant Event</sch:title>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+            <xsd:element name="misscomp" type="misscompType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Mission Completion Description: Scheduled or actual
+                        end date of mission during which data were taken. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Mission Completion</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="missstdtType">
+        <xsd:sequence>
+            <xsd:element ref="sngdate"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="misssigeType">
+        <xsd:sequence>
+            <xsd:element ref="procstep" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="misscompType">
+        <xsd:sequence>
+            <xsd:element ref="sngdate"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+</xsd:schema>

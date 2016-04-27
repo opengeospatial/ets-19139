@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2012-10-13" xmlns:mda="http://www.isotc211.org/2005/mda/1.0/2012-10-13" xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2012-10-13" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/mda/1.0/2012-10-13" version="">
+  <include schemaLocation="metadataApplication.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/cit/1.0/2012-10-13" schemaLocation="../../cit/1.0/cit.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/mdb/1.0/2012-10-13" schemaLocation="../../mdb/1.0/mdb.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+</schema>

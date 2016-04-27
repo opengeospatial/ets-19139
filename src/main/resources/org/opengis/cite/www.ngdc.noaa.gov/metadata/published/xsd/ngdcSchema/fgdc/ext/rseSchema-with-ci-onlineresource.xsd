@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : fgdc-and-noaa-supplemental.xsd
+    Created on : December 3, 2004, 12:48 PM
+    Author     	 : tns
+    Description : Purpose of XML Schema document follows.
+
+    Document: rseSchema-with-ci-onlineresource.xsd (not sure what doc above is referring to)
+    Revised: 07/14/2008
+    Revision Author: amilan
+    Revision Description: Added Esri.xsd to include 3 elements from ESRI Profile of CSDGM.
+    
+    Revised: 12/12/2008
+    Revision Author: amilan
+    Revision Description: Changed keywordsType to keywordsType_forISO to include citations in keyword sections. Include contact-without-addr.xsd, keywords-with-citations.xsd
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sch="http://www.ascc.net/xml/schematron">
+    <xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-base-types.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect01.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect02.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect03.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect04.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect05.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-base-types-ann.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect06-ann.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect07-ann.xsd"/>
+    <!--xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect08-ann.xsd" /-->
+    <xsd:include schemaLocation="citation-with-ci-onlineresource.xsd"/>
+    <xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect09-ann.xsd"/>
+    <!--<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect10-ann.xsd"/>-->
+    <!-- xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-plmiinfo.xsd" /-->
+    <xsd:include schemaLocation="instrument-with-name.xsd"/>
+    <xsd:include schemaLocation="mission-with-name.xsd"/>
+    <xsd:include schemaLocation="../iso19115/CI_OnlineResource.xsd"/>
+    <xsd:include schemaLocation="Esri.xsd"/>
+    <xsd:include schemaLocation="contact-without-addr.xsd"/>
+    <xsd:include schemaLocation="keywords-with-citations.xsd"/>
+    
+    <xsd:element name="metadata" type="rseWithCiOnlineResourceMetadataType"/>
+    <xsd:complexType name="rseWithCiOnlineResourceMetadataType">
+        <xsd:sequence>
+            <xsd:element name="idinfo" type="rseBandThemeOptionalIdinfoType">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Identification Information Section: 1 Description: basic information about the data set. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Identification Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="dataqual" type="rseDataqualType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Data Quality Information Section: 2 Description: a general assessment of the quality of the data set. (Recommendations on information to be reported and tests to be performed are found in "Spatial Data Quality," which is chapter 3 of part 1 in Department of Commerce, 1992, Spatial Data Transfer Standard (SDTS) (Federal Information Processing Standard 173): Washington, Department of Commerce, National Institute of Standards and Technology.) </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Data Quality Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="spdoinfo" type="rseSpdoinfoType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Spatial Data Organization Information Section: 3 Description: the mechanism used to represent spatial information in the data set. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Spatial Data Organization Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="spref" type="rseSprefType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Spatial Reference Information Section: 4 Description: the description of the reference frame for, and the means to encode, coordinates in the data set. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Spatial Reference Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="eainfo" type="rseEainfo" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Entity and Attribute Information Section: 5 Description: details about the information content of the data set, including the entity types, their attributes, and the domains from which attribute values may be assigned. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Entity and Attribute Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="distinfo" type="cionDistinfoType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Distribution Information Section: 6 Description: information about the distributor of and options for obtaining the data set. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Distribution Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="metainfo"/>
+            <xsd:element ref="plmiinfo" minOccurs="0"/>
+            <xsd:element name="instinfo" type="ngdcInstinfoType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Instrument Information Description: Instrument properties and behavior. Rationale: The properties of the instrument must be known in order to interpret the readings as geographic information. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Instrument Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <!-- esriExtensions -->
+            <xsd:element minOccurs="0" name="Esri" type="EsriType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- distribution information CI_Online resource -->
+    <xsd:complexType name="cionDistinfoType">
+        <xsd:sequence>
+            <xsd:element ref="distrib"/>
+            <xsd:sequence>
+                <xsd:element ref="resdesc" minOccurs="0"/>
+                <xsd:element ref="distliab"/>
+                <xsd:element name="stdorder" type="cionStdorderType" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation> Element: Standard Order Process Section: 6.4 Description: the common ways in which the data set may be obtained or received, and related instructions and fee information. </xsd:documentation>
+                        <xsd:appinfo>
+                            <sch:title>Standard Order Process</sch:title>
+                        </xsd:appinfo>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element ref="custom" minOccurs="0"/>
+                <xsd:element ref="techpreq" minOccurs="0"/>
+                <xsd:element ref="availabl" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cionStdorderType">
+        <xsd:sequence>
+            <xsd:element ref="resdesc" minOccurs="0"/>
+            <xsd:choice>
+                <xsd:element ref="nondig"/>
+                <xsd:element name="digform" type="cionDigformType" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation> Element: Digital Form Section: 6.4.2 Description: the description of options for obtaining the data set on computer-compatible media. </xsd:documentation>
+                        <xsd:appinfo>
+                            <sch:title>Digital Form</sch:title>
+                        </xsd:appinfo>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+            <xsd:element ref="fees"/>
+            <xsd:element ref="ordering" minOccurs="0"/>
+            <xsd:element ref="turnarnd" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cionDigtoptType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="onlinopt" type="cionOnlinoptType">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Online Option Section: 6.4.2.2.1 Description: information required to directly obtain the data set electronically. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Online Option</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="offoptn"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="cionDigformType">
+        <xsd:sequence>
+            <xsd:element ref="digtinfo"/>
+            <xsd:element name="digtopt" type="cionDigtoptType">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Digital Transfer Option Section: 6.4.2.2 Description: the means and media by which a data set is obtained from the distributor. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Digital Transfer Option</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cionOnlinoptType">
+        <xsd:sequence>
+            <xsd:element name="computer" type="cionComputerType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Computer Contact Information Section: 6.4.2.2.1.1 Description: instructions for establishing communications with the distribution computer. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Computer Contact Information</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="accinstr" minOccurs="0"/>
+            <xsd:element ref="oncomp" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cionComputerType">
+        <xsd:choice>
+            <xsd:element name="networka" type="cionNetworkaType">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Network Address Section: 6.4.2.2.1.1.1 Description: the electronic address from which the data set can be obtained from the distribution computer. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Network Address</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="dialinst"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="cionNetworkaType">
+        <xsd:sequence>
+            <xsd:element ref="networkr" maxOccurs="unbounded"/>
+            <xsd:element ref="CI_OnlineResource" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="rseBandThemeOptionalIdinfoType">
+        <xsd:sequence>
+            <xsd:element ref="datsetid"/>
+            <!-- ext -->
+            <xsd:element ref="citation"/>
+            <xsd:element name="descript" type="rseDescriptType">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Description Section: 1.2 Description: a characterization of the data set, including its intended use and limitations. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Description</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="timeperd"/>
+            <xsd:element ref="status"/>
+            <xsd:element name="spdom" type="rseSpdomType">
+                <xsd:annotation>
+                    <xsd:documentation> Element: Spatial Domain Section: 1.5 Description: the geographic areal domain of the data set. </xsd:documentation>
+                    <xsd:appinfo>
+                        <sch:title>Spatial Domain</sch:title>
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="proclevl" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="keywords" type="keywordsType_forISO"/>
+            <xsd:element ref="plainsid" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:choice minOccurs="0">
+                <!-- changed to minOccurs="0" -->
+                <xsd:element ref="bandidnt" minOccurs="0"/>
+                <xsd:element ref="thelayid" minOccurs="0"/>
+            </xsd:choice>
+            <xsd:element ref="accconst"/>
+            <xsd:element ref="useconst"/>
+            <xsd:element ref="ptcontac" minOccurs="0"/>
+            <xsd:element ref="browse" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="datacred" minOccurs="0"/>
+            <xsd:element ref="secinfo" minOccurs="0"/>
+            <xsd:element ref="native" minOccurs="0"/>
+            <xsd:element ref="crossref" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="agginfo" minOccurs="0" maxOccurs="unbounded"/>
+            <!-- ext -->
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

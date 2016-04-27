@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2012-10-13" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gsm="http://www.isotc211.org/2005/gsm/1.0/2012-10-13" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:rdi="http://www.isotc211.org/2005/rdi/1.0/2012-10-13" xmlns:rmd="http://www.isotc211.org/2005/rmd/1.0/2012-10-13" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/rmd/1.0/2012-10-13" version="">
+  <annotation>
+    <documentation>MD_CharacterSetCode is moved to Language Localization package
+MD_DataIdentification moved to Dataset Metadata package
+MD_RepresentativeFraction, MD_SpatialReprentationTypeCode and MD_Resolution move to GeospatialMetadata/spatial representation information
+
+is proposed class MD_Scope or MD_MetadataScope?
+MD_Term and MD_TypedKeyword are not in the 19115-1 model in ISO drafts folder
+
+check out DS_association</documentation>
+  </annotation>
+  <include schemaLocation="rmd.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/cit/1.0/2012-10-13" schemaLocation="../../cit/1.0/cit.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gsm/1.0/2012-10-13" schemaLocation="../../gsm/1.0/gsm.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gts" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gts/gts.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/rdi/1.0/2012-10-13" schemaLocation="../../rdi/1.0/rdi.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element abstract="true" name="AbstractMD_Identification" substitutionGroup="gco:AbstractObject" type="rmd:AbstractMD_Identification_Type">
+    <annotation>
+      <documentation>Basic information about data</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractMD_Identification_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="citation" type="cit:CI_Citation_PropertyType">
+            <annotation>
+              <documentation>Recommended reference to be used for the dataset</documentation>
+            </annotation>
+          </element>
+          <element name="abstract" type="gco:CharacterString_PropertyType">
+            <annotation>
+              <documentation>Brief narrative summary of the content of the dataset</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="purpose" type="gco:CharacterString_PropertyType">
+            <annotation>
+              <documentation>Summary of the intentions with which the dataset was developed</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="credit" type="gco:CharacterString_PropertyType">
+            <annotation>
+              <documentation>Recognition of those who contributed to the dataset</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="status" type="rmd:MD_ProgressCode_PropertyType">
+            <annotation>
+              <documentation>Status of dataset</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="pointOfContact" type="cit:CI_Responsibility_PropertyType">
+            <annotation>
+              <documentation>Identification of, and means of communication with, person(s) and organisations(s) associated  with the dataset</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="spatialRepresentationType" type="rmd:MD_SpatialRepresentationTypeCode_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="spatialResolution" type="gsm:MD_Resolution_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="temporalResolution" type="gts:TM_PeriodDuration_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="topicCategory" type="rmd:MD_TopicCategoryCode_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="extent" type="gsm:EX_Extent_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="additionalDocumentation" type="cit:CI_Citation_PropertyType"/>
+          <element minOccurs="0" name="processingLevel" type="cit:MD_Identifier_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="resourceMaintenance" type="rmd:MD_MaintenanceInformation_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="graphicOverview" type="cit:MD_BrowseGraphic_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="resourceFormat" type="rdi:MD_Format_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="descriptiveKeywords" type="rmd:MD_Keywords_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="resourceSpecificUsage" type="rmd:MD_Usage_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="resourceConstraints" type="cit:MD_Constraints_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="associatedResource" type="rmd:MD_AssociatedResource_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_Identification_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:AbstractMD_Identification"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_TopicCategoryCode" substitutionGroup="gco:CharacterString" type="rmd:MD_TopicCategoryCode_Type">
+    <annotation>
+      <documentation>High-level geospatial data thematic classification to assist in the grouping and search of available geospatial datasets</documentation>
+    </annotation>
+  </element>
+  <simpleType name="MD_TopicCategoryCode_Type">
+    <annotation>
+      <documentation>High-level geospatial data thematic classification to assist in the grouping and search of available geospatial datasets</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="farming"/>
+      <enumeration value="biota"/>
+      <enumeration value="boundaries"/>
+      <enumeration value="climatologyMeteorologyAtmosphere"/>
+      <enumeration value="economy"/>
+      <enumeration value="elevation"/>
+      <enumeration value="environment"/>
+      <enumeration value="geoscientificInformation"/>
+      <enumeration value="health"/>
+      <enumeration value="imageryBaseMapsEarthCover"/>
+      <enumeration value="intelligenceMilitary"/>
+      <enumeration value="inlandWaters"/>
+      <enumeration value="location"/>
+      <enumeration value="oceans"/>
+      <enumeration value="planningCadastre"/>
+      <enumeration value="society"/>
+      <enumeration value="structure"/>
+      <enumeration value="transportation"/>
+      <enumeration value="utilitiesCommunication"/>
+      <enumeration value="extraTerrestrial">
+        <annotation>
+          <documentation>region more than 100 km above the surface of the Earth</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <complexType name="MD_TopicCategoryCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_TopicCategoryCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_FileFormatCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type"/>
+  <complexType name="MD_FileFormatCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_FileFormatCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_Keywords" substitutionGroup="gco:AbstractObject" type="rmd:MD_Keywords_Type"/>
+  <complexType name="MD_Keywords_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element maxOccurs="unbounded" name="keyword" type="gco:CharacterString_PropertyType">
+            <annotation>
+              <documentation>Common-use word(s) or phrase(s) used to describe the subject</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="type" type="rmd:MD_KeywordTypeCode_PropertyType">
+            <annotation>
+              <documentation>Method used to group similar keywords</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="thesaurusName" type="cit:CI_Citation_PropertyType">
+            <annotation>
+              <documentation>Name of the formally registered thesaurus or a similar authoritative source of keywords</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="keywordClass" type="rmd:MD_KeywordClass_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_Keywords_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_Keywords"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_ProgressCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type">
+    <annotation>
+      <documentation>Status of the dataset or progress of a review</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_ProgressCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_ProgressCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="DS_AssociationTypeCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type">
+    <annotation>
+      <documentation>Justification for the correlation of two datasets</documentation>
+    </annotation>
+  </element>
+  <complexType name="DS_AssociationTypeCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:DS_AssociationTypeCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_AssociatedResource" substitutionGroup="gco:AbstractObject" type="rmd:MD_AssociatedResource_Type">
+    <annotation>
+      <documentation>associated resource information
+Note: An associated resource is a dataset composed of a collection of datasets</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_AssociatedResource_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element minOccurs="0" name="name" type="cit:CI_Citation_PropertyType"/>
+          <element name="associationType" type="rmd:DS_AssociationTypeCode_PropertyType"/>
+          <element minOccurs="0" name="initiativeType" type="rmd:DS_InitiativeTypeCode_PropertyType"/>
+          <element minOccurs="0" name="metadataReference" type="cit:CI_Citation_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_AssociatedResource_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_AssociatedResource"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="DS_InitiativeTypeCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type">
+    <annotation>
+      <documentation>Type of aggregation activity</documentation>
+    </annotation>
+  </element>
+  <complexType name="DS_InitiativeTypeCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:DS_InitiativeTypeCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_Usage" substitutionGroup="gco:AbstractObject" type="rmd:MD_Usage_Type">
+    <annotation>
+      <documentation>Brief description of ways in which the dataset is currently used.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_Usage_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="specificUsage" type="gco:CharacterString_PropertyType">
+            <annotation>
+              <documentation>Brief description of the dataset and/or dataset series use</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="usageDateTime" type="gts:TM_Primitive_PropertyType">
+            <annotation>
+              <documentation>Date and time of the first occurrence or range of occurrences of the dataset and/or dataset series</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="userDeterminedLimitations" type="gco:CharacterString_PropertyType">
+            <annotation>
+              <documentation>Applications for which the dataset and/or dataset series is not suitable</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="userContactInfo" type="cit:CI_Responsibility_PropertyType">
+            <annotation>
+              <documentation>Identification of means of communicating with person(s) and organisation(s) using the dataset and/or dataset series</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="response" type="gco:CharacterString_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="additionalDocumentation" type="cit:CI_Citation_PropertyType"/>
+          <element minOccurs="0" name="identifiedIssues" type="cit:CI_Citation_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_Usage_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_Usage"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_SpatialRepresentationTypeCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type">
+    <annotation>
+      <documentation>Method used to represent geographic information in the dataset</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_SpatialRepresentationTypeCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_SpatialRepresentationTypeCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_KeywordClass" substitutionGroup="gco:AbstractObject" type="rmd:MD_KeywordClass_Type"/>
+  <complexType name="MD_KeywordClass_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="className" type="gco:CharacterString_PropertyType"/>
+          <element minOccurs="0" name="conceptIdentifier" type="cit:URL_PropertyType"/>
+          <element name="ontology" type="cit:CI_Citation_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_KeywordClass_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_KeywordClass"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_KeywordTypeCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type">
+    <annotation>
+      <documentation>Methods used to group similar keywords</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_KeywordTypeCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="rmd:MD_KeywordTypeCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+</schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : stdorder-with-recdesc.xsd
+    Created on : January 10, 2005, 2:25 PM
+    Author     : tns
+    Description:
+        Purpose of XML Schema document follows.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ns="http://xml.netbeans.org/examples/targetNS"
+            targetNamespace="http://xml.netbeans.org/examples/targetNS"
+            xmlns="http://xml.netbeans.org/examples/targetNS"
+            elementFormDefault="qualified">
+
+    <!-- Add the noaainfo element to the description element -->
+    <xsd:redefine schemaLocation="../FGDC-STD-001-1998/fgdc-std-001-1998.xsd">
+        <xsd:complexType name="stdorderType">
+            <xsd:complexContent>
+                <xsd:extension base="descriptType" >
+                    <xsd:sequence>
+                        <xsd:element ref="noaainfo" />
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:redefine>
+
+</xsd:schema>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : noaaSupplemental.xsd
+    Created on : December 3, 2004, 12:17 PM
+    Author     : tns
+    Description:
+        Describes the NOAA Supplemental section which was added as an extension
+        to FGDC by NOAA.  The use of NOAA Supplemental is deprecated.  Use
+        fields in FGDC or in the Remote Sensing Extensions
+        
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+ 
+   
+   <xsd:element name="noaainfo">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="entry" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="sensor" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="source" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="campaign" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="center" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="medium" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="reference" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="nsurls" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="onlsiz" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="relatns" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+     </xsd:complexType>
+   </xsd:element>
+     
+   <xsd:element name="nsurls">
+     <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="moreinfo" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="preview" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="obtain" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+     
+    <xsd:element name="relatns">
+      <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="parent" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="assocprd" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+   
+</xsd:schema>

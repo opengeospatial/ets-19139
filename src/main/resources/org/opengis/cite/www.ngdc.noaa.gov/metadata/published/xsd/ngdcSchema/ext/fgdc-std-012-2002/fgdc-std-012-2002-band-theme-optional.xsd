@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The object of this schema is to redefine the identification information section as to make the inclusion of band identification and layer identification  optional.
+    The only element remaining that is mandatory in addition to base FGDC items is the dataset identifier.    
+-->    
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sch="http://www.ascc.net/xml/schematron" blockDefault="#all">
+
+
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-base-types.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect01.xsd"/>
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect02.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect03.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect04.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect05.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect06-ann.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect07-ann.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect08-ann.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect09-ann.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect10-ann.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-plmiinfo.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-instinfo.xsd" />
+
+<xsd:element name="metadata" type="bandThemeOptionalRseMetadataType" />
+
+
+<xsd:complexType name="bandThemeOptionalRseMetadataType">
+    <xsd:sequence>
+        <xsd:element name="idinfo" type="rseBandThemeOptionalIdinfoType">
+        	<xsd:annotation>
+		<xsd:documentation>
+			Element: Identification Information
+			Section: 1
+			Description: basic information about the data set.
+		</xsd:documentation>
+        		<xsd:appinfo>
+        			<sch:title>Identification Information</sch:title>
+        		</xsd:appinfo>
+        	</xsd:annotation>
+        </xsd:element>
+        <xsd:element name="dataqual" type="rseDataqualType" minOccurs="0">
+        	<xsd:annotation>
+	        	<xsd:documentation>
+	        		Element: Data Quality Information
+	        		Section: 2
+	        		Description: a general assessment of the quality of the data set. (Recommendations on information to be reported and tests to be performed are found in "Spatial Data Quality," which is chapter 3 of part 1 in Department of Commerce, 1992, Spatial Data Transfer Standard (SDTS) (Federal Information Processing Standard 173): Washington, Department of Commerce, National Institute of Standards and Technology.)
+	        	</xsd:documentation>
+	        	<xsd:appinfo>
+	        		<sch:title>Data Quality Information</sch:title>
+	        	</xsd:appinfo>
+        	</xsd:annotation>
+        </xsd:element>
+        <xsd:element name="spdoinfo" type="rseSpdoinfoType" minOccurs="0">
+        	<xsd:annotation>
+        		<xsd:documentation>
+        			Element: Spatial Data Organization Information
+        			Section: 3
+        			Description: the mechanism used to represent spatial information in the data set.
+        		</xsd:documentation>
+        		<xsd:appinfo>
+        			<sch:title>Spatial Data Organization Information</sch:title>
+        		</xsd:appinfo>
+        	</xsd:annotation>
+        </xsd:element>
+        <xsd:element name="spref" type="rseSprefType" minOccurs="0">
+        	<xsd:annotation>
+        		<xsd:documentation>
+        			Element: Spatial Reference Information
+        			Section: 4
+        			Description: the description of the reference frame for, and the means to encode, coordinates in the data set.
+        		</xsd:documentation>
+        		<xsd:appinfo>
+        			<sch:title>Spatial Reference Information</sch:title>
+        		</xsd:appinfo>
+        	</xsd:annotation>
+        </xsd:element>
+        <xsd:element name="eainfo" type="rseEainfo" minOccurs="0">
+        	<xsd:annotation>
+        		<xsd:documentation>
+        			Element: Entity and Attribute Information
+        			Section: 5
+        			Description: details about the information content of the data set, including the entity types, their attributes, and the domains from which attribute values may be assigned.
+        		</xsd:documentation>
+        		<xsd:appinfo>
+        			<sch:title>Entity and Attribute Information</sch:title>
+        		</xsd:appinfo>
+        	</xsd:annotation>
+        </xsd:element>
+        <xsd:element ref="distinfo" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element ref="metainfo"/>
+        <xsd:element ref="plmiinfo" minOccurs="0"/>
+        <xsd:element ref="instinfo" minOccurs="0" maxOccurs="unbounded" />
+   </xsd:sequence>
+</xsd:complexType>
+
+     <xsd:complexType name="rseBandThemeOptionalIdinfoType">
+            <xsd:sequence>
+                    <xsd:element ref="datsetid"/> <!-- ext -->
+                    <xsd:element ref="citation"/>
+        	    <xsd:element name="descript" type="rseDescriptType"/>
+                    <xsd:element ref="timeperd"/>
+                    <xsd:element ref="status"/>
+                    <xsd:element name="spdom" type="rseSpdomType"/>
+                    <xsd:element ref="proclevl" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="keywords"/>
+                    <xsd:element ref="plainsid" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:choice minOccurs="0"> <!-- changed to minOccurs="0" -->
+                        <xsd:element ref="bandidnt" minOccurs="0" /> 
+                        <xsd:element ref="thelayid" minOccurs="0" /> 
+                    </xsd:choice>
+                    <xsd:element ref="accconst"/>
+                    <xsd:element ref="useconst"/>
+                    <xsd:element ref="ptcontac" minOccurs="0"/>
+                    <xsd:element ref="browse" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="datacred" minOccurs="0"/>
+                    <xsd:element ref="secinfo" minOccurs="0"/>
+                    <xsd:element ref="native" minOccurs="0"/>
+                    <xsd:element ref="crossref" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="agginfo" minOccurs="0" maxOccurs="unbounded"/> <!-- ext -->
+            </xsd:sequence>
+     </xsd:complexType>
+</xsd:schema>

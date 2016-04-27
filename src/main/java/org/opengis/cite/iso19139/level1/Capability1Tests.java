@@ -43,6 +43,7 @@ public class Capability1Tests {
   static final long COMPILE_TIMEOUT = 180000;
   private final Logger logr = Logger.getLogger(this.getClass().getPackage().getName());
   private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
+  private static final String NOAA_ROOT_PKG = "/org/opengis/cite/www.ngdc.noaa.gov/";
   private Set<URI> xsdLocations;
   private Schema appSchema;
   private XSModel model;
@@ -123,7 +124,9 @@ public class Capability1Tests {
     int periodIndex = url.lastIndexOf('.');
     int slashIndex = url.lastIndexOf("/");
     boolean testResult = false;
-    params.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
+//    params.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
+     params.put(TestRunArg.XSD.toString(), this.getClass().getResource(NOAA_ROOT_PKG + "metadata/published/xsd/schema.xsd").toString());
+
     String fileName = url.substring(slashIndex + 1);
 
     if (((periodIndex >= 1) || (periodIndex == -1)) && slashIndex >= 0 && slashIndex < url.length() - 1) {
@@ -188,7 +191,7 @@ public class Capability1Tests {
           String reason = e.getLocalizedMessage();
           if (e.getLocalizedMessage().startsWith("cvc-elt.1.a")) {
             String segments[] = reason.split("'");
-            reason = "Root element of given XML file should be <gmd:MD_metadata> but instead the it is <" + segments[segments.length - 2] + ">.";
+            reason = "Root element of given XML file should be <gmd:MD_metadata> or <gmi:MI_metadata>  but instead the it is <" + segments[segments.length - 2] + ">.";
           }
 //                    Print the reason why the XML validation fails
           System.out.println("FAIL");

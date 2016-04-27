@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2012-10-13" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gsm="http://www.isotc211.org/2005/gsm/1.0/2012-10-13" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gts="http://www.isotc211.org/2005/gts" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/gsm/1.0/2012-10-13" version="">
+  <annotation>
+    <documentation>package in Geospatial metadata namespace, no change in elements for implementation</documentation>
+  </annotation>
+  <import namespace="http://www.isotc211.org/2005/cit/1.0/2012-10-13" schemaLocation="../../cit/1.0/cit.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gss" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gss/gss.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gts" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gts/gts.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="EX_GeographicDescription" substitutionGroup="gsm:AbstractEX_GeographicExtent" type="gsm:EX_GeographicDescription_Type"/>
+  <complexType name="EX_GeographicDescription_Type">
+    <complexContent>
+      <extension base="gsm:AbstractEX_GeographicExtent_Type">
+        <sequence>
+          <element name="geographicIdentifier" type="cit:MD_Identifier_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_GeographicDescription_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:EX_GeographicDescription"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="EX_Extent" substitutionGroup="cit:AbstractAbstractExtent" type="gsm:EX_Extent_Type">
+    <annotation>
+      <documentation>Information about spatial, vertical, and temporal extent</documentation>
+    </annotation>
+  </element>
+  <complexType name="EX_Extent_Type">
+    <complexContent>
+      <extension base="cit:AbstractAbstractExtent_Type">
+        <sequence>
+          <element minOccurs="0" name="description" type="gco:CharacterString_PropertyType">
+            <annotation>
+              <documentation>Spatial and temporal extent for the referring object</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="geographicElement" type="gsm:EX_GeographicExtent_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="temporalElement" type="gsm:EX_TemporalExtent_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="verticalElement" type="gsm:EX_VerticalExtent_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_Extent_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:EX_Extent"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="EX_GeographicBoundingBox" substitutionGroup="gsm:AbstractEX_GeographicExtent" type="gsm:EX_GeographicBoundingBox_Type">
+    <annotation>
+      <documentation>Geographic area of the entire dataset referenced to WGS 84</documentation>
+    </annotation>
+  </element>
+  <complexType name="EX_GeographicBoundingBox_Type">
+    <complexContent>
+      <extension base="gsm:AbstractEX_GeographicExtent_Type">
+        <sequence>
+          <element name="westBoundLongitude" type="gco:Decimal_PropertyType">
+            <annotation>
+              <documentation>Western-most coordinate of the limit of the dataset extent expressed in longitude, in decimal degrees</documentation>
+            </annotation>
+          </element>
+          <element name="eastBoundLongitude" type="gco:Decimal_PropertyType">
+            <annotation>
+              <documentation>Eastern-most coordinate of the limit of the dataset extent expressed in longitude, in decimal degrees</documentation>
+            </annotation>
+          </element>
+          <element name="southBoundLatitude" type="gco:Decimal_PropertyType">
+            <annotation>
+              <documentation>Southern-most coordinate of the limit of the dataset extent expressed in latitude, in decimal degrees</documentation>
+            </annotation>
+          </element>
+          <element name="northBoundLatitude" type="gco:Decimal_PropertyType">
+            <annotation>
+              <documentation>Northern-most coordinate of the limit of the dataset extent expressed in latitude, in decimal degrees</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_GeographicBoundingBox_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:EX_GeographicBoundingBox"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="EX_VerticalExtent" substitutionGroup="gco:AbstractObject" type="gsm:EX_VerticalExtent_Type">
+    <annotation>
+      <documentation>Vertical domain of dataset</documentation>
+    </annotation>
+  </element>
+  <complexType name="EX_VerticalExtent_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="minimumValue" type="gco:Real_PropertyType">
+            <annotation>
+              <documentation>Lowest vertical extent contained in the dataset</documentation>
+            </annotation>
+          </element>
+          <element name="maximumValue" type="gco:Real_PropertyType">
+            <annotation>
+              <documentation>Highest vertical extent contained in the dataset</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_VerticalExtent_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:EX_VerticalExtent"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="EX_TemporalExtent" substitutionGroup="gco:AbstractObject" type="gsm:EX_TemporalExtent_Type">
+    <annotation>
+      <documentation>Time period covered by the content of the dataset</documentation>
+    </annotation>
+  </element>
+  <complexType name="EX_TemporalExtent_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="extent" type="gts:TM_Primitive_PropertyType">
+            <annotation>
+              <documentation>Date and time for the content of the dataset.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_TemporalExtent_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:EX_TemporalExtent"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="EX_BoundingPolygon" substitutionGroup="gsm:AbstractEX_GeographicExtent" type="gsm:EX_BoundingPolygon_Type">
+    <annotation>
+      <documentation>Boundary enclosing the dataset expressed as the closed set of (x,y) coordinates of the polygon (last point replicates first point)</documentation>
+    </annotation>
+  </element>
+  <complexType name="EX_BoundingPolygon_Type">
+    <complexContent>
+      <extension base="gsm:AbstractEX_GeographicExtent_Type">
+        <sequence>
+          <element maxOccurs="unbounded" name="polygon" type="gss:GM_Object_PropertyType">
+            <annotation>
+              <documentation>Sets of points in a particular coordinate reference system.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_BoundingPolygon_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:EX_BoundingPolygon"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="EX_SpatialTemporalExtent" substitutionGroup="gsm:EX_TemporalExtent" type="gsm:EX_SpatialTemporalExtent_Type">
+    <annotation>
+      <documentation>Extent with respect to date and time</documentation>
+    </annotation>
+  </element>
+  <complexType name="EX_SpatialTemporalExtent_Type">
+    <complexContent>
+      <extension base="gsm:EX_TemporalExtent_Type">
+        <sequence>
+          <element minOccurs="0" name="verticalExtent" type="gsm:EX_VerticalExtent_PropertyType"/>
+          <element maxOccurs="unbounded" name="spatialExtent" type="gsm:EX_GeographicExtent_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_SpatialTemporalExtent_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:EX_SpatialTemporalExtent"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element abstract="true" name="AbstractEX_GeographicExtent" substitutionGroup="gco:AbstractObject" type="gsm:AbstractEX_GeographicExtent_Type">
+    <annotation>
+      <documentation>Geographic area of the dataset</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractEX_GeographicExtent_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="extentTypeCode" type="gco:Boolean_PropertyType"   maxOccurs="1" minOccurs="0">
+            <annotation>
+              <documentation>Identifies whether the  bounding polygon encompasses an area covered by the data or an area where data is not present</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EX_GeographicExtent_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:AbstractEX_GeographicExtent"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+</schema>

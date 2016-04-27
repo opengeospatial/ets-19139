@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : fgdc-and-noaa-supplemental.xsd
+    Created on : December 3, 2004, 12:48 PM
+    Author     : tns
+    Description:
+        Purpose of XML Schema document follows.
+-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sch="http://www.ascc.net/xml/schematron" >
+<!-- the ../../fgdc-std-012-2002 exists when the maven goal java:jar-resources is 
+     executed because the base fgdc standard jars are copied to the classes directory -->
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-base-types.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect01.xsd"/>
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect02.xsd"/>
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect03.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect04.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-sect05.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect06-ann.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect07-ann.xsd" />
+<!--xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect08-ann.xsd" /-->
+<xsd:include schemaLocation="citation-with-ci-onlineresource.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect09-ann.xsd" />
+<xsd:include schemaLocation="../../fgdc-std-001-1998/fgdc-std-001-1998-sect10-ann.xsd" />
+<!-- xsd:include schemaLocation="../../fgdc-std-012-2002/fgdc-std-012-2002-plmiinfo.xsd" / -->
+<xsd:include schemaLocation="instrument-with-name.xsd" />
+<xsd:include schemaLocation="mission-with-name.xsd" />
+<xsd:include schemaLocation="noaa-supplemental.xsd" />
+<xsd:include schemaLocation="../iso19115/CI_OnlineResource.xsd" />
+<xsd:include schemaLocation="Esri.xsd"/>
+
+    <xsd:element name="metadata" type="rseMetadataType" />
+    <xsd:complexType name="rseMetadataType">
+    <xsd:sequence>
+        <xsd:element name="idinfo" type="rseBandThemeOptionalIdinfoType"/>
+        <xsd:element name="dataqual" type="rseDataqualType" minOccurs="0"/>
+        <xsd:element name="spdoinfo" type="rseSpdoinfoType" minOccurs="0"/>
+        <xsd:element name="spref" type="rseSprefType" minOccurs="0"/>
+        <xsd:element name="eainfo" type="rseEainfo" minOccurs="0"/>
+        <xsd:element name="distinfo" type="ngdcDistinfoType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element ref="metainfo"/>
+        <xsd:element name="plmiinfo" type="plmiinfoType" minOccurs="0"/>
+        <xsd:element name="instinfo" type="ngdcInstinfoType" minOccurs="0" maxOccurs="unbounded" >
+        </xsd:element>
+   <xsd:element minOccurs="0" name="Esri" type="EsriType"/>
+        </xsd:sequence>
+</xsd:complexType>
+
+     <xsd:complexType name="rseBandThemeOptionalIdinfoType">
+            <xsd:sequence>
+                    <xsd:element ref="datsetid"/> <!-- ext -->
+                    <xsd:element ref="citation"/>
+        	    <xsd:element name="descript" type="ngdcDescriptType">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Element: Description
+                                Section: 1.2
+                                Description: a characterization of the data set, including its intended use and limitations.
+                            </xsd:documentation>
+                            <xsd:appinfo>
+                                <sch:title>Description</sch:title>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element ref="timeperd"/>
+                    <xsd:element ref="status"/>
+                    <xsd:element name="spdom" type="rseSpdomType" />
+                    <xsd:element ref="proclevl" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="keywords"/>
+                    <xsd:element ref="plainsid" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:choice minOccurs="0"> <!-- changed to minOccurs="0" -->
+                        <xsd:element ref="bandidnt" minOccurs="0" /> 
+                        <xsd:element ref="thelayid" minOccurs="0" /> 
+                    </xsd:choice>
+                    <xsd:element ref="accconst"/>
+                    <xsd:element ref="useconst"/>
+                    <xsd:element ref="ptcontac" minOccurs="0"/>
+                    <xsd:element ref="browse" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="datacred" minOccurs="0"/>
+                    <xsd:element ref="secinfo" minOccurs="0"/>
+                    <xsd:element ref="native" minOccurs="0"/>
+                    <xsd:element ref="crossref" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element ref="agginfo" minOccurs="0" maxOccurs="unbounded"/> <!-- ext -->
+            </xsd:sequence>
+     </xsd:complexType>    
+
+          
+    <!-- distribution information CI_Online resource -->
+    <xsd:complexType name="ngdcDistinfoType">
+	<xsd:sequence>
+		<xsd:element ref="distrib"/>
+		<xsd:sequence>
+			<xsd:element ref="resdesc" minOccurs="0"/>
+			<xsd:element ref="distliab"/>
+			<xsd:element name="stdorder" type="ngdcStdorderType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="custom" minOccurs="0"/>
+			<xsd:element ref="techpreq" minOccurs="0"/>
+			<xsd:element ref="availabl" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ngdcStdorderType">
+            <xsd:sequence>
+                    <xsd:element ref="resdesc" minOccurs="0" />
+                    <xsd:choice>
+                            <xsd:element ref="nondig"/>
+                            <xsd:element name="digform" type="ngdcDigformType" maxOccurs="unbounded"/>
+                    </xsd:choice>
+                    <xsd:element ref="fees"/>
+                    <xsd:element ref="ordering" minOccurs="0"/>
+                    <xsd:element ref="turnarnd" minOccurs="0"/>
+            </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ngdcDigformType">
+            <xsd:sequence>
+                    <xsd:element ref="digtinfo"/>
+                    <xsd:element name="digtopt" type="ngdcDigtoptType" />
+            </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ngdcDigtoptType">
+            <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="onlinopt" type="ngdcOnlinoptType"/>
+                    <xsd:element ref="offoptn"/>
+            </xsd:choice>
+    </xsd:complexType>
+    
+   
+    
+    <xsd:complexType name="ngdcOnlinoptType">
+            <xsd:sequence>
+                    <xsd:element name="computer" type="ngdcComputerType" maxOccurs="unbounded"/>
+                    <xsd:element ref="accinstr" minOccurs="0"/>
+                    <xsd:element ref="oncomp" minOccurs="0"/>
+            </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ngdcComputerType">
+            <xsd:choice>
+                    <xsd:element name="networka" type="ngdcNetworkaType"/>
+                    <xsd:element ref="dialinst"/>
+            </xsd:choice>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ngdcNetworkaType">
+            <xsd:sequence>
+                    <xsd:element ref="networkr" maxOccurs="unbounded"/>
+                    <xsd:element ref="CI_OnlineResource" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+    </xsd:complexType> 
+    <!-- Add the noaainfo element to the description element -->
+    <xsd:complexType name="ngdcDescriptType">
+            <xsd:sequence>
+                    <xsd:element ref="abstract"/>
+                    <xsd:element ref="purpose"/>
+                    <xsd:element ref="documnts" minOccurs="0" maxOccurs="unbounded" />
+                    <xsd:element ref="supplinf" minOccurs="0"/>
+                    <xsd:element ref="noaainfo" minOccurs="0" />
+            </xsd:sequence>
+    </xsd:complexType>
+    
+    
+
+</xsd:schema>
