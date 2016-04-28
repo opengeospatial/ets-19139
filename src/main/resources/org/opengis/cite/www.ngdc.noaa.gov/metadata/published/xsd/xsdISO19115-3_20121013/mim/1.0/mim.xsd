@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2012-10-13" xmlns:mim="http://www.isotc211.org/2005/mim/1.0/2012-10-13" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/mim/1.0/2012-10-13" version="">
+  <include schemaLocation="catalogues.xsd"/>
+  <include schemaLocation="codelistItem.xsd"/>
+  <include schemaLocation="crsItem.xsd"/>
+  <include schemaLocation="extendedTypes.xsd"/>
+  <include schemaLocation="gmxUsage.xsd"/>
+  <include schemaLocation="uomItem.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/lan/1.0/2012-10-13" schemaLocation="../../lan/1.0/lan.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+</schema>

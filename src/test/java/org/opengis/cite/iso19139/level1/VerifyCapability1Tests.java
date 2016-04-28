@@ -31,6 +31,7 @@ public class VerifyCapability1Tests {
     private static ISuite suite;
     private static XmlSuite xmlSuite;
     private static final String ETS_ROOT_PKG = "/org/opengis/cite/iso19139/";
+    private static final String NOAA_ROOT = "/org/opengis/cite/www.ngdc.noaa.gov/";
     private static Map<String, String> params = new TreeMap<String, String>();
 
     public VerifyCapability1Tests() {
@@ -67,7 +68,7 @@ public class VerifyCapability1Tests {
      * @throws java.io.IOException
      */
     @Test
-    public void testValidateXmlAgainstXsdWhenUrlIsValid() throws SAXException, IOException {
+    public void testValidateXmlAgainstXsdWhenUrlIsValidGMD() throws SAXException, IOException {
         LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenUrlIsValid\n"
                 + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a Xml and conforms to ISO 19139.\n"
                 + "      [TS] : Expected Result: Xml validation =  PASS\n");
@@ -80,7 +81,69 @@ public class VerifyCapability1Tests {
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstXSD(testContext);
     }
-
+    /**
+     * Test for the validateXMLAgainstXSD when URL exists, points at a Xml and
+     * conforms to ISO 19139.
+     *
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
+     */
+    @Test
+    public void testValidateXmlAgainstXsdWhenUrlIsValidGMI() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenUrlIsValidGMI\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a Xml and conforms to ISO 19139 using gmi:MI_Metadata root\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
+        Capability1Tests iut = new Capability1Tests();
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        // Map<String, String> params1=null;
+        Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/IEDA/10000_iso.xml");
+        params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(NOAA_ROOT+  "metadata/published/xsd/ngdcSchema/schema.xsd").toString());
+        testContext.getSuite().getXmlSuite().setParameters(null);
+        iut.validateXMLAgainstXSD(testContext);
+    }
+    /**
+     * Test for the validateXMLAgainstXSD when URL exists, points at a Xml and
+     * conforms to ISO 19139.
+     *
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
+     */
+    @Test
+    public void testValidateXmlAgainstXsdWhenUrlIsValidDefaultXSDArgGMDFile() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenUrlIsValid\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a Xml and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
+        Capability1Tests iut = new Capability1Tests();
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        // Map<String, String> params1=null;
+        Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+       // params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
+        testContext.getSuite().getXmlSuite().setParameters(null);
+        iut.validateXMLAgainstXSD(testContext);
+    }
+    /**
+     * Test for the validateXMLAgainstXSD when URL exists, points at a Xml and
+     * conforms to ISO 19139.
+     *
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
+     */
+    @Test
+    public void testValidateXmlAgainstXsdWhenUrlIsValidDefaultXSDArgGMIFile() throws SAXException, IOException {
+        LOGGER.info("[TS] : Name of Test Case: testValidateXmlAgainstXsdWhenUrlIsValid\n"
+                + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a Xml and conforms to ISO 19139.\n"
+                + "      [TS] : Expected Result: Xml validation =  PASS\n");
+        Capability1Tests iut = new Capability1Tests();
+        testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
+        // Map<String, String> params1=null;
+        Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/IEDA/10000_iso.xml");
+      //  params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
+        testContext.getSuite().getXmlSuite().setParameters(null);
+        iut.validateXMLAgainstXSD(testContext);
+    }
     /**
      * Test for the validateXMLAgainstXSD when URL exists but does not points to
      * any Xml.
@@ -110,7 +173,8 @@ public class VerifyCapability1Tests {
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
      */
-    @Test(expected = AssertionError.class)
+    //@Test(expected = AssertionError.class)
+    @Test(expected = NullPointerException.class)
     public void testValidateXmlAgainstXsdWhenUrlIsPresentButNotValid() throws SAXException, IOException {
         LOGGER.info("[TS] : testValidateXmlAgainstXsdWhenUrlIsPresentButNotValid\n"
                 + "      [TS] : Description: Test for the validateXMLAgainstXSD when URL exists, points at a Xml and but does not conforms to ISO 19139.\n"
@@ -118,7 +182,8 @@ public class VerifyCapability1Tests {
         Capability1Tests iut = new Capability1Tests();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://www.w3schools.com/dom/books.xml");
+      //  params1.put(TestRunArg.IUT.toString(), "http://www.w3schools.com/dom/books.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://www.w3schools.com/dom/books");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstXSD(testContext);

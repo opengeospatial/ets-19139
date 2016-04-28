@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2012-10-13" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gsm="http://www.isotc211.org/2005/gsm/1.0/2012-10-13" xmlns:gss="http://www.isotc211.org/2005/gss" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/gsm/1.0/2012-10-13" version="">
+  <annotation>
+    <documentation>Elements for specifying the encoding of spatial location in a dataset. 
+No modifications for implementation (smr 20120711)</documentation>
+  </annotation>
+  <import namespace="http://www.isotc211.org/2005/cit/1.0/2012-10-13" schemaLocation="../../cit/1.0/cit.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gss" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gss/gss.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element abstract="true" name="AbstractMD_SpatialRepresentation" substitutionGroup="gco:AbstractObject" type="gsm:AbstractMD_SpatialRepresentation_Type">
+    <annotation>
+      <documentation>Digital mechanism used to represent spatial information</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractMD_SpatialRepresentation_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_SpatialRepresentation_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:AbstractMD_SpatialRepresentation"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_RepresentativeFraction" substitutionGroup="gco:AbstractObject" type="gsm:MD_RepresentativeFraction_Type"/>
+  <complexType name="MD_RepresentativeFraction_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="denominator" type="gco:Integer_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_RepresentativeFraction_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_RepresentativeFraction"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_Georectified" substitutionGroup="gsm:MD_GridSpatialRepresentation" type="gsm:MD_Georectified_Type"/>
+  <complexType name="MD_Georectified_Type">
+    <complexContent>
+      <extension base="gsm:MD_GridSpatialRepresentation_Type">
+        <sequence>
+          <element name="checkPointAvailability" type="gco:Boolean_PropertyType"/>
+          <element minOccurs="0" name="checkPointDescription" type="gco:CharacterString_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="cornerPoints" type="gss:GM_Point_PropertyType"/>
+          <element minOccurs="0" name="centrePoint" type="gss:GM_Point_PropertyType"/>
+          <element name="pointInPixel" type="gsm:MD_PixelOrientationCode_PropertyType"/>
+          <element minOccurs="0" name="transformationDimensionDescription" type="gco:CharacterString_PropertyType"/>
+          <element maxOccurs="2" minOccurs="0" name="transformationDimensionMapping" type="gco:CharacterString_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_Georectified_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_Georectified"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_GeometricObjectTypeCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type">
+    <annotation>
+      <documentation>Name of point and vector spatial objects used to locate zero-, one-, and two-dimensional spatial locations in the dataset</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_GeometricObjectTypeCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_GeometricObjectTypeCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_Resolution" substitutionGroup="gco:AbstractObject" type="gsm:MD_Resolution_Type"/>
+  <complexType name="MD_Resolution_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <choice>
+          <element name="equivalentScale" type="gsm:MD_RepresentativeFraction_PropertyType"/>
+          <element name="distance" type="gco:Distance_PropertyType"/>
+          <element name="vertical" type="gco:Distance_PropertyType"/>
+          <element name="angularDistance" type="gco:Angle_PropertyType"/>
+          <element name="levelOfDetail" type="gco:CharacterString_PropertyType"/>
+        </choice>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_Resolution_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_Resolution"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_TopologyLevelCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type">
+    <annotation>
+      <documentation>Degree of complexity of the spatial relationships</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_TopologyLevelCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_TopologyLevelCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_GridSpatialRepresentation" substitutionGroup="gsm:AbstractMD_SpatialRepresentation" type="gsm:MD_GridSpatialRepresentation_Type">
+    <annotation>
+      <documentation>Types and numbers of raster spatial objects in the dataset</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_GridSpatialRepresentation_Type">
+    <complexContent>
+      <extension base="gsm:AbstractMD_SpatialRepresentation_Type">
+        <sequence>
+          <element name="numberOfDimensions" type="gco:Integer_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="axisDimensionProperties" type="gsm:MD_Dimension_PropertyType"/>
+          <element name="cellGeometry" type="gsm:MD_CellGeometryCode_PropertyType">
+            <annotation>
+              <documentation>Raster spatial objects used to locate zero-, two-, or three-dimensional locations in the dataset</documentation>
+            </annotation>
+          </element>
+          <element name="transformationParameterAvailability" type="gco:Boolean_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_GridSpatialRepresentation_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_GridSpatialRepresentation"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_PixelOrientationCode" substitutionGroup="gco:CharacterString" type="gsm:MD_PixelOrientationCode_Type"/>
+  <simpleType name="MD_PixelOrientationCode_Type">
+    <restriction base="string">
+      <enumeration value="center"/>
+      <enumeration value="lowerLeft"/>
+      <enumeration value="lowerRight"/>
+      <enumeration value="upperRight"/>
+      <enumeration value="upperLeft"/>
+    </restriction>
+  </simpleType>
+  <complexType name="MD_PixelOrientationCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_PixelOrientationCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_VectorSpatialRepresentation" substitutionGroup="gsm:AbstractMD_SpatialRepresentation" type="gsm:MD_VectorSpatialRepresentation_Type">
+    <annotation>
+      <documentation>Information about the vector spatial objects in the dataset</documentation>
+    </annotation>
+  </element>
+  <complexType name="MD_VectorSpatialRepresentation_Type">
+    <complexContent>
+      <extension base="gsm:AbstractMD_SpatialRepresentation_Type">
+        <sequence>
+          <element minOccurs="0" name="topologyLevel" type="gsm:MD_TopologyLevelCode_PropertyType">
+            <annotation>
+              <documentation>Code which identifies the degree of complexity of the spatial relationships</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="geometricObjects" type="gsm:MD_GeometricObjects_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_VectorSpatialRepresentation_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_VectorSpatialRepresentation"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_GeometricObjects" substitutionGroup="gco:AbstractObject" type="gsm:MD_GeometricObjects_Type"/>
+  <complexType name="MD_GeometricObjects_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="geometricObjectType" type="gsm:MD_GeometricObjectTypeCode_PropertyType">
+            <annotation>
+              <documentation>Name of point and vector spatial objects used to locate zero-, one-, and two-dimensional spatial locations in the dataset</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="geometricObjectCount" type="gco:Integer_PropertyType">
+            <annotation>
+              <documentation>Total number of the point or vector object type occurring in the dataset</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_GeometricObjects_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_GeometricObjects"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_Dimension" substitutionGroup="gco:AbstractObject" type="gsm:MD_Dimension_Type"/>
+  <complexType name="MD_Dimension_Type">
+    <complexContent>
+      <extension base="gco:AbstractObject_Type">
+        <sequence>
+          <element name="dimensionName" type="gsm:MD_DimensionNameTypeCode_PropertyType"/>
+          <element name="dimensionSize" type="gco:Integer_PropertyType"/>
+          <element minOccurs="0" name="resolution" type="gco:Measure_PropertyType">
+            <annotation>
+              <documentation>Units used to express data density along the axes</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="dimensionTitle" type="gco:CharacterString_PropertyType"/>
+          <element minOccurs="0" name="dimensionDescription" type="gco:CharacterString_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_Dimension_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_Dimension"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_Georeferenceable" substitutionGroup="gsm:MD_GridSpatialRepresentation" type="gsm:MD_Georeferenceable_Type"/>
+  <complexType name="MD_Georeferenceable_Type">
+    <complexContent>
+      <extension base="gsm:MD_GridSpatialRepresentation_Type">
+        <sequence>
+          <element name="controlPointAvailability" type="gco:Boolean_PropertyType"/>
+          <element name="orientationParameterAvailability" type="gco:Boolean_PropertyType"/>
+          <element minOccurs="0" name="orientationParameterDescription" type="gco:CharacterString_PropertyType"/>
+          <element name="georeferencedParameters" type="gco:Record_PropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="parameterCitation" type="cit:CI_Citation_PropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MD_Georeferenceable_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_Georeferenceable"/>
+    </sequence>
+    <attributeGroup ref="gco:ObjectReference"/>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_DimensionNameTypeCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type"/>
+  <complexType name="MD_DimensionNameTypeCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_DimensionNameTypeCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+  <element name="MD_CellGeometryCode" substitutionGroup="gco:CharacterString" type="gco:CodeListValue_Type"/>
+  <complexType name="MD_CellGeometryCode_PropertyType">
+    <sequence minOccurs="0">
+      <element ref="gsm:MD_CellGeometryCode"/>
+    </sequence>
+    <attribute ref="gco:nilReason"/>
+  </complexType>
+</schema>

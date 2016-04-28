@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xlink="http://www.w3.org/1999/xlink"  
+  xmlns:gco="http://www.isotc211.org/2005/gco" 
+  xmlns:mim="http://www.isotc211.org/2005/mim/1.0/2012-10-13" 
+  elementFormDefault="qualified" 
+  targetNamespace="http://www.isotc211.org/2005/mim/1.0/2012-10-13" version="">
+  <annotation>
+    <documentation>Handcrafted</documentation>
+  </annotation>
+  <include schemaLocation="mim.xsd"/>
+  <import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/1999/xlink.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <!-- ########################################################################### -->
+  <!-- ########################################################################### -->
+  <!-- This is copied directly from gmx implemenation for ISO19139, with gmx changed to mim -->
+  <!-- ================================== Classes ================================= -->
+  <!-- ======================== Handcrafted types =================================== -->
+  <!-- ========================================================================== -->
+  <!-- ====================== The FileName prototype ================================ -->
+  <!--It is used to point to a source file and is substitutable for CharacterString-->
+  <!--================= Type ==================-->
+  <xs:complexType name="FileName_Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="src" type="xs:anyURI"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- ........................................................................ -->
+  <xs:element name="FileName" type="mim:FileName_Type" substitutionGroup="gco:CharacterString"/>
+  <!-- ........................................................................ -->
+  <xs:complexType name="FileName_PropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="mim:FileName"/>
+    </xs:sequence>
+    <xs:attribute ref="gco:nilReason"/>
+  </xs:complexType>
+  <!-- ========================================================================== -->
+  <!-- ====================== The MimeFileType prototype ============================= -->
+  <!--It is used to provide information on file types and is substitutable for CharacterString-->
+  <!--================= Type ==================-->
+  <xs:complexType name="MimeFileType_Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="type" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- ........................................................................ -->
+  <xs:element name="MimeFileType" type="mim:MimeFileType_Type" substitutionGroup="gco:CharacterString"/>
+  <!-- ........................................................................ -->
+  <xs:complexType name="MimeFileType_PropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="mim:MimeFileType"/>
+    </xs:sequence>
+    <xs:attribute ref="gco:nilReason"/>
+  </xs:complexType>
+  <!-- ========================================================================== -->
+  <!-- ======================= The Anchor prototype ================================ -->
+  <!--It is used to point to a registred definition-->
+  <!--================= Type ==================-->
+  <xs:complexType name="Anchor_Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attributeGroup ref="xlink:simpleAttrs"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- ........................................................................ -->
+  <xs:element name="Anchor" type="mim:Anchor_Type" substitutionGroup="gco:CharacterString"/>
+  <!-- ........................................................................ -->
+  <xs:complexType name="Anchor_PropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="mim:Anchor"/>
+    </xs:sequence>
+    <xs:attribute ref="gco:nilReason"/>
+  </xs:complexType>
+  <!--======= End of Schema ======-->
+</schema>
