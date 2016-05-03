@@ -41,7 +41,7 @@ public class SuiteFixtureListener implements ISuiteListener {
 
     /**
      *
-     * @param suite
+     * @param suite An ISuite object representing a TestNG test suite.
      */
     @Override
     public void onStart(ISuite suite) {
@@ -56,7 +56,7 @@ public class SuiteFixtureListener implements ISuiteListener {
 
     /**
      *
-     * @param suite
+     * @param suite An ISuite object representing a TestNG test suite.
      */
     @Override
     public void onFinish(ISuite suite) {

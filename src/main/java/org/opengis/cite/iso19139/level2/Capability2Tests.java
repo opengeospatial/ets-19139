@@ -139,7 +139,7 @@ public class Capability2Tests {
      * Attempts to construct a local XML file.
      *
      * @param testContext The test set context.
-     * @return
+     * @return File return local XML file
      */
     public File localFileCreation(String testContext) {
         String url = testContext;
@@ -194,14 +194,14 @@ public class Capability2Tests {
      * [{@code Test}] Verifies that a ISO instance satisfies the nilReason
      * Schematron constraints specified in ISO 19136.
      *
-     * <h6 style="margin-bottom: 0.5em">Sources</h6>
+     * <h1 style="margin-bottom: 0.5em">Sources</h1>
      * <ul>
      * <li><a
      * href="http://schemas.opengis.net/gml/3.2.1/SchematronConstraints.xml">
      * Schematron constraints for ISO 19136</a></li>
      * </ul>
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      */
     @Test(description = "Implements ATC 2-1")
     public synchronized void validateXMLAgainstSchematronForNullReason(ITestContext testContext) {
@@ -304,7 +304,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Encoding error on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -324,7 +324,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Data Identification on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -344,7 +344,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Aggregate Information on
      * ISO elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -364,7 +364,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Legal Constraints on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -385,7 +385,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Scope of file on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -405,7 +405,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Georectified error on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -425,7 +425,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Band Value of XML on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -445,7 +445,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Medium of XML on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -465,7 +465,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Extended element
      * information on ISO elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -486,7 +486,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Extent value of XML on ISO
      * elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -506,7 +506,7 @@ public class Capability2Tests {
      * [{@code Test}] Checks for the presence of any Responsible party of XML
      * information on ISO elements. A warning is issued for each occurrence.
      *
-     * @param testContext
+     * @param testContext The test (group) context.
      * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions
      * of ISO"
      */
@@ -528,7 +528,7 @@ public class Capability2Tests {
      *
      * @param piData A Map containing PI data (pseudo-attributes).
      * @return {@code true} if the "schematypens" pseudo-attribute has the value
-     * {@value org.opengis.cite.iso19136.Namespaces#SCH}; {@code false}
+     * {@value org.opengis.cite.iso19139.Namespaces#SCH}; {@code false}
      * otherwise;
      */
     boolean isSchematronReference(Map<String, String> piData

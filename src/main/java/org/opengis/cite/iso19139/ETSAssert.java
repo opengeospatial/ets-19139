@@ -117,7 +117,7 @@ public class ETSAssert {
      *
      * @param schemaRef A URL that denotes the location of a Schematron schema.
      * @param xmlSource The XML Source to be validated.
-   * @param description
+     * @param description Test Description
      */
     public static void assertSchematronValid(URL schemaRef, Source xmlSource,String description) {
         SchematronValidator validator;

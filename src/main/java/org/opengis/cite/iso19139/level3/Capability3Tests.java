@@ -137,7 +137,7 @@ public class Capability3Tests {
    * Attempts to construct a local XML file.
    *
    * @param testContext The test set context.
-   * @return
+   * @return File return local XML file.
    */
   public File localFileCreation(String testContext) {
     String url = testContext;
@@ -192,8 +192,8 @@ public class Capability3Tests {
    * [{@code Test}] Checks for the presence of any Encoding error on ISO
    * elements. A warning is issued for each occurrence.
    *
-   * @param testContext
-   * @throws java.net.MalformedURLException
+   * @param testContext The test (group) context.
+   * @throws java.net.MalformedURLException Exception occured if inserted Schematron fIle is not a Valid XML file
    * @see "ISO 19136, Annex I: Backwards compatibility with earlier versions of
    * ISO"
    */
@@ -220,14 +220,16 @@ public class Capability3Tests {
 
   }
 
-  /**
-   * Indicates whether or not the given PI data includes a Schematron schema
-   * reference.
-   *
-   * @param piData A Map containing PI data (pseudo-attributes).
-   * @return {@code true} if the "schematypens" pseudo-attribute has the value
-   * {@value org.opengis.cite.iso19136.Namespaces#SCH}; {@code false} otherwise;
-   */
+	/**
+	 * Indicates whether or not the given PI data includes a Schematron schema
+	 * reference.
+	 * 
+	 * @param piData
+	 *            A Map containing PI data (pseudo-attributes).
+	 * @return {@code true} if the "schematypens" pseudo-attribute has the value
+	 *         {@value org.opengis.cite.iso19139.Namespaces#SCH}; {@code false} 
+	 *         otherwise;
+	 */
   boolean isSchematronReference(Map<String, String> piData
   ) {
     if (null != piData && null != piData.get("schematypens")) {

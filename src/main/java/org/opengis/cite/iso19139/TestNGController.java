@@ -37,7 +37,8 @@ public class TestNGController implements TestSuiteController {
    * properties file containing the expected set of test run arguments. If no
    * argument is supplied, the file located at ${user.home}/test-run-props.xml
    * will be used.
-   *
+   * 
+   * @param args command-line arguments
    * @throws Exception If the test run cannot be executed (usually due to
    * unsatisfied pre-conditions).
    */

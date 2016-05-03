@@ -102,9 +102,9 @@ public class Capability1Tests {
    * 'inputvalidation' pass successfully. This test method is used to check
    * whether the given input XML conforms to clause A.1 of ISO 19139.
    *
-   * @param testContext
-   * @throws org.xml.sax.SAXException
-   * @throws java.io.IOException
+   * @param testContext  The test (group) context.
+   * @throws org.xml.sax.SAXException If any error occurs while parsing the xml
+   * @throws java.io.IOException If any error occurs while parsing the xml.
    */
   @Test(dependsOnGroups = {"inputvalidation.*"}, description = "Perform validation of XML against XSD")
   public synchronized void validateXMLAgainstXSD(ITestContext testContext) throws SAXException,

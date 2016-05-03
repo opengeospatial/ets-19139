@@ -99,9 +99,9 @@ public class ValidateInputTest {
    * Validates whether the given input file is an XML file (based on its
    * extension OR file content)
    *
-   * @param testContext
-   * @throws org.xml.sax.SAXException
-   * @throws java.io.IOException
+   * @param testContext The test (group) context.
+   * @throws org.xml.sax.SAXException If any error occurs while parsing the xml.
+   * @throws java.io.IOException If any error occurs while parsing the xml.
    */
   @Test(groups = {"inputvalidation"}, description = "This function validates XML file", dependsOnMethods = "validateXMLPath")
   public synchronized void validateXMLFile(ITestContext testContext) throws SAXException,
@@ -135,8 +135,8 @@ public class ValidateInputTest {
 
   /**
    * @param testContext Validates whether the given input file exists or not
-   * @throws org.xml.sax.SAXException
-   * @throws java.io.IOException
+   * @throws org.xml.sax.SAXException If any error occurs while parsing the xml
+   * @throws java.io.IOException If any error occurs while parsing the xml
    */
   @Test(groups = {"inputvalidation"}, description = "This function validates XML file Path")
   public synchronized void validateXMLPath(ITestContext testContext) throws SAXException,
