@@ -1,9 +1,9 @@
 # ISO 19139 Release Notes
 
-## Revision r5 (20160429)
+## Revision 0.5 (20160429)
 - moved information from readme to index.md under the site folder
 - [Pull Request 11](https://github.com/opengeospatial/ets-19139/pull/11) - Includes NOAA schemas profile.
-
+- Change pom versioning based on CITE tools.
 
 ## Revision r4
 
