@@ -5,7 +5,7 @@
 
     <groupId>org.opengis.cite</groupId>
     <artifactId>iso19139</artifactId>
-    <version>0.5</version>
+    <version>0.6-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>ISO 19139</name>
