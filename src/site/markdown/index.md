@@ -2,7 +2,16 @@
 
 This executable test suite (ETS) verifies the conformance of implementations to [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
 
-## What is tested (Conformance Classes)
+The validator uses the schemas provided by [NOAA NGDC](http://www.ngdc.noaa.gov). Location of the schemas are [here](http://www.ngdc.noaa.gov/metadata/published/xsd/). The validator uses the [schema.xsd](http://www.ngdc.noaa.gov/metadata/published/xsd/schema.xsd) and validates instances with the following namespaces:
+
+- http://www.isotc211.org/2005/gmi
+- http://www.isotc211.org/2005/gmd
+- http://www.isotc211.org/2005/srv
+
+The project uses [these schematrons](
+https://github.com/opengeospatial/ets-19139/tree/feature-issue-javadoc/src/main/resources/org/opengis/cite/schematron)
+
+## Conformance Classes Tested
 
 
 ### Capabilities of conformance level 1
