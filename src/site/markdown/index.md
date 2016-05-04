@@ -1,14 +1,11 @@
 # Overview
 
-This test suite is based on the following OGC specifications:
+This executable test suite (ETS) verifies the conformance of implementations to [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
 
-The following executable test suite (ETS) verifies the conformance to [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
+## What is tested (Conformance Classes)
 
-Several conformance classes are defined in the specification:
 
-## What is tested
-
-###Capabilities of conformance level 1
+### Capabilities of conformance level 1
 
 **ISO19139 application schemas A.1**
 Minimum conformance with this Technical Specification requires that geographic metadata instance (XML) documents can be validated without error against the XML schemas. While many tools are available to test validation of XML instance documents against provided XML Schemas, it is important to understand that not all validation tools implement the full W3C XML Schema recommendation and not all validation tools interpret the W3C XML Schema recommendation in the same manner. It is recommended that a tool with strict interpretation of XML Schema and full support for the W3C XML Schema recommendation be used to ensure conformance.
