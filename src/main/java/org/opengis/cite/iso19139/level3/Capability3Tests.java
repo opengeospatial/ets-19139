@@ -81,7 +81,9 @@ public class Capability3Tests {
   public void validateConfromanceLevelThreeEnabled(ITestContext testContext) throws IOException {
     Map<String, String> params = testContext.getSuite().getXmlSuite().getParameters();
     int level = Integer.parseInt(params.get(TestRunArg.ICS.toString()));
-    if (level > 2) {
+    String sch = params.get(TestRunArg.SCH.toString());
+    
+    if (level > 2 && !sch.isEmpty() && sch != "") {
       Assert.assertTrue(true);
     } else {
       Assert.assertTrue(false, "Conformance level three is not enabled");
