@@ -1,8 +1,10 @@
-# Test-Suite for geographic metadata 19139
+# Test-Suite for geographic metadata 19115 19139
 
-This Test-Suite provides the Executable Test Script (ETS) to test implementations against [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
+This Test-Suite provides the Executable Test Script (ETS) to validate metadata instances following [ISO19139](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32557)
 
-Detailed information about this test suite and how to run it is available at the [test web page](http://opengeospatial.github.io/ets-19139).
+ISO/TS 19139:2007 defines Geographic MetaData XML (gmd) encoding, an XML Schema implementation derived from ISO 19115.
+
+A webpage where you can validate your ISO 19115 / 19139 files is maintained by OGC [here](http://cite-dev-03.opengeospatial.org/teamengine/).
 
 ## License
 
@@ -15,6 +17,8 @@ These are the following ways to validate an instance.
    1. Via a web user interface
    2. Via HTTP request
    3. Via console
+
+Detailed information about this test suite and how to run it is available [here](http://opengeospatial.github.io/ets-19139).
 
 ## Bugs
 
