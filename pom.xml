@@ -17,10 +17,30 @@
         </license>
     </licenses>
 
+    <organization>
+        <name>Open Geospatial Consortium</name>
+        <url>http://www.opengeospatial.org</url>
+    </organization>
     <scm>
-        <connection>scm:svn:https://svn.opengeospatial.org/ogc-projects/cite/ets/testng/ets-iso19139/trunk</connection>
-        <developerConnection>scm:svn:https://svn.opengeospatial.org/ogc-projects/cite/ets/testng/ets-iso19139/trunk</developerConnection>
+        <url>https://github.com/opengeospatial/ets-19139</url>
+        <connection>scm:git:https://github.com/opengeospatial/ets-19139.git</connection>
+        <developerConnection>scm:git:git@github.com:opengeospatial/ets-19139.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
+    <issueManagement>
+        <system>GitHub Issue Tracker</system>
+        <url>https://github.com/opengeospatial/ets-19139/issues</url>
+    </issueManagement>
+    <developers>
+        <developer>
+            <name>L. Bermudez</name>
+            <url>https://github.com/bermud</url>
+        </developer>
+        <developer>
+            <name>tanvi-shah</name>
+            <url>https://github.com/tanvi-shah</url>
+        </developer>
+    </developers>
 
     <properties>
         <ets-code>iso19139</ets-code>
