@@ -76,7 +76,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstSchematronForNullReason(testContext);
     }
@@ -109,7 +109,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkEncodingStandard(testContext);
     }
@@ -153,7 +153,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkDataIdentification(testContext);
     }
@@ -197,7 +197,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkAggregateInformation(testContext);
     }
@@ -241,7 +241,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkLegalConstraints(testContext);
     }
@@ -286,7 +286,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkScopeOfXmlFile(testContext);
     }
@@ -317,7 +317,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkGeorectified(testContext);
     }
@@ -348,7 +348,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkBandValueOfXml(testContext);
     }
@@ -379,7 +379,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkMediumOfXml(testContext);
     }
@@ -410,7 +410,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkExtendedElementInformation(testContext);
     }
@@ -441,7 +441,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkExtentValueOfXml(testContext);
     }
@@ -471,7 +471,7 @@ public class VerifyCapability2Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.checkResponsiblePartyOfXml(testContext);
     }

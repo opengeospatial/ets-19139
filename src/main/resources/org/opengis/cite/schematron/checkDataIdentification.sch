@@ -20,8 +20,7 @@
    <sch:pattern>
       <sch:title>MD_Metadata.hierarchyLevel &gt;= 1</sch:title>
       <sch:rule context="//gmd:MD_DataIdentification|//*[@gco:isoType='gmd:MD_DataIdentification']">
-         <sch:let name="extent" value="(not(../../gmd:hierarchyLevel)    or ../../gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataset'    or ../../gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='')    and (count(gmd:extent/*/gmd:geographicElement/gmd:EX_GeographicBoundingBox)    + count (gmd:extent/*/gmd:geographicElement/gmd:EX_GeographicDescription))&gt;=1" />
-         <sch:assert test="$extent = false()">Metadata Hierarchy Level is not valid</sch:assert>
+         <sch:assert test="(../../gmd:hierarchyLevel or ../../gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataset' or ../../gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='') and (count(gmd:extent/*/gmd:geographicElement/gmd:EX_GeographicBoundingBox) + count (gmd:extent/*/gmd:geographicElement/gmd:EX_GeographicDescription))&gt;=1">Metadata Hierarchy Level is not valid</sch:assert>
       </sch:rule>
    </sch:pattern>
 </sch:schema>

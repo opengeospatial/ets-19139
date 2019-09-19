@@ -76,7 +76,7 @@ public class VerifyCapability1Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmd/databib_1.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstXSD(testContext);
@@ -97,7 +97,7 @@ public class VerifyCapability1Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/IEDA/10000_iso.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(NOAA_ROOT+  "metadata/published/xsd/ngdcSchema/schema.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstXSD(testContext);
@@ -118,7 +118,7 @@ public class VerifyCapability1Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmd/databib_1.xml");
        // params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstXSD(testContext);
@@ -139,7 +139,7 @@ public class VerifyCapability1Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         // Map<String, String> params1=null;
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/IEDA/10000_iso.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmi/sciencebase.xml");
       //  params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstXSD(testContext);
@@ -183,8 +183,8 @@ public class VerifyCapability1Tests {
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
       //  params1.put(TestRunArg.IUT.toString(), "http://www.w3schools.com/dom/books.xml");
-        params1.put(TestRunArg.IUT.toString(), "http://www.w3schools.com/dom/books");
-        params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
+        //params1.put(TestRunArg.IUT.toString(), "https://www.w3schools.com/xml/books.xml");
+        //params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLAgainstXSD(testContext);
     }
