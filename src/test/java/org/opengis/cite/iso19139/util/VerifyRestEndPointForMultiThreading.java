@@ -98,7 +98,6 @@ public class VerifyRestEndPointForMultiThreading {
       this.sch = sch;
     }
 
-    @Override
     public void run() {
       URI uriRef = URI.create("http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run?iut=" + uri + "&sch=" + sch);
       try {

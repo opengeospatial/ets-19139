@@ -85,7 +85,7 @@ public class VerifyValidateInputTest {
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmd/databib_1.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLFile(testContext);
@@ -167,7 +167,7 @@ public class VerifyValidateInputTest {
         ValidateInputTest iut = new ValidateInputTest();
         testContext.getSuite().setAttribute(SuiteAttribute.SCHEMA.getName(), "");
         Map<String, String> params1 = testContext.getSuite().getXmlSuite().getParameters();
-        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/ScienceBase_WAF_dump/0070D26B-28CD-4512-91BB-43BB0E573441.xml");
+        params1.put(TestRunArg.IUT.toString(), "http://hydro10.sdsc.edu/metadata/example/gmd/databib_1.xml");
         params1.put(TestRunArg.XSD.toString(), this.getClass().getResource(ETS_ROOT_PKG + "xsd/iso/19139/20070417/gmd/gmd.xsd").toString());
         testContext.getSuite().getXmlSuite().setParameters(null);
         iut.validateXMLPath(testContext);
