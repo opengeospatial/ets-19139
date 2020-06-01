@@ -47,14 +47,14 @@ These are the following ways to validate an instance.
 
 ### Validating via a Web User Interface
 The web site is available here:
-   http://cite-dev-03.opengeospatial.org/teamengine/
+   http://localhost:8080/teamengine/
 
 It requires an easy registration and a login  process.
 
-###  Validating via an HTTP Request
+###  Validating via an REST API Request
 
 
-- URL: http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run
+- URL: http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run
 - Parameters can be:
     - iut = Instance (or implementation) under test (Mandatory)
     - ics = An implementation conformance statement that indicates which conformance classes or options are supported.
@@ -64,11 +64,11 @@ It requires an easy registration and a login  process.
 
 For example::
 
-      http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml
+      http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/37E28B7A-0406-449B-8A45-3988AE675368.xml
    
 Example with sch:
 
-      http://cite-dev-03.opengeospatial.org/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/1E97BD2D-0FDD-4BAC-8DEA-FEB57AB53A6E.xml&sch=http://cite-dev-03.opengeospatial.org/teamengine/checkScopeOfXmlFile.sch
+      http://localhost:8080/teamengine/rest/suites/iso19139/1.0/run?iut=http://hydro10.sdsc.edu/metadata/Raquel_Files/1E97BD2D-0FDD-4BAC-8DEA-FEB57AB53A6E.xml&sch=http://cite-dev-03.opengeospatial.org/teamengine/checkScopeOfXmlFile.sch
 
      In GET Request : iut and sch are URI's
 

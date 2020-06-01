@@ -18,9 +18,9 @@
                 <name>${version}</name>
                 <status>Beta</status>
                 <sources>
-                    <source>${ets-code}/${version}/${ets-code}-suite.ctl</source>
+                    <source>${ets-code}/${spec-version}/ctl</source>
                 </sources>
-                <webdir>${ets-code}/${version}/web</webdir>
+                <webdir>${ets-code}/${spec-version}/site</webdir>
             </revision>
         </version>
     </standard>

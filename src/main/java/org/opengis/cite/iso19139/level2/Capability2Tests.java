@@ -18,8 +18,8 @@ import java.util.logging.Level;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.Result;
 import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.*;
 import org.opengis.cite.iso19139.ETSAssert;
 import org.opengis.cite.iso19139.ErrorMessage;
@@ -221,7 +221,7 @@ public class Capability2Tests {
         }
         String errorMessage = null;
         try {
-            DOMResult result = validator.validate(new StreamSource(dataFile));
+            Result result = validator.validate(new StreamSource(dataFile));
 
             // Get number of violation count
             String countNo = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
@@ -229,7 +229,7 @@ public class Capability2Tests {
 
             // Fetch error message when schema is not valid
             errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                    XMLUtils.writeNodeToString(result.getNode()));
+                    XMLUtils.resultToString(result));
 
             String error = "";
 
