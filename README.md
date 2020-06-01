@@ -4,8 +4,6 @@ This Test-Suite provides the Executable Test Script (ETS) to validate metadata i
 
 ISO/TS 19139:2007 defines Geographic MetaData XML (gmd) encoding, an XML Schema implementation derived from ISO 19115.
 
-A webpage where you can validate your ISO 19115 / 19139 files is maintained by OGC [here](http://cite-dev-03.opengeospatial.org/teamengine/).
-
 ## License
 
 [Apache 2.0 License](LICENSE.md)

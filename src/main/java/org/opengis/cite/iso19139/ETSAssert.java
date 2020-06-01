@@ -5,8 +5,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.logging.Level;
 import javax.xml.namespace.QName;
+import javax.xml.transform.Result;
 import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Validator;
 import javax.xml.xpath.XPath;
@@ -131,12 +131,11 @@ public class ETSAssert {
             msg.append(e.getMessage());
            throw new AssertionError(msg);
         }
-        DOMResult result = validator.validate(xmlSource);
+        Result result = validator.validate(xmlSource);
 
         // Fetch error message when schema is not valid
         String errorMessage = ErrorMessage.format(ErrorMessageKeys.NOT_SCHEMA_VALID,
-                validator.getRuleViolationCount(),
-                XMLUtils.writeNodeToString(result.getNode()));
+                validator.getRuleViolationCount(), XMLUtils.resultToString(result));
         String error = "";
 
         String delims = "<svrl:text>";
